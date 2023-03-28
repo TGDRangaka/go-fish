@@ -1,0 +1,157 @@
+DROP DATABASE IF EXISTS go_fish;
+
+CREATE DATABASE IF NOT EXISTS go_fish;
+
+USE go_fish;
+
+CREATE TABLE admin(
+	adminId VARCHAR(4) PRIMARY KEY,
+	name VARCHAR(50) NOT NULL UNIQUE,
+	userName VARCHAR(20) NOT NULL UNIQUE,
+	password VARCHAR(15) NOT NULL UNIQUE,
+	email VARCHAR(50) NOT NULL UNIQUE
+);
+
+CREATE TABLE crew(
+	crewId VARCHAR(4) PRIMARY KEY,
+	leader VARCHAR(5) NOT NULL,
+	crewmencount INT NOT NULL,
+	boatscount INT NOT NULL,
+	availabletime VARCHAR(3) NOT NULL,
+	availabledays VARCHAR(7) NOT NULL,
+	adminId VARCHAR(4),
+	FOREIGN KEY(adminId) REFERENCES admin(adminId)
+);
+
+CREATE TABLE crewman(
+	crewmanId VARCHAR(5) PRIMARY KEY,
+	name VARCHAR(50) NOT NULL,
+	nic VARCHAR(13) NOT NULL UNIQUE,
+	address VARCHAR(150) NOT NULL,
+	bod DATE NOT NULL,
+	email VARCHAR(50) NOT NULL,
+	contactNo VARCHAR(11) NOT NULL UNIQUE,
+	crewId VARCHAR(4),
+	FOREIGN KEY(crewId) REFERENCES crew(crewId)
+);
+
+CREATE TABLE boatowner(
+	ownerId VARCHAR(5) PRIMARY KEY,
+	name VARCHAR(50) NOT NULL,
+	nic VARCHAR(13) NOT NULL UNIQUE,
+	address VARCHAR(150) NOT NULL,
+	contactNo VARCHAR(11) NOT NULL UNIQUE
+);
+
+CREATE TABLE boat(
+	boatId VARCHAR(4) PRIMARY KEY,
+	registrationNo VARCHAR(15) UNIQUE NOT NULL,
+	model VARCHAR(30) NOT NULL,
+	type VARCHAR(30),
+	sattelitePhoneNo VARCHAR(15) UNIQUE,
+	ownerId VARCHAR(5),
+	FOREIGN KEY(ownerId) REFERENCES boatowner(ownerId)
+);
+
+CREATE TABLE catch(
+	catchId VARCHAR(5) PRIMARY KEY,
+	weightOfCatch DECIMAL(8,2) NOT NULL,
+	catchDate DATE NOT NULL,
+	paymentAmount DECIMAL(8,2) NOT NULL,
+	paymentTime TIME NOT NULL,
+	tripStartedTime TIME,
+	tripEndedTime TIME,
+	crewId VARCHAR(4),
+	adminId VARCHAR(4),
+	FOREIGN KEY(crewId) REFERENCES crew(crewId),
+	FOREIGN KEY(adminId) REFERENCES admin(adminId)
+);
+
+CREATE TABLE fish(
+	fishId VARCHAR(4) PRIMARY KEY,
+	fishType VARCHAR(30) NOT NULL UNIQUE,
+	unitWeight DECIMAL(5,2) NOT NULL,
+	unitPrice DECIMAL(8,2) NOT NULL
+);
+
+CREATE TABLE catchdetail(
+	catchId VARCHAR(5) NOT NULL,
+	fishId VARCHAR(4) NOT NULL,
+	weight DECIMAL(5,2) NOT NULL,
+	FOREIGN KEY(catchId) REFERENCES catch(catchId),
+	FOREIGN KEY(fishId) REFERENCES fish(fishId)
+);
+
+CREATE TABLE mail(
+	mailId VARCHAR(4) PRIMARY KEY,
+	description TEXT NOT NULL,
+	sentDate DATETIME NOT NULL
+);
+
+CREATE TABLE maildetail(
+	crewId VARCHAR(4) NOT NULL,
+	mailId VARCHAR(4) NOT NULL,
+	FOREIGN KEY(crewId) REFERENCES crew(crewId),
+	FOREIGN KEY(mailId) REFERENCES mail(mailId)
+);
+
+SHOW TABLES;
+
+DESC admin;
+DESC crew;
+DESC crewman;
+DESC boat;
+DESC boatowner;
+DESC catch;
+DESC fish;
+DESC catchdetail;
+DESC mail;
+DESC maildetail;
+
+
+INSERT INTO admin VALUES ('A001', 'Kamal Perera', 'kamalperera', 'kamal1234', 'kamalperera@gmail.com'),
+	('A002', 'Vihaga Dilshan', 'vihagadilshan', 'vihaga1234', 'vihagadilshan@gmail.com');
+
+INSERT INTO crew VALUES ('C001', 'CL001', 5, 1, '101', '1111100', 'A002'),
+	('C002', 'CL002', 4, 1, '111', '1101111', 'A002');
+
+INSERT INTO crewman VALUES ('CL001', 'Amal', '200223401234', 'Weligama', '1992-02-13', 'amal@gmail.com', '0770438967', 'C001'),
+	('CM001', 'Thilina', '200254761234', 'Weligama', '1990-06-22', 'thilina@gmail.com', '0757698967', 'C001'),
+	('CM002', 'Gihan', '204564761234', 'Weligama', '1981-09-11', 'gihan@gmail.com', '0734598967', 'C001'),
+	('CM003', 'Kavindu', '223854761234', 'Weligama', '1988-03-02', 'kavindu@gmail.com', '0715678967', 'C001'),
+	('CM004', 'Sadaru', '223638761234', 'Weligama', '1995-04-26', 'sadaru@gmail.com', '0727898967', 'C001');
+INSERT INTO crewman VALUES ('CL002', 'Janith', '234223401234', 'Weligama', '1991-02-13', 'janith@gmail.com', '0711138967', 'C002'),
+	('CM005', 'Pasindu', '262254761234', 'Weligama', '1991-01-22', 'pasindu@gmail.com', '0761298967', 'C002'),
+	('CM006', 'Tishan', '271564761234', 'Weligama', '1984-04-11', 'tishan@gmail.com', '0754987967', 'C002'),
+	('CM007', 'Samith', '211254761234', 'Weligama', '1983-09-21', 'samith@gmail.com', '0726588967', 'C002');
+
+INSERT INTO boatowner VALUES ('BO001', 'Perera', '199334638516', 'Mirissa', '0770341883'),
+	('BO002', 'Vimal', '189364638516', 'Mirissa', '0712341883');
+
+INSERT INTO boat VALUES ('B001', 'IA-1234-AA', 'NMDF-72', 'NULL', NULL, 'BO001'),
+	('B002', 'IB-3476-AA', 'NMDF-72', 'NULL', NULL, 'BO002');
+
+INSERT INTO catch VALUES ('CA001', 87, '2023-03-27', 80000, '08:30:00', '05:00:00', '08:00:00', 'C001', 'A001');
+
+INSERT INTO fish VALUES ('F001', 'Yellowfin Tuna', 10, 2000),
+	('F002', 'Bluefin Tuna', 10, 1800);
+
+INSERT INTO catchdetail VALUES ('CA001', 'F001', 87);
+
+INSERT INTO mail VALUES ('M001', 'test test test', '2023-03-23 10:20');
+
+INSERT INTO maildetail VALUES ('C001', 'M001'), ('C002', 'M001');
+
+
+SELECT * FROM admin;
+SELECT * FROM crew;
+SELECT * FROM crewman;
+SELECT * FROM boatowner;
+SELECT * FROM boat;
+SELECT * FROM catch;
+SELECT * FROM fish;
+SELECT * FROM catchdetail;
+SELECT * FROM mail;
+SELECT * FROM maildetail;
+
+;

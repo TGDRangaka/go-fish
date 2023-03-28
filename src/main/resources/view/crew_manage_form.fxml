@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane prefHeight="640.0" prefWidth="1083.0" style="-fx-background-color: linear-gradient(to right, #1cd8d2, #93edc7);" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.Controller.CrewManageFormController">
+   <children>
+      <JFXButton contentDisplay="CENTER" focusTraversable="false" layoutX="86.0" layoutY="61.0" prefHeight="207.0" prefWidth="126.0" style="-fx-background-radius: 20%;" text="Crew Registration">
+         <graphic>
+            <ImageView fitHeight="467.0" fitWidth="345.0">
+               <image>
+                  <Image url="@../img/registrationform.png" />
+               </image>
+            </ImageView>
+         </graphic>
+         <font>
+            <Font name="System Bold" size="20.0" />
+         </font>
+      </JFXButton>
+      <JFXButton contentDisplay="CENTER" focusTraversable="false" layoutX="451.0" layoutY="64.0" prefHeight="207.0" prefWidth="126.0" style="-fx-background-radius: 20%;" text="Crew Detail Change">
+         <graphic>
+            <ImageView fitHeight="467.0" fitWidth="345.0">
+               <image>
+                  <Image url="@../img/registrationform.png" />
+               </image>
+            </ImageView>
+         </graphic>
+         <font>
+            <Font name="System Bold" size="20.0" />
+         </font>
+      </JFXButton>
+      <JFXButton contentDisplay="CENTER" focusTraversable="false" layoutX="837.0" layoutY="63.0" prefHeight="207.0" prefWidth="126.0" style="-fx-background-radius: 20%;" text="View Registered Crews">
+         <graphic>
+            <ImageView fitHeight="467.0" fitWidth="345.0">
+               <image>
+                  <Image url="@../img/registrationform.png" />
+               </image>
+            </ImageView>
+         </graphic>
+         <font>
+            <Font name="System Bold" size="20.0" />
+         </font>
+      </JFXButton>
+   </children>
+</AnchorPane>
