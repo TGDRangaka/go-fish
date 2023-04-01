@@ -8,7 +8,7 @@ import java.util.Properties;
 public class DBConnection {
     private static DBConnection dbConnection;
 
-    private final static String URL ="jdbc:mysql://localhost:3306/ThogaKade";
+    private final static String URL ="jdbc:mysql://localhost:3306/go_fish";
     private final static Properties props = new Properties();
 
     private Connection connection;

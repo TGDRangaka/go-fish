@@ -58,19 +58,19 @@
 /*}*/
 
 
-/*.progress-bar .track {*/
-/*    -fx-background-color: #E0E0E0;*/
-/*}*/
+.progress-bar .track {
+    -fx-background-color: #E0E0E0;
+}
 
-/*.progress-bar .bar {*/
-/*    -fx-background-color: linear-gradient(to right, #00A3E0, #00E0FF);*/
-/*}*/
+.progress-bar .bar {
+    -fx-background-color: linear-gradient(to right, #6495EDFF, #a65bf5);
+}
 
-/*.progress-bar .text {*/
-/*    -fx-font-size: 14px;*/
-/*    -fx-font-weight: bold;*/
-/*    -fx-text-fill: #00E0FF;*/
-/*}*/
+.progress-bar .text {
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #00E0FF;
+}
 
 
 
