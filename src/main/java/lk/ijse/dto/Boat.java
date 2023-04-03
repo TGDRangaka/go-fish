@@ -12,4 +12,5 @@ public class Boat {
     private String type;
     private String sattelitePhoneNo;
     private String ownerId;
+    private String crewId;
 }

@@ -9,7 +9,7 @@ import java.time.LocalDate;
 @Data
 @AllArgsConstructor
 public class CrewmanTM {
-    private Integer no;
+    private String id;
     private String name;
     private String nic;
     private String address;

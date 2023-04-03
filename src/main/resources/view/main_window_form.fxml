@@ -16,15 +16,15 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="700.0" prefWidth="1366.0" style="-fx-background-color: linear-gradient(to right, #0f2027, #203a43, #2c5364);" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.Controller.MainWindowFormController">
+<AnchorPane prefHeight="700.0" prefWidth="1366.0" style="-fx-background-color: linear-gradient(to right, #36d1dc, #5b86e5);" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.Controller.MainWindowFormController">
    <children>
       <VBox layoutX="-1.0" layoutY="-1.0" prefHeight="700.0" prefWidth="298.0">
          <children>
-            <HBox alignment="CENTER" minHeight="80.0" prefHeight="82.0" prefWidth="283.0" style="-fx-background-color: linear-gradient(to right, #203a43, #203a43,#0f2027);">
+            <HBox alignment="CENTER" minHeight="80.0" prefHeight="82.0" prefWidth="283.0" style="-fx-background-color: transparent;">
                <children>
                   <Label alignment="CENTER" prefHeight="35.0" prefWidth="64.0" text="Admin" textFill="WHITE">
                      <font>
-                        <Font size="20.0" />
+                        <Font name="System Bold" size="20.0" />
                      </font>
                   </Label>
                   <Pane prefHeight="78.0" prefWidth="78.0" style="-fx-border-color: black; -fx-border-radius: 50%;">
@@ -34,9 +34,9 @@
                   </Pane>
                </children>
             </HBox>
-            <ScrollPane prefHeight="668.0" prefWidth="298.0" style="-fx-background-color: transparent;">
+            <ScrollPane hbarPolicy="NEVER" prefHeight="668.0" prefWidth="586.0" vbarPolicy="NEVER">
                <content>
-                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="798.0" prefWidth="283.0" style="-fx-background-color: linear-gradient(to right, #203a43, #203a43,#0f2027);">
+                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="798.0" prefWidth="283.0" style="-fx-background-color: linear-gradient(to right, #36d1dc, #5b86e5);">
                      <children>
                         <VBox alignment="TOP_CENTER" prefHeight="798.0" prefWidth="284.0">
                            <children>
@@ -62,7 +62,7 @@
                                     <DropShadow spread="0.08" />
                                  </effect>
                               </JFXButton>
-                              <JFXButton focusTraversable="false" layoutX="74.0" layoutY="108.0" prefHeight="300.0" prefWidth="233.0" style="-fx-background-color: #71c7ec; -fx-background-radius: 10; -fx-border-radius: 10;" stylesheets="@../CSS/styles.css" text="Catch Manage">
+                              <JFXButton focusTraversable="false" layoutX="74.0" layoutY="108.0" onAction="#btnCatchManageOnAction" prefHeight="300.0" prefWidth="233.0" style="-fx-background-color: #71c7ec; -fx-background-radius: 10; -fx-border-radius: 10;" stylesheets="@../CSS/styles.css" text="Catch Manage">
                                  <font>
                                     <Font size="19.0" />
                                  </font>

@@ -7,11 +7,11 @@ import lombok.Data;
 @Data
 @AllArgsConstructor
 public class BoatOwnerTM {
-    Integer no;
-    Integer boatNo;
-    String name;
-    String nic;
-    String address;
-    String contactNo;
-    Button action;
+    private String id;
+    private String boatId;
+    private String name;
+    private String nic;
+    private String address;
+    private String contactNo;
+    private Button action;
 }

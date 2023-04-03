@@ -5,7 +5,7 @@ CREATE DATABASE IF NOT EXISTS go_fish;
 USE go_fish;
 
 CREATE TABLE admin(
-	adminId VARCHAR(4) PRIMARY KEY,
+	adminId VARCHAR(5) PRIMARY KEY,
 	name VARCHAR(50) NOT NULL UNIQUE,
 	userName VARCHAR(20) NOT NULL UNIQUE,
 	password VARCHAR(15) NOT NULL UNIQUE,
@@ -13,30 +13,30 @@ CREATE TABLE admin(
 );
 
 CREATE TABLE crew(
-	crewId VARCHAR(4) PRIMARY KEY,
-	leader VARCHAR(5) NOT NULL,
+	crewId VARCHAR(5) PRIMARY KEY,
+	leader VARCHAR(50) NOT NULL,
 	crewmencount INT NOT NULL,
 	boatscount INT NOT NULL,
 	availabletime VARCHAR(3) NOT NULL,
 	availabledays VARCHAR(7) NOT NULL,
-	adminId VARCHAR(4),
+	adminId VARCHAR(5),
 	FOREIGN KEY(adminId) REFERENCES admin(adminId)
 );
 
 CREATE TABLE crewman(
-	crewmanId VARCHAR(5) PRIMARY KEY,
+	crewmanId VARCHAR(6) PRIMARY KEY,
 	name VARCHAR(50) NOT NULL,
 	nic VARCHAR(13) NOT NULL UNIQUE,
 	address VARCHAR(150) NOT NULL,
 	bod DATE NOT NULL,
 	email VARCHAR(50) NOT NULL,
 	contactNo VARCHAR(11) NOT NULL UNIQUE,
-	crewId VARCHAR(4),
+	crewId VARCHAR(5),
 	FOREIGN KEY(crewId) REFERENCES crew(crewId)
 );
 
 CREATE TABLE boatowner(
-	ownerId VARCHAR(5) PRIMARY KEY,
+	ownerId VARCHAR(6) PRIMARY KEY,
 	name VARCHAR(50) NOT NULL,
 	nic VARCHAR(13) NOT NULL UNIQUE,
 	address VARCHAR(150) NOT NULL,
@@ -44,17 +44,19 @@ CREATE TABLE boatowner(
 );
 
 CREATE TABLE boat(
-	boatId VARCHAR(4) PRIMARY KEY,
+	boatId VARCHAR(5) PRIMARY KEY,
 	registrationNo VARCHAR(15) UNIQUE NOT NULL,
 	model VARCHAR(30) NOT NULL,
 	type VARCHAR(30),
 	sattelitePhoneNo VARCHAR(15) UNIQUE,
-	ownerId VARCHAR(5),
-	FOREIGN KEY(ownerId) REFERENCES boatowner(ownerId)
+	ownerId VARCHAR(6),
+	crewId VARCHAR(5),
+	FOREIGN KEY(ownerId) REFERENCES boatowner(ownerId),
+	FOREIGN KEY(crewId) REFERENCES crew(crewId)
 );
 
 CREATE TABLE catch(
-	catchId VARCHAR(5) PRIMARY KEY,
+	catchId VARCHAR(6) PRIMARY KEY,
 	weightOfCatch DECIMAL(8,2) NOT NULL,
 	catchDate DATE NOT NULL,
 	paymentAmount DECIMAL(8,2) NOT NULL,
@@ -68,29 +70,29 @@ CREATE TABLE catch(
 );
 
 CREATE TABLE fish(
-	fishId VARCHAR(4) PRIMARY KEY,
+	fishId VARCHAR(5) PRIMARY KEY,
 	fishType VARCHAR(30) NOT NULL UNIQUE,
 	unitWeight DECIMAL(5,2) NOT NULL,
 	unitPrice DECIMAL(8,2) NOT NULL
 );
 
 CREATE TABLE catchdetail(
-	catchId VARCHAR(5) NOT NULL,
-	fishId VARCHAR(4) NOT NULL,
+	catchId VARCHAR(6) NOT NULL,
+	fishId VARCHAR(5) NOT NULL,
 	weight DECIMAL(5,2) NOT NULL,
 	FOREIGN KEY(catchId) REFERENCES catch(catchId),
 	FOREIGN KEY(fishId) REFERENCES fish(fishId)
 );
 
 CREATE TABLE mail(
-	mailId VARCHAR(4) PRIMARY KEY,
+	mailId VARCHAR(5) PRIMARY KEY,
 	description TEXT NOT NULL,
 	sentDate DATETIME NOT NULL
 );
 
 CREATE TABLE maildetail(
-	crewId VARCHAR(4) NOT NULL,
-	mailId VARCHAR(4) NOT NULL,
+	crewId VARCHAR(5) NOT NULL,
+	mailId VARCHAR(5) NOT NULL,
 	FOREIGN KEY(crewId) REFERENCES crew(crewId),
 	FOREIGN KEY(mailId) REFERENCES mail(mailId)
 );
@@ -128,8 +130,8 @@ INSERT INTO crewman VALUES ('CL002', 'Janith', '234223401234', 'Weligama', '1991
 INSERT INTO boatowner VALUES ('BO001', 'Perera', '199334638516', 'Mirissa', '0770341883'),
 	('BO002', 'Vimal', '189364638516', 'Mirissa', '0712341883');
 
-INSERT INTO boat VALUES ('B001', 'IA-1234-AA', 'NMDF-72', 'NULL', NULL, 'BO001'),
-	('B002', 'IB-3476-AA', 'NMDF-72', 'NULL', NULL, 'BO002');
+INSERT INTO boat VALUES ('B001', 'IA-1234-AA', 'NMDF-72', 'NULL', NULL, 'BO001', 'C001'),
+	('B002', 'IB-3476-AA', 'NMDF-72', 'NULL', NULL, 'BO002', 'C002');
 
 INSERT INTO catch VALUES ('CA001', 87, '2023-03-27', 80000, '08:30:00', '05:00:00', '08:00:00', 'C001', 'A001');
 
@@ -153,5 +155,3 @@ SELECT * FROM fish;
 SELECT * FROM catchdetail;
 SELECT * FROM mail;
 SELECT * FROM maildetail;
-
-;

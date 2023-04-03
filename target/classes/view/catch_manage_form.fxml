@@ -1,8 +1,184 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXComboBox?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
 
-
-<AnchorPane prefHeight="640.0" prefWidth="1083.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.Controller.CatchManageFormController">
-
+<AnchorPane prefHeight="640.0" prefWidth="1083.0" style="-fx-background-color: linear-gradient(to right, #0cebeb, #20e3b2, #29ffc6);" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.Controller.CatchManageFormController">
+   <children>
+      <Label layoutX="20.0" layoutY="14.0" text="Catch ID :">
+         <font>
+            <Font name="System Bold" size="20.0" />
+         </font>
+      </Label>
+      <Label layoutX="288.0" layoutY="542.0" text="Total Weight Of Catch :">
+         <font>
+            <Font name="System Bold" size="22.0" />
+         </font>
+      </Label>
+      <Label layoutX="71.0" layoutY="542.0" text="Net Total :">
+         <font>
+            <Font name="System Bold" size="22.0" />
+         </font>
+      </Label>
+      <Label layoutX="18.0" layoutY="59.0" text="Catch Date :">
+         <font>
+            <Font name="System Bold" size="20.0" />
+         </font>
+      </Label>
+      <Label layoutX="518.0" layoutY="14.0" text="Trip Started Time :">
+         <font>
+            <Font name="System Bold" size="20.0" />
+         </font>
+      </Label>
+      <Label layoutX="520.0" layoutY="81.0" text="Trip Ended Time  :">
+         <font>
+            <Font name="System Bold" size="20.0" />
+         </font>
+      </Label>
+      <TableView fx:id="tableCatchDetail" layoutX="22.0" layoutY="315.0" opacity="0.9" prefHeight="202.0" prefWidth="1038.0">
+        <columns>
+          <TableColumn fx:id="colFishId" prefWidth="59.0" text="Fish ID" />
+          <TableColumn fx:id="colFishType" prefWidth="111.0" text="Fish Type" />
+            <TableColumn fx:id="colUnitPrice" prefWidth="103.0" text="Unit Price" />
+            <TableColumn fx:id="colCaughtWeight" prefWidth="93.0" text="Caught Weight" />
+            <TableColumn fx:id="colTotal" prefWidth="118.0" text="Total" />
+            <TableColumn fx:id="colAction" prefWidth="134.0" text="Action" />
+        </columns>
+         <columnResizePolicy>
+            <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+         </columnResizePolicy>
+      </TableView>
+      <Label layoutX="25.0" layoutY="202.0" text="Fish Type :" textFill="#008a63">
+         <font>
+            <Font name="System Bold" size="20.0" />
+         </font>
+      </Label>
+      <JFXComboBox fx:id="cbFishType" layoutX="25.0" layoutY="251.0" onAction="#cbFishTypeOnAction" prefHeight="37.0" prefWidth="251.0" promptText="Select Fish" />
+      <Label layoutX="306.0" layoutY="202.0" text="Fish ID :">
+         <font>
+            <Font name="System Bold" size="20.0" />
+         </font>
+      </Label>
+      <Label layoutX="436.0" layoutY="202.0" text="Unit Weight :">
+         <font>
+            <Font name="System Bold" size="20.0" />
+         </font>
+      </Label>
+      <Label layoutX="634.0" layoutY="202.0" text="Unit Price :">
+         <font>
+            <Font name="System Bold" size="20.0" />
+         </font>
+      </Label>
+      <Label layoutX="798.0" layoutY="202.0" text="Cuaght Weight">
+         <font>
+            <Font name="System Bold" size="20.0" />
+         </font>
+      </Label>
+      <JFXButton layoutX="767.0" layoutY="539.0" onAction="#btnPaymentOnAction" prefHeight="73.0" prefWidth="217.0" style="-fx-background-color: gold; -fx-border-color: black; -fx-border-radius: 20; -fx-background-radius: 20;" text="Payment">
+         <font>
+            <Font name="System Bold" size="20.0" />
+         </font>
+      </JFXButton>
+      <Label fx:id="lblCatchId" layoutX="151.0" layoutY="15.0" prefHeight="30.0" prefWidth="136.0" textFill="#12688a">
+         <font>
+            <Font name="System Bold" size="20.0" />
+         </font>
+      </Label>
+      <Label fx:id="lblCatchDate" layoutX="157.0" layoutY="59.0" prefHeight="30.0" prefWidth="154.0" textFill="#12688a">
+         <font>
+            <Font name="System Bold" size="20.0" />
+         </font>
+      </Label>
+      <Label fx:id="lblFishId" alignment="CENTER" layoutX="306.0" layoutY="255.0" prefHeight="30.0" prefWidth="75.0" textFill="#12688a">
+         <font>
+            <Font name="System Bold" size="20.0" />
+         </font>
+      </Label>
+      <Label fx:id="lblUnitWeight" alignment="CENTER_RIGHT" layoutX="427.0" layoutY="255.0" prefHeight="30.0" prefWidth="75.0" textFill="#12688a">
+         <font>
+            <Font name="System Bold" size="20.0" />
+         </font>
+      </Label>
+      <Label fx:id="lblUnitPrice" layoutX="668.0" layoutY="255.0" prefHeight="30.0" prefWidth="109.0" textFill="#12688a">
+         <font>
+            <Font name="System Bold" size="20.0" />
+         </font>
+      </Label>
+      <TextField fx:id="txtCaughtWeight" layoutX="812.0" layoutY="248.0" prefHeight="44.0" prefWidth="114.0">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </TextField>
+      <Label layoutX="932.0" layoutY="255.0" prefHeight="30.0" prefWidth="47.0" text="kg" textFill="#404040">
+         <font>
+            <Font name="System Bold" size="20.0" />
+         </font>
+      </Label>
+      <Label fx:id="lblNetTotal" layoutX="96.0" layoutY="581.0" prefHeight="36.0" prefWidth="182.0" text="00.00" textFill="#ff3a3a">
+         <font>
+            <Font name="System Bold" size="25.0" />
+         </font>
+      </Label>
+      <Label fx:id="lblTotalWeight" alignment="CENTER_RIGHT" layoutX="247.0" layoutY="579.0" prefHeight="36.0" prefWidth="162.0" text="0" textFill="#ff3a3a">
+         <font>
+            <Font name="System Bold" size="25.0" />
+         </font>
+      </Label>
+      <JFXButton layoutX="979.0" layoutY="248.0" onAction="#btnAddOnAction" style="-fx-background-color: linear-gradient(to right, #f4c4f3, #fc67fa); -fx-background-radius: 10 0 10 0; -fx-border-color: black; -fx-border-radius: 10 0 10 0;" text="Add">
+         <font>
+            <Font name="System Bold" size="20.0" />
+         </font>
+      </JFXButton>
+      <Line endX="349.0" endY="-1.0" layoutX="125.0" layoutY="158.0" startX="-97.0" strokeWidth="3.0" />
+      <Label alignment="CENTER" layoutX="474.0" layoutY="139.0" prefHeight="36.0" prefWidth="145.0" style="-fx-border-color: black; -fx-border-radius: 25; -fx-border-width: 3;" text="Catch Details">
+         <font>
+            <Font name="System Bold" size="20.0" />
+         </font>
+      </Label>
+      <Line endX="325.66668701171875" layoutX="741.0" layoutY="158.0" startX="-122.0" startY="-1.0" strokeWidth="3.0" />
+      <Label layoutX="505.0" layoutY="254.0" text="kg" textFill="#12688a">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Label>
+      <Label layoutX="414.0" layoutY="583.0" text="kg" textFill="#ff3a3a">
+         <font>
+            <Font name="System Bold" size="20.0" />
+         </font>
+      </Label>
+      <Label layoutX="68.0" layoutY="584.0" text="Rs:" textFill="#ff3a3a">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Label>
+      <Label layoutX="638.0" layoutY="255.0" text="Rs:" textFill="#12688a">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Label>
+      <JFXTextField fx:id="txtTripStartedTime" layoutX="731.0" layoutY="8.0" prefHeight="25.0" prefWidth="162.0" text="08:30">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </JFXTextField>
+      <JFXTextField fx:id="txtTripEndedTime" layoutX="731.0" layoutY="74.0" prefHeight="25.0" prefWidth="162.0" text="17:00">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </JFXTextField>
+      <Label layoutX="18.0" layoutY="103.0" text="Crew ID :">
+         <font>
+            <Font name="System Bold" size="20.0" />
+         </font>
+      </Label>
+      <JFXComboBox fx:id="cbCrewId" layoutX="153.0" layoutY="100.0" prefHeight="37.0" prefWidth="162.0" promptText="Select CrewId" />
+   </children>
 </AnchorPane>

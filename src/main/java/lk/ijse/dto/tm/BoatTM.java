@@ -7,7 +7,7 @@ import lombok.Data;
 @Data
 @AllArgsConstructor
 public class BoatTM {
-    private Integer no;
+    private String id;
     private String registrationNo;
     private String model;
     private String type;

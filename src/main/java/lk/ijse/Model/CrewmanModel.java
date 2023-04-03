@@ -8,6 +8,8 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 public class CrewmanModel {
@@ -51,5 +53,53 @@ public class CrewmanModel {
         }
 
         return true;
+    }
+
+    public static boolean delete(String crewId) throws SQLException {
+        String sql = "DELETE FROM crewman WHERE crewId = ?";
+
+        return CrudUtil.execute(sql, crewId);
+    }
+
+    public static List<Crewman> getCrewmen() throws SQLException {
+        String sql = "SELECT * FROM crewman";
+
+        List<Crewman> crewmenList = new ArrayList<>();
+        ResultSet rs = CrudUtil.execute(sql);
+
+        while(rs.next()){
+            crewmenList.add(new Crewman(
+                    rs.getString(1),
+                    rs.getString(2),
+                    rs.getString(3),
+                    rs.getString(4),
+                    LocalDate.parse(rs.getString(5)),
+                    rs.getString(6),
+                    rs.getString(7),
+                    rs.getString(8)
+            ));
+        }
+        return crewmenList;
+    }
+
+    public static List<Crewman> getCrewmen(String crewId) throws SQLException {
+        String sql = "SELECT * FROM crewman WHERE crewId = ?";
+
+        List<Crewman> crewmenList = new ArrayList<>();
+        ResultSet rs = CrudUtil.execute(sql, crewId);
+
+        while(rs.next()){
+            crewmenList.add(new Crewman(
+                    rs.getString(1),
+                    rs.getString(2),
+                    rs.getString(3),
+                    rs.getString(4),
+                    LocalDate.parse(rs.getString(5)),
+                    rs.getString(6),
+                    rs.getString(7),
+                    rs.getString(8)
+            ));
+        }
+        return crewmenList;
     }
 }

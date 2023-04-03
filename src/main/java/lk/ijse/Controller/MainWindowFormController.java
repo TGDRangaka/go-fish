@@ -38,4 +38,10 @@ public class MainWindowFormController implements Initializable {
        Node node = FXMLLoader.load(getClass().getResource("/view/crew_manage_form.fxml"));
        root.getChildren().setAll(node);
     }
+
+    @FXML
+    void btnCatchManageOnAction(ActionEvent event) throws IOException {
+        Node node = FXMLLoader.load(getClass().getResource("/view/catch_manage_form.fxml"));
+        root.getChildren().setAll(node);
+    }
 }

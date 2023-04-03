@@ -9,7 +9,6 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
@@ -26,13 +25,13 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="640.0" prefWidth="1083.0" style="-fx-background-color: #02577a;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.Controller.CrewRegistrationFormController">
+<AnchorPane prefHeight="640.0" prefWidth="1083.0" style="-fx-background-color: linear-gradient(to right, #a8ff78, #78ffd6);" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.Controller.CrewRegistrationFormController">
    <children>
       <VBox prefHeight="640.0" prefWidth="1084.0">
          <children>
             <AnchorPane fx:id="subRoot" prefHeight="573.0" prefWidth="1084.0">
                <children>
-                  <Pane fx:id="paneRegistrationForm" prefHeight="573.0" prefWidth="1084.0" style="-fx-background-color: #94fb94;">
+                  <Pane fx:id="paneRegistrationForm" prefHeight="573.0" prefWidth="1084.0" style="-fx-background-color: #94fb94;" visible="false">
                      <children>
                         <Pane layoutX="9.0" layoutY="7.0" prefHeight="549.0" prefWidth="553.0" style="-fx-border-color: black;">
                            <children>
@@ -143,7 +142,7 @@
                         </JFXTextArea>
                      </children>
                   </Pane>
-                  <Pane fx:id="paneBoatsDetails" prefHeight="573.0" prefWidth="1084.0" style="-fx-background-color: #d8b9ff;" visible="false">
+                  <Pane fx:id="paneBoatsDetails" prefHeight="573.0" prefWidth="1084.0" style="-fx-background-color: transparent;" visible="false">
                      <children>
                         <GridPane layoutX="14.0" layoutY="14.0" prefHeight="87.0" prefWidth="820.0">
                            <columnConstraints>
@@ -162,13 +161,13 @@
                                     <Font size="18.0" />
                                  </font>
                               </Label>
-                              <JFXTextField fx:id="txtBoatRegistrationNo" prefHeight="28.0" prefWidth="331.0" style="-fx-background-color: white;" GridPane.columnIndex="1" />
+                              <JFXTextField fx:id="txtBoatRegistrationNo" prefHeight="28.0" prefWidth="331.0" GridPane.columnIndex="1" />
                               <Label text="Type" GridPane.rowIndex="1">
                                  <font>
                                     <Font size="18.0" />
                                  </font>
                               </Label>
-                              <JFXTextField fx:id="txtBoatModel" prefHeight="28.0" prefWidth="240.0" style="-fx-background-color: white;" GridPane.columnIndex="3" />
+                              <JFXTextField fx:id="txtBoatModel" prefHeight="28.0" prefWidth="240.0" GridPane.columnIndex="3" />
                               <Label text="Model" GridPane.columnIndex="2">
                                  <font>
                                     <Font size="18.0" />
@@ -185,11 +184,11 @@
                                     <Insets left="20.0" />
                                  </GridPane.margin>
                               </Label>
-                              <JFXTextField fx:id="txtBoatSattelitePhoneNo" layoutX="593.0" layoutY="18.0" prefHeight="28.0" prefWidth="240.0" style="-fx-background-color: white;" GridPane.columnIndex="3" GridPane.rowIndex="1" />
-                              <JFXComboBox fx:id="cbBoatType" prefHeight="32.0" prefWidth="216.0" style="-fx-background-color: white;" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                              <JFXTextField fx:id="txtBoatSattelitePhoneNo" layoutX="593.0" layoutY="18.0" prefHeight="28.0" prefWidth="240.0" GridPane.columnIndex="3" GridPane.rowIndex="1" />
+                              <JFXComboBox fx:id="cbBoatType" prefHeight="32.0" prefWidth="216.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                            </children>
                         </GridPane>
-                        <JFXButton fx:id="btnAddBoat" layoutX="979.0" layoutY="64.0" onAction="#btnAddBoatOnAction" prefHeight="37.0" prefWidth="91.0" text="Add">
+                        <JFXButton fx:id="btnAddBoat" layoutX="926.0" layoutY="64.0" onAction="#btnAddBoatOnAction" prefHeight="37.0" prefWidth="144.0" style="-fx-background-color: linear-gradient(to right, #f2994a, #f2c94c); -fx-background-radius: 10;" text="Add">
                            <font>
                               <Font name="System Bold" size="15.0" />
                            </font>
@@ -199,7 +198,7 @@
                         </JFXButton>
                         <TableView fx:id="tableBoats" layoutX="15.0" layoutY="105.0" onMouseClicked="#tableBoatsOnMouseClicked" prefHeight="131.0" prefWidth="1055.0">
                            <columns>
-                              <TableColumn fx:id="colBoatNo" prefWidth="31.0" text="No." />
+                              <TableColumn fx:id="colBoatNo" prefWidth="31.0" text="ID" />
                               <TableColumn fx:id="colBoatRegistrationNo" prefWidth="170.0" text="Registration No." />
                               <TableColumn fx:id="colBoatModel" prefWidth="218.0" text="Model" />
                               <TableColumn fx:id="colBoatType" minWidth="8.0" prefWidth="307.0" text="Type" />
@@ -212,7 +211,7 @@
                               <Font size="18.0" />
                            </font>
                         </Label>
-                        <JFXComboBox fx:id="cbSelectBoat" layoutX="138.0" layoutY="287.0" onMouseClicked="#cbSelectBoatOnMouseClicked" prefHeight="32.0" prefWidth="216.0" style="-fx-background-color: white;" />
+                        <JFXComboBox fx:id="cbSelectBoat" layoutX="138.0" layoutY="287.0" onMouseClicked="#cbSelectBoatOnMouseClicked" prefHeight="32.0" prefWidth="216.0" />
                         <Line endX="951.0" layoutX="116.0" layoutY="272.0" startX="-100.0" />
                         <JFXButton layoutX="836.0" layoutY="21.0" onAction="#btnBoatClearOnAction" prefHeight="25.0" prefWidth="67.0" text="Clear">
                            <cursor>
@@ -239,7 +238,7 @@
                            <children>
                               <TableView fx:id="tableOwners" layoutX="11.0" layoutY="106.0" onMouseClicked="#tableOwnersOnMouseClicked" prefHeight="123.0" prefWidth="1055.0">
                                  <columns>
-                                    <TableColumn fx:id="colOwnerNo" prefWidth="60.0" text="No." />
+                                    <TableColumn fx:id="colOwnerNo" prefWidth="60.0" text="ID" />
                                     <TableColumn fx:id="colOwnerBoatNo" prefWidth="242.0" text="Boat No." />
                                     <TableColumn fx:id="colOwnerName" prefWidth="136.0" text="Owner Name" />
                                     <TableColumn fx:id="colOwnerNIC" prefWidth="97.0" text="NIC" />
@@ -268,14 +267,14 @@
                                           <Font size="18.0" />
                                        </font>
                                     </Label>
-                                    <JFXTextField fx:id="txtOwnerName" prefHeight="28.0" prefWidth="331.0" style="-fx-background-color: white;" GridPane.columnIndex="1" />
+                                    <JFXTextField fx:id="txtOwnerName" prefHeight="28.0" prefWidth="331.0" GridPane.columnIndex="1" />
                                     <Label text="Address" GridPane.rowIndex="1">
                                        <font>
                                           <Font size="18.0" />
                                        </font>
                                     </Label>
-                                    <JFXTextField fx:id="txtOwnerAddress" prefHeight="28.0" prefWidth="331.0" style="-fx-background-color: white;" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                                    <JFXTextField fx:id="txtOwnerNIC" prefHeight="28.0" prefWidth="240.0" style="-fx-background-color: white;" GridPane.columnIndex="3" />
+                                    <JFXTextField fx:id="txtOwnerAddress" prefHeight="28.0" prefWidth="331.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                    <JFXTextField fx:id="txtOwnerNIC" prefHeight="28.0" prefWidth="240.0" GridPane.columnIndex="3" />
                                     <Label text="NIC" GridPane.columnIndex="2">
                                        <font>
                                           <Font size="18.0" />
@@ -292,10 +291,10 @@
                                           <Insets left="20.0" />
                                        </GridPane.margin>
                                     </Label>
-                                    <JFXTextField fx:id="txtOwnerContactNo" layoutX="520.0" layoutY="19.0" prefHeight="28.0" prefWidth="240.0" style="-fx-background-color: white;" GridPane.columnIndex="3" GridPane.rowIndex="1" />
+                                    <JFXTextField fx:id="txtOwnerContactNo" layoutX="520.0" layoutY="19.0" prefHeight="28.0" prefWidth="240.0" GridPane.columnIndex="3" GridPane.rowIndex="1" />
                                  </children>
                               </GridPane>
-                              <JFXButton fx:id="btnAddOwner" layoutX="972.0" layoutY="63.0" onAction="#btnAddOwnerOnAction" prefHeight="37.0" prefWidth="91.0" text="Add">
+                              <JFXButton fx:id="btnAddOwner" layoutX="919.0" layoutY="63.0" onAction="#btnAddOwnerOnAction" prefHeight="37.0" prefWidth="144.0" style="-fx-background-color: linear-gradient(to right, #f2994a, #f2c94c); -fx-background-radius: 10;" text="Add">
                                  <font>
                                     <Font name="System Bold" size="15.0" />
                                  </font>
@@ -307,13 +306,13 @@
                         </Pane>
                      </children>
                   </Pane>
-                  <Pane fx:id="paneCrewDetails" prefHeight="573.0" prefWidth="1084.0" style="-fx-background-color: #89d6fb;" visible="false">
+                  <Pane fx:id="paneCrewDetails" prefHeight="573.0" prefWidth="1084.0" style="-fx-background-color: transparent;">
                      <children>
                         <TableView fx:id="tableCrewmens" layoutX="10.0" layoutY="188.0" onMouseClicked="#tableCrewmensOnMouseClicked" prefHeight="280.0" prefWidth="1067.0">
                            <columns>
-                              <TableColumn fx:id="colCrewmanNo" prefWidth="25.0" text="No." />
-                              <TableColumn fx:id="colCrewmanName" prefWidth="241.33334350585938" text="Name" />
-                              <TableColumn fx:id="colCrewmanNIC" minWidth="0.0" prefWidth="146.0" text="NIC" />
+                              <TableColumn fx:id="colCrewmanNo" prefWidth="63.66666793823242" text="ID" />
+                              <TableColumn fx:id="colCrewmanName" prefWidth="170.66665649414062" text="Name" />
+                              <TableColumn fx:id="colCrewmanNIC" minWidth="0.0" prefWidth="179.33334350585938" text="NIC" />
                               <TableColumn fx:id="colCrewmanAddress" minWidth="0.0" prefWidth="185.0" text="Address" />
                               <TableColumn fx:id="colCrewmanBOD" minWidth="0.0" prefWidth="84.0" text="BOD" />
                               <TableColumn fx:id="colCrewmanEmail" minWidth="0.0" prefWidth="153.0" text="Email" />
@@ -321,7 +320,7 @@
                               <TableColumn fx:id="colCrewmanAction" minWidth="0.0" prefWidth="133.0" text="Action" />
                            </columns>
                         </TableView>
-                        <JFXButton fx:id="btnAddCrewman" layoutX="975.0" layoutY="132.0" onAction="#btnAddCrewmanOnAction" prefHeight="37.0" prefWidth="95.0" text="Add">
+                        <JFXButton fx:id="btnAddCrewman" layoutX="949.0" layoutY="132.0" onAction="#btnAddCrewmanOnAction" prefHeight="37.0" prefWidth="121.0" style="-fx-background-color: linear-gradient(to right, #f2994a, #f2c94c); -fx-background-radius: 10;" text="Add">
                            <font>
                               <Font name="System Bold" size="15.0" />
                            </font>
@@ -354,59 +353,48 @@
                               <Font size="18.0" />
                            </font>
                         </Label>
-                        <CheckBox fx:id="cboxMorning" layoutX="695.0" layoutY="476.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="89.0" text="Morning">
-                           <cursor>
-                              <Cursor fx:constant="HAND" />
-                           </cursor>
-                        </CheckBox>
-                        <CheckBox fx:id="cboxEvening" layoutX="792.0" layoutY="476.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="77.0" text="Evening">
-                           <cursor>
-                              <Cursor fx:constant="HAND" />
-                           </cursor>
-                        </CheckBox>
-                        <CheckBox fx:id="cboxNight" layoutX="885.0" layoutY="476.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="89.0" text="Night" />
                         <Label layoutX="549.0" layoutY="513.0" prefHeight="27.0" prefWidth="137.0" text="Available Days :">
                            <font>
                               <Font size="18.0" />
                            </font>
                         </Label>
-                        <HBox layoutX="695.0" layoutY="514.0" prefHeight="26.0" prefWidth="325.0">
+                        <HBox layoutX="695.0" layoutY="514.0" prefHeight="26.0" prefWidth="381.0">
                            <children>
-                              <CheckBox fx:id="cboxMonday" mnemonicParsing="false" prefHeight="25.0" prefWidth="52.0" text="Mon">
-                                 <cursor>
-                                    <Cursor fx:constant="HAND" />
-                                 </cursor>
-                              </CheckBox>
-                              <CheckBox fx:id="cboxTuesday" mnemonicParsing="false" prefHeight="25.0" prefWidth="45.0" text="Tue">
-                                 <cursor>
-                                    <Cursor fx:constant="HAND" />
-                                 </cursor>
-                              </CheckBox>
-                              <CheckBox fx:id="cboxWednesday" mnemonicParsing="false" prefHeight="25.0" prefWidth="49.0" text="Wed">
-                                 <cursor>
-                                    <Cursor fx:constant="HAND" />
-                                 </cursor>
-                              </CheckBox>
-                              <CheckBox fx:id="cboxThursday" mnemonicParsing="false" prefHeight="25.0" prefWidth="45.0" text="Thu">
-                                 <cursor>
-                                    <Cursor fx:constant="HAND" />
-                                 </cursor>
-                              </CheckBox>
-                              <CheckBox fx:id="cboxFriday" mnemonicParsing="false" prefHeight="25.0" prefWidth="40.0" text="Fri">
-                                 <cursor>
-                                    <Cursor fx:constant="HAND" />
-                                 </cursor>
-                              </CheckBox>
-                              <CheckBox fx:id="cboxSaturday" mnemonicParsing="false" prefHeight="25.0" prefWidth="44.0" text="Sat">
-                                 <cursor>
-                                    <Cursor fx:constant="HAND" />
-                                 </cursor>
-                              </CheckBox>
-                              <CheckBox fx:id="cboxSunday" mnemonicParsing="false" prefHeight="25.0" prefWidth="44.0" text="Sun">
-                                 <cursor>
-                                    <Cursor fx:constant="HAND" />
-                                 </cursor>
-                              </CheckBox>
+                              <JFXCheckBox fx:id="cboxMonday" text="Mon">
+                                 <HBox.margin>
+                                    <Insets left="7.0" />
+                                 </HBox.margin>
+                              </JFXCheckBox>
+                              <JFXCheckBox fx:id="cboxTuesday" layoutX="10.0" layoutY="10.0" text="Tue">
+                                 <HBox.margin>
+                                    <Insets left="7.0" />
+                                 </HBox.margin>
+                              </JFXCheckBox>
+                              <JFXCheckBox fx:id="cboxWednesday" layoutX="60.0" layoutY="10.0" text="Wed">
+                                 <HBox.margin>
+                                    <Insets left="7.0" />
+                                 </HBox.margin>
+                              </JFXCheckBox>
+                              <JFXCheckBox fx:id="cboxThursday" layoutX="105.0" layoutY="10.0" text="Thu">
+                                 <HBox.margin>
+                                    <Insets left="7.0" />
+                                 </HBox.margin>
+                              </JFXCheckBox>
+                              <JFXCheckBox fx:id="cboxFriday" layoutX="155.0" layoutY="10.0" text="Fri">
+                                 <HBox.margin>
+                                    <Insets left="7.0" />
+                                 </HBox.margin>
+                              </JFXCheckBox>
+                              <JFXCheckBox fx:id="cboxSaturday" layoutX="200.0" layoutY="10.0" text="Sat">
+                                 <HBox.margin>
+                                    <Insets left="7.0" />
+                                 </HBox.margin>
+                              </JFXCheckBox>
+                              <JFXCheckBox fx:id="cboxSunday" layoutX="238.0" layoutY="10.0" text="Sun">
+                                 <HBox.margin>
+                                    <Insets left="7.0" />
+                                 </HBox.margin>
+                              </JFXCheckBox>
                            </children>
                         </HBox>
                         <GridPane layoutX="18.0" layoutY="35.0" prefHeight="141.0" prefWidth="888.0">
@@ -427,22 +415,22 @@
                                     <Font size="18.0" />
                                  </font>
                               </Label>
-                              <JFXTextField fx:id="txtCrewmanName" prefHeight="28.0" prefWidth="331.0" style="-fx-background-color: white;" GridPane.columnIndex="1" />
+                              <JFXTextField fx:id="txtCrewmanName" prefHeight="28.0" prefWidth="331.0" style="-fx-background-color: transparent;" GridPane.columnIndex="1" />
                               <Label text="Address" GridPane.rowIndex="1">
                                  <font>
                                     <Font size="18.0" />
                                  </font>
                               </Label>
-                              <JFXTextField fx:id="txtCrewmanAddress" prefHeight="28.0" prefWidth="331.0" style="-fx-background-color: white;" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                              <JFXTextField fx:id="txtCrewmanAddress" prefHeight="28.0" prefWidth="331.0" style="-fx-background-color: transparent;" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                               <Label text="Email" GridPane.rowIndex="2">
                                  <font>
                                     <Font size="18.0" />
                                  </font>
                               </Label>
-                              <JFXTextField fx:id="txtCrewmanEmail" prefHeight="28.0" prefWidth="332.0" style="-fx-background-color: white;" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                              <JFXTextField fx:id="txtCrewmanNIC" prefHeight="28.0" prefWidth="240.0" style="-fx-background-color: white;" GridPane.columnIndex="3" />
-                              <DatePicker fx:id="txtCrewmanBOD" prefHeight="27.0" prefWidth="242.0" GridPane.columnIndex="3" GridPane.rowIndex="1" />
-                              <JFXTextField fx:id="txtContactNo" prefHeight="28.0" prefWidth="241.0" style="-fx-background-color: white;" GridPane.columnIndex="3" GridPane.rowIndex="2" />
+                              <JFXTextField fx:id="txtCrewmanEmail" prefHeight="28.0" prefWidth="332.0" style="-fx-background-color: transparent;" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                              <JFXTextField fx:id="txtCrewmanNIC" prefHeight="28.0" prefWidth="240.0" style="-fx-background-color: transparent;" GridPane.columnIndex="3" />
+                              <DatePicker fx:id="txtCrewmanBOD" prefHeight="27.0" prefWidth="242.0" style="-fx-background-color: transparent;" GridPane.columnIndex="3" GridPane.rowIndex="1" />
+                              <JFXTextField fx:id="txtContactNo" prefHeight="28.0" prefWidth="241.0" style="-fx-background-color: transparent;" GridPane.columnIndex="3" GridPane.rowIndex="2" />
                               <Label text="NIC" GridPane.columnIndex="2">
                                  <font>
                                     <Font size="18.0" />
@@ -469,9 +457,9 @@
                               </Label>
                            </children>
                         </GridPane>
-                        <Button fx:id="btnWeekdays" layoutX="695.0" layoutY="541.0" mnemonicParsing="false" onAction="#btnWeekdaysOnAction" text="weekdays" />
-                        <Button fx:id="btnWeekend" layoutX="785.0" layoutY="541.0" mnemonicParsing="false" onAction="#btnWeekendOnAction" text="weekend" />
-                        <Button fx:id="btnFullWeek" layoutX="876.0" layoutY="541.0" mnemonicParsing="false" onAction="#btnFullWeekOnAction" text="full week" />
+                        <Button fx:id="btnWeekdays" layoutX="746.0" layoutY="541.0" mnemonicParsing="false" onAction="#btnWeekdaysOnAction" style="-fx-background-color: transparent; -fx-border-color: black; -fx-border-radius: 10;" text="weekdays" />
+                        <Button fx:id="btnWeekend" layoutX="839.0" layoutY="541.0" mnemonicParsing="false" onAction="#btnWeekendOnAction" style="-fx-background-color: transparent; -fx-border-color: black; -fx-border-radius: 10;" text="weekend" />
+                        <Button fx:id="btnFullWeek" layoutX="927.0" layoutY="541.0" mnemonicParsing="false" onAction="#btnFullWeekOnAction" style="-fx-background-color: transparent; -fx-border-color: black; -fx-border-radius: 10;" text="full week" />
                         <Label fx:id="lblCrewId" layoutX="109.0" layoutY="2.0" prefHeight="29.0" prefWidth="118.0">
                            <font>
                               <Font name="System Bold" size="18.0" />
@@ -483,27 +471,39 @@
                               <Font name="System Bold" size="24.0" />
                            </font>
                         </Label>
+                        <JFXCheckBox fx:id="cboxMorning" layoutX="702.0" layoutY="481.0" text="Morning" />
+                        <JFXCheckBox fx:id="cboxEvening" layoutX="810.0" layoutY="480.0" text="Evening" />
+                        <JFXCheckBox fx:id="cboxNight" layoutX="920.0" layoutY="481.0" text="Night" />
                      </children>
                   </Pane>
                </children></AnchorPane>
             <HBox alignment="CENTER_LEFT" prefHeight="61.0" prefWidth="1084.0">
                <children>
-                  <ProgressBar fx:id="progressBar" prefHeight="18.0" prefWidth="516.0" progress="1.0" stylesheets="@../CSS/styles.css" />
-                  <JFXButton fx:id="btnBack" disable="true" onAction="#btnBackOnAction" prefHeight="36.0" prefWidth="89.0" style="-fx-background-color: #aaff77;" text="Back">
+                  <ProgressBar fx:id="progressBar" prefHeight="18.0" prefWidth="516.0" progress="1.0" stylesheets="@../CSS/styles.css">
                      <HBox.margin>
-                        <Insets left="350.0" />
+                        <Insets left="20.0" />
+                     </HBox.margin></ProgressBar>
+                  <JFXButton fx:id="btnBack" disable="true" onAction="#btnBackOnAction" prefHeight="36.0" prefWidth="89.0" style="-fx-background-color: linear-gradient(to right, #6a3093, #a044ff); -fx-background-radius: 10 0 10 0;" text="Back" textFill="WHITE">
+                     <HBox.margin>
+                        <Insets left="330.0" />
                      </HBox.margin>
                      <cursor>
                         <Cursor fx:constant="HAND" />
                      </cursor>
+                     <font>
+                        <Font name="System Bold" size="16.0" />
+                     </font>
                   </JFXButton>
-                  <JFXButton fx:id="btnNext" layoutX="976.0" layoutY="17.0" onAction="#btnNextOnAction" prefHeight="36.0" prefWidth="89.0" style="-fx-background-color: #aaff77;" text="Next">
+                  <JFXButton fx:id="btnNext" layoutX="976.0" layoutY="17.0" onAction="#btnNextOnAction" prefHeight="36.0" prefWidth="89.0" style="-fx-background-color: linear-gradient(to right, #6a3093, #a044ff); -fx-background-radius: 10 0 10 0;" text="Next" textFill="WHITE">
                      <cursor>
                         <Cursor fx:constant="HAND" />
                      </cursor>
                      <HBox.margin>
                         <Insets left="22.0" />
                      </HBox.margin>
+                     <font>
+                        <Font name="System Bold" size="16.0" />
+                     </font>
                   </JFXButton>
                </children>
             </HBox>

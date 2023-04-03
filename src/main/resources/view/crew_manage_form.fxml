@@ -11,19 +11,18 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="root" prefHeight="640.0" prefWidth="1083.0" style="-fx-background-color: linear-gradient(to right, #1cd8d2, #93edc7);" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.Controller.CrewManageFormController">
+<AnchorPane fx:id="root" prefHeight="640.0" prefWidth="1083.0" style="-fx-background-color: linear-gradient(to right, #c6ffdd, #fbd786, #f7797d);" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.Controller.CrewManageFormController">
    <children>
-      <TableView layoutX="24.0" layoutY="90.0" prefHeight="535.0" prefWidth="1030.0">
+      <TableView fx:id="tableCrew" layoutX="24.0" layoutY="90.0" opacity="0.9" prefHeight="535.0" prefWidth="1030.0">
         <columns>
-            <TableColumn prefWidth="30.0" text="Info" />
-          <TableColumn prefWidth="61.0" text="Crew ID" />
-          <TableColumn prefWidth="205.0" text="Leader Name" />
-            <TableColumn prefWidth="102.0" text="Crewmen Count" />
-            <TableColumn prefWidth="94.0" text="Boats Count" />
-            <TableColumn prefWidth="135.0" text="Available Times" />
-            <TableColumn prefWidth="233.0" text="Available Days" />
-            <TableColumn prefWidth="89.0" text="Action 1" />
-            <TableColumn text="Action 2" />
+          <TableColumn fx:id="colCrewId" prefWidth="61.0" text="Crew ID" />
+          <TableColumn fx:id="colLeaderName" prefWidth="205.0" text="Leader Name" />
+            <TableColumn fx:id="colCrewmenCount" prefWidth="102.0" text="Crewmen Count" />
+            <TableColumn fx:id="colBoatsCount" prefWidth="94.0" text="Boats Count" />
+            <TableColumn fx:id="colAvailableTimes" prefWidth="135.0" text="Available Times" />
+            <TableColumn fx:id="colAvailableDays" prefWidth="242.3333740234375" text="Available Days" />
+            <TableColumn fx:id="colAction1" prefWidth="98.6666259765625" text="Action 1" />
+            <TableColumn fx:id="colAction2" prefWidth="91.33331298828125" text="Action 2" />
         </columns>
       </TableView>
       <Label layoutX="24.0" layoutY="3.0" prefHeight="36.0" prefWidth="224.0" text="Registered Crews :" underline="true">
@@ -31,12 +30,12 @@
             <Font name="System Bold" size="25.0" />
          </font>
       </Label>
-      <JFXButton layoutX="845.0" layoutY="12.0" onAction="#btnRegisterCrewOnAction" prefHeight="65.0" prefWidth="209.0" style="-fx-border-color: black; -fx-background-radius: 15; -fx-border-radius: 15;" text="Register a crew">
+      <JFXButton layoutX="845.0" layoutY="12.0" onAction="#btnRegisterCrewOnAction" prefHeight="65.0" prefWidth="209.0" style="-fx-border-color: black; -fx-background-color: linear-gradient(to right, #a770ef, #cf8bf3, #fdb99b); -fx-background-radius: 15; -fx-border-radius: 15;" text="Register a crew">
          <font>
             <Font name="System Bold" size="20.0" />
          </font>
       </JFXButton>
-      <JFXTextField alignment="CENTER" layoutX="291.0" layoutY="19.0" prefHeight="51.0" prefWidth="497.0" promptText="Search" style="-fx-background-color: white; -fx-background-radius: 30; -fx-border-color: blue; -fx-border-radius: 30;" unFocusColor="#4d4d4d00">
+      <JFXTextField alignment="CENTER" focusColor="#405aa800" layoutX="291.0" layoutY="19.0" prefHeight="51.0" prefWidth="497.0" promptText="Search" style="-fx-background-color: transparent; -fx-background-radius: 30; -fx-border-color: linear-gradient(to right, #ff00cc, #333399); -fx-border-radius: 30;" unFocusColor="#4d4d4d00">
          <font>
             <Font size="20.0" />
          </font>
@@ -85,5 +84,9 @@
             <Font size="15.0" />
          </font>
       </Label>
+      <Label fx:id="lblCrewCount" layoutX="51.0" layoutY="41.0" prefHeight="22.0" prefWidth="76.0" />
+      <Label fx:id="lblBoatsCount" layoutX="51.0" layoutY="66.0" prefHeight="22.0" prefWidth="76.0" />
+      <Label fx:id="lblCrewmenCount" layoutX="190.0" layoutY="41.0" prefHeight="22.0" prefWidth="76.0" />
+      <Label fx:id="lblBoatOwnersCount" layoutX="190.0" layoutY="65.0" prefHeight="22.0" prefWidth="76.0" />
    </children>
 </AnchorPane>
