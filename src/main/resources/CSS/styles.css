@@ -14,23 +14,26 @@
 /*    -fx-background-color: #c7d0cc; !* Set background color for hovered rows *!*/
 /*}*/
 
-/*!*.button {*!*/
-/*!*    -fx-background-color: #0072c6; !* Set button background color *!*!*/
-/*!*    -fx-text-fill: linear-gradient(to right, #0f0c29, #302b63, #24243e); !* Set button text color *!*!*/
-/*!*    -fx-font-size: 16px; !* Set font size *!*!*/
-/*!*    -fx-padding: 10px 20px; !* Set padding *!*!*/
-/*!*    -fx-border-radius: 5px; !* Set border radius *!*!*/
-/*!*    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.5), 10, 0, 0, 0); !* Add drop shadow effect *!*!*/
-/*!*}*!*/
+.button {
+    -fx-background-color: #dcece5; /* Set button background color */
+    -fx-background-radius: 20px;
+    -fx-text-fill: black; /* Set button text color */
+    -fx-font-family: "Segoe UI Semibold";
+    -fx-font-size: 20px; /* Set font size */
+    -fx-padding: 10px 20px; /* Set padding */
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.5), 10, 0, 0, 0); /* Add drop shadow effect */
+}
 
-/*!*.button:hover {*!*/
-/*!*    -fx-background-color: #71c7ec; !* Change button background color on hover *!*!*/
-/*!*    -fx-text-fill: black; !* Change button text color on hover *!*!*/
-/*!*    -fx-font-size: 20px; !* Set font size *!*!*/
-/*!*    -fx-border-color: black; !* Add border color on hover *!*!*/
-/*!*    -fx-border-width: 2px; !* Add border width on hover *!*!*/
-/*!*    -fx-effect: dropshadow(three-pass-box, #71c7ec, 10, 0, 0, 0); !* Add neon glow effect on hover *!*!*/
-/*!*}*!*/
+.button:hover {
+    /*-fx-background-color: linear-gradient(to left, #fdfc47, #24fe41); !* Change button background color on hover *!*/
+    -fx-background-color: #ffffff;
+    -fx-text-fill: black; /* Change button text color on hover */
+    -fx-font-size: 22px; /* Set font size */
+    -fx-border-color: white; /* Add border color on hover */
+    -fx-border-radius: 20px; /* Set border radius */
+    -fx-border-width: 2px; /* Add border width on hover */
+    -fx-effect: dropshadow(three-pass-box, #71c7ec, 10, 0, 0, 0); /* Add neon glow effect on hover */
+}
 
 /*.tab-pane {*/
 /*    -fx-tab-min-height: 40px;*/
@@ -63,7 +66,7 @@
 }
 
 .progress-bar .bar {
-    -fx-background-color: linear-gradient(to right, #6495EDFF, #a65bf5);
+    -fx-background-color: #59ff24;
 }
 
 .progress-bar .text {

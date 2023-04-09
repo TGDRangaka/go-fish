@@ -6,7 +6,8 @@ import lombok.Data;
 @Data
 @AllArgsConstructor
 public class CatchDetail {
-    String catchId;
-    String fishId;
-    Double weight;
+    private String catchId;
+    private String fishId;
+    private Double weight;
+    private Double total;
 }

@@ -3,7 +3,6 @@
 <?import com.jfoenix.controls.JFXButton?>
 <?import com.jfoenix.controls.JFXCheckBox?>
 <?import com.jfoenix.controls.JFXComboBox?>
-<?import com.jfoenix.controls.JFXRadioButton?>
 <?import com.jfoenix.controls.JFXTextArea?>
 <?import com.jfoenix.controls.JFXTextField?>
 <?import javafx.geometry.Insets?>
@@ -25,22 +24,22 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="640.0" prefWidth="1083.0" style="-fx-background-color: linear-gradient(to right, #a8ff78, #78ffd6);" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.Controller.CrewRegistrationFormController">
+<AnchorPane prefHeight="640.0" prefWidth="1083.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.Controller.CrewRegistrationFormController">
    <children>
       <VBox prefHeight="640.0" prefWidth="1084.0">
          <children>
             <AnchorPane fx:id="subRoot" prefHeight="573.0" prefWidth="1084.0">
                <children>
-                  <Pane fx:id="paneRegistrationForm" prefHeight="573.0" prefWidth="1084.0" style="-fx-background-color: #94fb94;" visible="false">
+                  <Pane fx:id="paneRegistrationForm" prefHeight="573.0" prefWidth="1084.0" visible="false">
                      <children>
-                        <Pane layoutX="9.0" layoutY="7.0" prefHeight="549.0" prefWidth="553.0" style="-fx-border-color: black;">
+                        <Pane layoutX="9.0" layoutY="7.0" prefHeight="549.0" prefWidth="553.0" style="-fx-border-color: black; -fx-border-radius: 10;">
                            <children>
                               <Label layoutX="222.0" layoutY="-1.0" text="Crew Details" underline="true">
                                  <font>
                                     <Font size="20.0" />
                                  </font>
                               </Label>
-                              <TableView fx:id="tableCrewDetailsReg" layoutX="8.0" layoutY="71.0" prefHeight="471.0" prefWidth="538.0">
+                              <TableView fx:id="tableCrewDetailsReg" layoutX="8.0" layoutY="71.0" prefHeight="471.0" prefWidth="538.0" stylesheets="@../CSS/table_style.css">
                                  <columns>
                                     <TableColumn fx:id="colCrewmanIDReg" prefWidth="70.0" text="CrewmanID" />
                                     <TableColumn fx:id="colCrewmanNameReg" prefWidth="153.0" text="Crewman Name" />
@@ -62,7 +61,7 @@
                                     <Font name="System Bold" size="20.0" />
                                  </font>
                               </Label>
-                              <Label fx:id="lblCrewIdReg" layoutX="108.0" layoutY="34.0" prefHeight="30.0" prefWidth="139.0">
+                              <Label fx:id="lblCrewIdReg" layoutX="108.0" layoutY="34.0" prefHeight="30.0" prefWidth="139.0" textFill="WHITE">
                                  <font>
                                     <Font size="20.0" />
                                  </font>
@@ -74,14 +73,14 @@
                               </Label>
                            </children>
                         </Pane>
-                        <Pane layoutX="571.0" layoutY="7.0" prefHeight="282.0" prefWidth="507.0" style="-fx-border-color: black;">
+                        <Pane layoutX="571.0" layoutY="7.0" prefHeight="282.0" prefWidth="507.0" style="-fx-border-color: black; -fx-border-radius: 10;">
                            <children>
                               <Label layoutX="199.0" layoutY="-1.0" text="Boats Details" underline="true">
                                  <font>
                                     <Font size="20.0" />
                                  </font>
                               </Label>
-                              <TableView fx:id="tableOwnerReg" layoutX="8.0" layoutY="72.0" prefHeight="203.0" prefWidth="491.0">
+                              <TableView fx:id="tableOwnerReg" layoutX="8.0" layoutY="72.0" prefHeight="203.0" prefWidth="491.0" stylesheets="@../CSS/table_style.css">
                                  <columns>
                                     <TableColumn fx:id="colBoatIdReg" prefWidth="75.0" text="BoatID" />
                                     <TableColumn fx:id="colBoatRegistrationNoReg" prefWidth="75.0" text="Registration No" />
@@ -107,17 +106,17 @@
                         </Pane>
                         <Label layoutX="571.0" layoutY="345.0" text="Available Times :">
                            <font>
-                              <Font size="20.0" />
+                              <Font name="System Bold" size="20.0" />
                            </font>
                         </Label>
                         <Label layoutX="571.0" layoutY="385.0" text="Available Days :">
                            <font>
-                              <Font size="20.0" />
+                              <Font name="System Bold" size="20.0" />
                            </font>
                         </Label>
                         <Label layoutX="571.0" layoutY="305.0" text="Crew Leader :">
                            <font>
-                              <Font size="20.0" />
+                              <Font name="System Bold" size="20.0" />
                            </font>
                         </Label>
                         <JFXCheckBox fx:id="cboxSendMails" layoutX="571.0" layoutY="479.0" text="Send emails to crewmembers about registration.">
@@ -125,24 +124,24 @@
                               <Font size="15.0" />
                            </font>
                         </JFXCheckBox>
-                        <Label fx:id="lblCrewLeaderReg" layoutX="692.0" layoutY="305.0" prefHeight="30.0" prefWidth="256.0">
+                        <Label fx:id="lblCrewLeaderReg" layoutX="746.0" layoutY="308.0" prefHeight="30.0" prefWidth="256.0" text="Dilshan Rangaka" textFill="#013f80">
+                           <font>
+                              <Font name="System Bold" size="20.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="lblAvailableTimesReg" layoutX="746.0" layoutY="348.0" prefHeight="30.0" prefWidth="372.0" text="Morning, Evening" textFill="#013f80">
                            <font>
                               <Font size="20.0" />
                            </font>
                         </Label>
-                        <Label fx:id="lblAvailableTimesReg" layoutX="717.0" layoutY="345.0" prefHeight="30.0" prefWidth="372.0">
-                           <font>
-                              <Font size="20.0" />
-                           </font>
-                        </Label>
-                        <JFXTextArea fx:id="txtAvailableDaysReg" focusColor="#405aa800" layoutX="712.0" layoutY="379.0" prefHeight="80.0" prefWidth="344.0" unFocusColor="#4d4d4d00">
+                        <JFXTextArea fx:id="txtAvailableDaysReg" focusColor="#405aa800" layoutX="745.0" layoutY="382.0" prefHeight="80.0" prefWidth="344.0" styleClass="reg-text" stylesheets="@../CSS/styles2.css" text="Monday, Tuesday, Wednesday&#10;" unFocusColor="#4d4d4d00">
                            <font>
                               <Font size="20.0" />
                            </font>
                         </JFXTextArea>
                      </children>
                   </Pane>
-                  <Pane fx:id="paneBoatsDetails" prefHeight="573.0" prefWidth="1084.0" style="-fx-background-color: transparent;" visible="false">
+                  <Pane fx:id="paneBoatsDetails" prefHeight="573.0" prefWidth="1084.0" visible="false">
                      <children>
                         <GridPane layoutX="14.0" layoutY="14.0" prefHeight="87.0" prefWidth="820.0">
                            <columnConstraints>
@@ -156,19 +155,19 @@
                               <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                            </rowConstraints>
                            <children>
-                              <Label text="Boat Registration No.">
+                              <Label text="Boat Registration No.:">
                                  <font>
                                     <Font size="18.0" />
                                  </font>
                               </Label>
                               <JFXTextField fx:id="txtBoatRegistrationNo" prefHeight="28.0" prefWidth="331.0" GridPane.columnIndex="1" />
-                              <Label text="Type" GridPane.rowIndex="1">
+                              <Label text="Type:" GridPane.rowIndex="1">
                                  <font>
                                     <Font size="18.0" />
                                  </font>
                               </Label>
                               <JFXTextField fx:id="txtBoatModel" prefHeight="28.0" prefWidth="240.0" GridPane.columnIndex="3" />
-                              <Label text="Model" GridPane.columnIndex="2">
+                              <Label text="Model:" GridPane.columnIndex="2">
                                  <font>
                                     <Font size="18.0" />
                                  </font>
@@ -176,7 +175,7 @@
                                     <Insets left="20.0" />
                                  </GridPane.margin>
                               </Label>
-                              <Label text="Satellite Phone No." GridPane.columnIndex="2" GridPane.rowIndex="1">
+                              <Label text="Satellite Phone No.:" GridPane.columnIndex="2" GridPane.rowIndex="1">
                                  <font>
                                     <Font size="18.0" />
                                  </font>
@@ -196,47 +195,31 @@
                               <Cursor fx:constant="HAND" />
                            </cursor>
                         </JFXButton>
-                        <TableView fx:id="tableBoats" layoutX="15.0" layoutY="105.0" onMouseClicked="#tableBoatsOnMouseClicked" prefHeight="131.0" prefWidth="1055.0">
+                        <TableView fx:id="tableBoats" layoutX="15.0" layoutY="105.0" onMouseClicked="#tableBoatsOnMouseClicked" prefHeight="131.0" prefWidth="1055.0" stylesheets="@../CSS/table_style.css">
                            <columns>
-                              <TableColumn fx:id="colBoatNo" prefWidth="31.0" text="ID" />
-                              <TableColumn fx:id="colBoatRegistrationNo" prefWidth="170.0" text="Registration No." />
+                              <TableColumn fx:id="colBoatNo" prefWidth="67.0" text="ID" />
+                              <TableColumn fx:id="colBoatRegistrationNo" prefWidth="134.0" text="Registration No." />
                               <TableColumn fx:id="colBoatModel" prefWidth="218.0" text="Model" />
                               <TableColumn fx:id="colBoatType" minWidth="8.0" prefWidth="307.0" text="Type" />
                               <TableColumn fx:id="colBoatSattelitePhoneNo" minWidth="0.0" prefWidth="194.0" text="Satellite Phone No." />
                               <TableColumn fx:id="colBoatAction" minWidth="0.0" prefWidth="134.0" text="Action" />
                            </columns>
                         </TableView>
-                        <Label layoutX="14.0" layoutY="292.0" text="Select Boat">
+                        <Label layoutX="14.0" layoutY="292.0" text="Select Boat:">
                            <font>
                               <Font size="18.0" />
                            </font>
                         </Label>
                         <JFXComboBox fx:id="cbSelectBoat" layoutX="138.0" layoutY="287.0" onMouseClicked="#cbSelectBoatOnMouseClicked" prefHeight="32.0" prefWidth="216.0" />
                         <Line endX="951.0" layoutX="116.0" layoutY="272.0" startX="-100.0" />
-                        <JFXButton layoutX="836.0" layoutY="21.0" onAction="#btnBoatClearOnAction" prefHeight="25.0" prefWidth="67.0" text="Clear">
+                        <JFXButton layoutX="836.0" layoutY="21.0" onAction="#btnBoatClearOnAction" prefHeight="25.0" prefWidth="67.0" styleClass="clear" stylesheets="@../CSS/styles2.css" text="Clear">
                            <cursor>
                               <Cursor fx:constant="HAND" />
                            </cursor>
                         </JFXButton>
-                        <JFXButton layoutX="836.0" layoutY="335.0" onAction="#btnOwnerClearOnAction" prefHeight="25.0" prefWidth="67.0" text="Clear">
-                           <cursor>
-                              <Cursor fx:constant="HAND" />
-                           </cursor>
-                        </JFXButton>
-                        <Pane fx:id="paneYesNo" disable="true" layoutX="14.0" layoutY="240.0" prefHeight="32.0" prefWidth="372.0">
-                           <children>
-                              <JFXRadioButton fx:id="rbtnYes" layoutX="243.0" layoutY="8.0" onMouseClicked="#rBtnYesOnMouseClicked" text="Yes" />
-                              <Label text="Is same owner for all boates :">
-                                 <font>
-                                    <Font size="18.0" />
-                                 </font>
-                              </Label>
-                              <JFXRadioButton fx:id="rbtnNo" layoutX="299.0" layoutY="8.0" onMouseClicked="#rBtnNoOnMouseClicked" text="No" />
-                           </children>
-                        </Pane>
                         <Pane fx:id="paneOwnerDetails" layoutX="2.0" layoutY="327.0" prefHeight="245.0" prefWidth="1076.0">
                            <children>
-                              <TableView fx:id="tableOwners" layoutX="11.0" layoutY="106.0" onMouseClicked="#tableOwnersOnMouseClicked" prefHeight="123.0" prefWidth="1055.0">
+                              <TableView fx:id="tableOwners" layoutX="11.0" layoutY="106.0" onMouseClicked="#tableOwnersOnMouseClicked" prefHeight="123.0" prefWidth="1055.0" stylesheets="@../CSS/table_style.css">
                                  <columns>
                                     <TableColumn fx:id="colOwnerNo" prefWidth="60.0" text="ID" />
                                     <TableColumn fx:id="colOwnerBoatNo" prefWidth="242.0" text="Boat No." />
@@ -262,20 +245,20 @@
                                     <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                  </rowConstraints>
                                  <children>
-                                    <Label text="Owner Name">
+                                    <Label text="Owner Name:">
                                        <font>
                                           <Font size="18.0" />
                                        </font>
                                     </Label>
                                     <JFXTextField fx:id="txtOwnerName" prefHeight="28.0" prefWidth="331.0" GridPane.columnIndex="1" />
-                                    <Label text="Address" GridPane.rowIndex="1">
+                                    <Label text="Address:" GridPane.rowIndex="1">
                                        <font>
                                           <Font size="18.0" />
                                        </font>
                                     </Label>
                                     <JFXTextField fx:id="txtOwnerAddress" prefHeight="28.0" prefWidth="331.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                                     <JFXTextField fx:id="txtOwnerNIC" prefHeight="28.0" prefWidth="240.0" GridPane.columnIndex="3" />
-                                    <Label text="NIC" GridPane.columnIndex="2">
+                                    <Label text="NIC:" GridPane.columnIndex="2">
                                        <font>
                                           <Font size="18.0" />
                                        </font>
@@ -283,7 +266,7 @@
                                           <Insets left="20.0" />
                                        </GridPane.margin>
                                     </Label>
-                                    <Label text="Contact No." GridPane.columnIndex="2" GridPane.rowIndex="1">
+                                    <Label text="Contact No.:" GridPane.columnIndex="2" GridPane.rowIndex="1">
                                        <font>
                                           <Font size="18.0" />
                                        </font>
@@ -304,11 +287,22 @@
                               </JFXButton>
                            </children>
                         </Pane>
+                        <JFXComboBox fx:id="cbCrewMembers" layoutX="599.0" layoutY="287.0" onAction="#cbCrewMembersOnAction" prefHeight="32.0" prefWidth="239.0" />
+                        <Label layoutX="431.0" layoutY="290.0" text="Choose Form Crew:">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Label>
+                        <JFXButton layoutX="836.0" layoutY="335.0" onAction="#btnOwnerClearOnAction" prefHeight="25.0" prefWidth="67.0" styleClass="clear" stylesheets="@../CSS/styles2.css" text="Clear">
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                        </JFXButton>
                      </children>
                   </Pane>
-                  <Pane fx:id="paneCrewDetails" prefHeight="573.0" prefWidth="1084.0" style="-fx-background-color: transparent;">
+                  <Pane fx:id="paneCrewDetails" prefHeight="573.0" prefWidth="1084.0">
                      <children>
-                        <TableView fx:id="tableCrewmens" layoutX="10.0" layoutY="188.0" onMouseClicked="#tableCrewmensOnMouseClicked" prefHeight="280.0" prefWidth="1067.0">
+                        <TableView fx:id="tableCrewmens" layoutX="10.0" layoutY="188.0" onMouseClicked="#tableCrewmensOnMouseClicked" prefHeight="280.0" prefWidth="1067.0" stylesheets="@../CSS/table_style.css">
                            <columns>
                               <TableColumn fx:id="colCrewmanNo" prefWidth="63.66666793823242" text="ID" />
                               <TableColumn fx:id="colCrewmanName" prefWidth="170.66665649414062" text="Name" />
@@ -457,22 +451,22 @@
                               </Label>
                            </children>
                         </GridPane>
-                        <Button fx:id="btnWeekdays" layoutX="746.0" layoutY="541.0" mnemonicParsing="false" onAction="#btnWeekdaysOnAction" style="-fx-background-color: transparent; -fx-border-color: black; -fx-border-radius: 10;" text="weekdays" />
-                        <Button fx:id="btnWeekend" layoutX="839.0" layoutY="541.0" mnemonicParsing="false" onAction="#btnWeekendOnAction" style="-fx-background-color: transparent; -fx-border-color: black; -fx-border-radius: 10;" text="weekend" />
-                        <Button fx:id="btnFullWeek" layoutX="927.0" layoutY="541.0" mnemonicParsing="false" onAction="#btnFullWeekOnAction" style="-fx-background-color: transparent; -fx-border-color: black; -fx-border-radius: 10;" text="full week" />
-                        <Label fx:id="lblCrewId" layoutX="109.0" layoutY="2.0" prefHeight="29.0" prefWidth="118.0">
+                        <Button fx:id="btnWeekdays" layoutX="746.0" layoutY="541.0" mnemonicParsing="false" onAction="#btnWeekdaysOnAction" style="-fx-background-color: transparent; -fx-border-color: white; -fx-border-radius: 10;" text="weekdays" />
+                        <Button fx:id="btnWeekend" layoutX="839.0" layoutY="541.0" mnemonicParsing="false" onAction="#btnWeekendOnAction" style="-fx-background-color: transparent; -fx-border-color: white; -fx-border-radius: 10;" text="weekend" />
+                        <Button fx:id="btnFullWeek" layoutX="927.0" layoutY="541.0" mnemonicParsing="false" onAction="#btnFullWeekOnAction" style="-fx-background-color: transparent; -fx-border-color: white; -fx-border-radius: 10;" text="full week" />
+                        <Label fx:id="lblCrewId" layoutX="109.0" layoutY="2.0" prefHeight="29.0" prefWidth="118.0" textFill="WHITE">
                            <font>
                               <Font name="System Bold" size="18.0" />
                            </font>
                         </Label>
-                        <JFXButton layoutX="913.0" layoutY="44.0" onAction="#btnClearCrewmanOnAction" text="Clear" />
-                        <Label fx:id="lblCrewmenCount" alignment="CENTER" layoutX="50.0" layoutY="511.0" prefHeight="46.0" prefWidth="64.0">
+                        <JFXButton layoutX="913.0" layoutY="44.0" onAction="#btnClearCrewmanOnAction" styleClass="clear" stylesheets="@../CSS/styles2.css" text="Clear" />
+                        <Label fx:id="lblCrewmenCount" alignment="CENTER" layoutX="50.0" layoutY="511.0" prefHeight="46.0" prefWidth="64.0" textFill="#00a42c">
                            <font>
                               <Font name="System Bold" size="24.0" />
                            </font>
                         </Label>
                         <JFXCheckBox fx:id="cboxMorning" layoutX="702.0" layoutY="481.0" text="Morning" />
-                        <JFXCheckBox fx:id="cboxEvening" layoutX="810.0" layoutY="480.0" text="Evening" />
+                        <JFXCheckBox fx:id="cboxEvening" layoutX="810.0" layoutY="480.0" styleClass="box" text="Evening" />
                         <JFXCheckBox fx:id="cboxNight" layoutX="920.0" layoutY="481.0" text="Night" />
                      </children>
                   </Pane>
@@ -483,9 +477,9 @@
                      <HBox.margin>
                         <Insets left="20.0" />
                      </HBox.margin></ProgressBar>
-                  <JFXButton fx:id="btnBack" disable="true" onAction="#btnBackOnAction" prefHeight="36.0" prefWidth="89.0" style="-fx-background-color: linear-gradient(to right, #6a3093, #a044ff); -fx-background-radius: 10 0 10 0;" text="Back" textFill="WHITE">
+                  <JFXButton fx:id="btnBack" disable="true" onAction="#btnBackOnAction" prefHeight="50.0" prefWidth="119.0" style="-fx-background-color: linear-gradient(to right, #f2994a, #f2c94c); -fx-background-radius: 10 0 10 0; -fx-border-color: black; -fx-border-radius: 10 0 10 0;" text="Back" textFill="WHITE">
                      <HBox.margin>
-                        <Insets left="330.0" />
+                        <Insets left="260.0" />
                      </HBox.margin>
                      <cursor>
                         <Cursor fx:constant="HAND" />
@@ -494,12 +488,12 @@
                         <Font name="System Bold" size="16.0" />
                      </font>
                   </JFXButton>
-                  <JFXButton fx:id="btnNext" layoutX="976.0" layoutY="17.0" onAction="#btnNextOnAction" prefHeight="36.0" prefWidth="89.0" style="-fx-background-color: linear-gradient(to right, #6a3093, #a044ff); -fx-background-radius: 10 0 10 0;" text="Next" textFill="WHITE">
+                  <JFXButton fx:id="btnNext" layoutX="976.0" layoutY="17.0" onAction="#btnNextOnAction" prefHeight="50.0" prefWidth="120.0" style="-fx-background-color: linear-gradient(to right, #f2994a, #f2c94c); -fx-background-radius: 10 0 10 0; -fx-border-color: black; -fx-border-radius: 10 0 10 0;" text="Next" textFill="WHITE">
                      <cursor>
                         <Cursor fx:constant="HAND" />
                      </cursor>
                      <HBox.margin>
-                        <Insets left="22.0" />
+                        <Insets left="30.0" />
                      </HBox.margin>
                      <font>
                         <Font name="System Bold" size="16.0" />

@@ -1,10 +1,7 @@
 package lk.ijse.Model;
 
 import lk.ijse.DB.DBConnection;
-import lk.ijse.dto.Boat;
-import lk.ijse.dto.BoatOwner;
-import lk.ijse.dto.Crew;
-import lk.ijse.dto.Crewman;
+import lk.ijse.dto.*;
 import lk.ijse.util.CrudUtil;
 
 import java.sql.Connection;
@@ -112,7 +109,7 @@ public class CrewModel {
         return CrudUtil.execute(sql, crewId);
     }
 
-    public static boolean deleteCrew(String crewId, List<String> boatownersIdList) throws SQLException {
+    public static boolean deleteCrew(String crewId, List<String> boatownersIdList, List<String> catchIdList) throws SQLException {
         Connection con = null;
         try{
             con = DBConnection.getInstance().getConnection();
@@ -121,22 +118,53 @@ public class CrewModel {
             boolean isBoatsDeleted = BoatModel.delete(crewId);
             System.out.println("isBoatDeleted" + isBoatsDeleted);
             if(isBoatsDeleted){
-                boolean isBoatOwnerDeleted = BoatOwnerModel.delete(boatownersIdList);
-                System.out.println("isBoatOwnerDeleted" + isBoatOwnerDeleted);
-                if(isBoatOwnerDeleted){
-                    boolean isCrewmenDeleted = CrewmanModel.delete(crewId);
-                    System.out.println("isCrewmenDeleted" + isCrewmenDeleted);
-                    if(isCrewmenDeleted){
-                        boolean isCrewDeleted = delete(crewId);
-                        System.out.println("isCrewDeleted" + isCrewDeleted);
-                        if(isCrewDeleted){
-                            con.commit();
-                            return true;
+
+                boolean isHaveCatches = CatchModel.isHaveData(crewId);
+                System.out.println("isHaveCatches" + isHaveCatches);
+                boolean isHaveMails = MailDetailModel.isHaveData(crewId);
+                System.out.println("isHaveMails" + isHaveMails);
+                boolean isCatchDetailsDeleted = false;
+                boolean isMailDetailsDeleted = false;
+                boolean isCatchsDeleted = false;
+                boolean isCatchsOk = false;
+                boolean isMailsOk = false;
+                if(isHaveCatches) {
+                    isCatchDetailsDeleted = CatchDetailModel.delete(catchIdList);
+                    System.out.println("isCatchDetailsDeleted" + isCatchDetailsDeleted);
+                    isCatchsDeleted = CatchModel.delete(crewId);
+                    System.out.println("isCatchsDeleted" + isCatchsDeleted);
+                    if(isCatchDetailsDeleted && isCatchsDeleted){
+                        isCatchsOk = true;
+                    }
+                }
+                if(isHaveMails){
+                    isMailDetailsDeleted = MailDetailModel.delete(crewId);
+                    System.out.println("isMailDetailsDeleted" + isMailDetailsDeleted);
+                    if(isMailDetailsDeleted){
+                        isMailsOk = true;
+                    }
+                }
+
+                if((!isHaveCatches || !isHaveMails) || isCatchsOk || isMailsOk) {
+
+                    boolean isBoatOwnerDeleted = BoatOwnerModel.delete(boatownersIdList);
+                    System.out.println("isBoatOwnerDeleted" + isBoatOwnerDeleted);
+                    if (isBoatOwnerDeleted) {
+                        boolean isCrewmenDeleted = CrewmanModel.delete(crewId);
+                        System.out.println("isCrewmenDeleted" + isCrewmenDeleted);
+                        if (isCrewmenDeleted) {
+                            boolean isCrewDeleted = delete(crewId);
+                            System.out.println("isCrewDeleted" + isCrewDeleted);
+                            if (isCrewDeleted) {
+                                con.commit();
+                                return true;
+                            }
                         }
                     }
                 }
             }
 
+            con.rollback();
             return false;
         } catch (SQLException throwables) {
             throwables.printStackTrace();
@@ -206,6 +234,7 @@ public class CrewModel {
                 }
             }
 
+            con.rollback();
             return false;
         } catch (SQLException e){
             e.printStackTrace();

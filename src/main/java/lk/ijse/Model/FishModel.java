@@ -1,8 +1,10 @@
 package lk.ijse.Model;
 
+import lk.ijse.DB.DBConnection;
 import lk.ijse.dto.Fish;
 import lk.ijse.util.CrudUtil;
 
+import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -36,7 +38,7 @@ public class FishModel {
             return rs.getString(1);
         }
 
-        return null;
+        return "F000";
     }
 
     public static Fish getFish(String selectedFish) throws SQLException {
@@ -52,5 +54,65 @@ public class FishModel {
             );
         }
         return null;
+    }
+
+    public static boolean save(Fish fish) throws SQLException {
+        String sql = "INSERT INTO fish(fishId, fishType, unitWeight, unitPrice) " +
+                "VALUES(?,?,?,?)";
+
+        return CrudUtil.execute(sql,
+                fish.getFishId(),
+                fish.getFishType(),
+                fish.getUnitWeight(),
+                fish.getUnitPrice()
+        );
+    }
+
+    public static boolean update(Fish fish) throws SQLException {
+        String sql = "UPDATE fish SET fishType = ?, unitWeight = ?, unitPrice = ? WHERE fishId = ?";
+
+        return CrudUtil.execute(sql,
+                fish.getFishType(),
+                fish.getUnitWeight(),
+                fish.getUnitPrice(),
+                fish.getFishId()
+        );
+    }
+
+    public static boolean delete(String fishId) throws SQLException {
+        Connection con = null;
+        try{
+            con = DBConnection.getInstance().getConnection();
+            con.setAutoCommit(false);
+
+            boolean isFishHaveRecords = CatchDetailModel.isFishHaveRecords(fishId);
+            boolean isFishRecordsDeleted = false;
+            if(isFishHaveRecords){
+                isFishRecordsDeleted = CatchDetailModel.deleteFishRecords(fishId);
+            }
+
+            if(!isFishHaveRecords || (isFishHaveRecords && isFishRecordsDeleted)){
+                boolean isFishDeleted = deleteFish(fishId);
+                if(isFishDeleted){
+                    con.commit();
+                    return true;
+                }
+            }
+
+            return false;
+        }catch (SQLException e){
+            con.rollback();
+            return false;
+        }finally {
+            con.setAutoCommit(true);
+        }
+
+
+    }
+
+    private static boolean deleteFish(String fishId) throws SQLException {
+        String sql = "DELETE FROM fish WHERE fishId = ?";
+
+        return CrudUtil.execute(sql, fishId);
     }
 }

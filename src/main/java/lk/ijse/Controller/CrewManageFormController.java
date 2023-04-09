@@ -2,6 +2,7 @@ package lk.ijse.Controller;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.css.PseudoClass;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -11,10 +12,7 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
-import lk.ijse.Model.BoatModel;
-import lk.ijse.Model.BoatOwnerModel;
-import lk.ijse.Model.CrewModel;
-import lk.ijse.Model.CrewmanModel;
+import lk.ijse.Model.*;
 import lk.ijse.dto.BoatOwner;
 import lk.ijse.dto.Crew;
 import lk.ijse.dto.tm.CrewTM;
@@ -24,10 +22,10 @@ import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.List;
+import java.util.Optional;
 import java.util.ResourceBundle;
 
 public class CrewManageFormController implements Initializable {
-    public Pane paneFilter;
     @FXML
     private AnchorPane root;
     @FXML
@@ -110,10 +108,12 @@ public class CrewManageFormController implements Initializable {
                 String leader = crew.getLeader();
                 Integer crewmenCount = crew.getCrewmenCount();
                 Integer boatsCount = crew.getBoatsCount();
-                String availableTimes =crew.getAvailableTimes();
-                String availableDays = crew.getAvailableDays();
+                String availableTimes = getDayTimes(crew.getAvailableTimes());
+                String availableDays = getWeekdays(crew.getAvailableDays());
                 Button update = new Button("Update");
+                update.getStyleClass().add("table-update-btn");
                 Button delete = new Button("Delete");
+                delete.getStyleClass().add("table-delete-btn");
 
                 CrewTM crewTM = new CrewTM(crewId, leader, crewmenCount, boatsCount, availableTimes, availableDays, update, delete);
 
@@ -128,6 +128,35 @@ public class CrewManageFormController implements Initializable {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+    }
+
+    private String getWeekdays(String digits) {
+        String[] weekdays = {"Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"};
+        String result = "";
+        if (digits.equals("1111111")) {
+            return "Everyday";
+        } else if (digits.equals("1111100")) {
+            return "Workdays";
+        } else if (digits.equals("0000011")) {
+            return "Weekend";
+        }
+        for (int i = 0; i < digits.length(); i++) {
+            if (digits.charAt(i) == '1') {
+                result += weekdays[i] + ",";
+            }
+        }
+        // Remove the last comma
+        if (!result.isEmpty()) {
+            result = result.substring(0, result.length() - 1);
+        }
+        return result;
+    }
+    private String getDayTimes(String dayTimes) {
+        StringBuilder result = new StringBuilder();
+        if (dayTimes.charAt(0) == '1') result.append("Morning,");
+        if (dayTimes.charAt(1) == '1') result.append("Evening,");
+        if (dayTimes.charAt(2) == '1') result.append("Night,");
+        return result.toString().replaceAll(",$", "");
     }
 
     private void setButtonsOnAction(CrewTM crewTM, String crewId, Button btn) {
@@ -146,20 +175,28 @@ public class CrewManageFormController implements Initializable {
             });
         }else{
             btn.setOnAction((e) -> {
-                try {
-                    List<String> boatOwnersIdList = BoatOwnerModel.getBoatOwnersId(crewId);
-                    boolean isCrewDeleted = CrewModel.deleteCrew(crewId, boatOwnersIdList);
+                ButtonType yes = new ButtonType("Yes", ButtonBar.ButtonData.OK_DONE);
+                ButtonType no = new ButtonType("No", ButtonBar.ButtonData.CANCEL_CLOSE);
+                Optional<ButtonType> result = new Alert(Alert.AlertType.CONFIRMATION, "Are you sure want to remove this Crew", yes, no).showAndWait();
 
-                    if(isCrewDeleted){
-                        crews.removeAll(crewTM);
-                        tableCrew.refresh();
-                        new Alert(Alert.AlertType.CONFIRMATION, "Crew Deleted Succesfully!").show();
-                    }else{
-                        new Alert(Alert.AlertType.WARNING, "Crew Not Deleted!!").show();
+                if(result.orElse(no) == (yes)) {
+                    try {
+                        List<String> boatOwnersIdList = BoatOwnerModel.getBoatOwnersId(crewId);
+                        List<String> catchIdList = CatchModel.getAllCatchIds(crewId);
+                        boolean isCrewDeleted = CrewModel.deleteCrew(crewId, boatOwnersIdList, catchIdList);
+
+                        if (isCrewDeleted) {
+                            crews.removeAll(crewTM);
+                            tableCrew.refresh();
+                            loadLabels();
+                            new Alert(Alert.AlertType.CONFIRMATION, "Crew Deleted Succesfully!").show();
+                        } else {
+                            new Alert(Alert.AlertType.WARNING, "Crew Not Deleted!!").show();
+                        }
+                    } catch (SQLException ex) {
+                        System.out.println(ex);
+                        new Alert(Alert.AlertType.ERROR, "Oops...Something went wrong!!!").show();
                     }
-                } catch (SQLException ex){
-                    System.out.println(ex);
-                    new Alert(Alert.AlertType.ERROR, "Oops...Something went wrong!!!").show();
                 }
             });
         }
@@ -181,8 +218,4 @@ public class CrewManageFormController implements Initializable {
         root.getChildren().setAll(node);
     }
 
-    @FXML
-    void btnFilterOnAction(ActionEvent event) {
-        paneFilter.setVisible(!paneFilter.isVisible());
-    }
 }

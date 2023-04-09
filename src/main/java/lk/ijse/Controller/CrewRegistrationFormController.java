@@ -27,6 +27,8 @@ import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.*;
 
+import static lk.ijse.util.CrudUtil.getNewId;
+
 public class CrewRegistrationFormController implements Initializable {
 
 
@@ -128,12 +130,6 @@ public class CrewRegistrationFormController implements Initializable {
     private TableView<BoatTM> tableBoats;
 
     @FXML
-    private JFXRadioButton rbtnYes;
-
-    @FXML
-    private JFXRadioButton rbtnNo;
-
-    @FXML
     private JFXTextField txtOwnerName;
 
     @FXML
@@ -233,6 +229,9 @@ public class CrewRegistrationFormController implements Initializable {
     private CheckBox cboxMorning;
 
     @FXML
+    private JFXComboBox<String> cbCrewMembers;
+
+    @FXML
     private CheckBox cboxEvening;
 
     @FXML
@@ -323,8 +322,6 @@ public class CrewRegistrationFormController implements Initializable {
 
     int boatOwnerIndex;
 
-
-
     @SneakyThrows
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -339,6 +336,58 @@ public class CrewRegistrationFormController implements Initializable {
 
             loadTables(CrewManageFormController.crew);
         }
+
+        setFieldsOnAction();
+    }
+
+    private void setFieldsOnAction() {
+        txtCrewmanName.setOnAction((e) -> {
+            txtCrewmanNIC.requestFocus();
+        });
+        txtCrewmanNIC.setOnAction((e) -> {
+            txtCrewmanAddress.requestFocus();
+        });
+        txtCrewmanAddress.setOnAction((e) -> {
+            txtCrewmanBOD.requestFocus();
+        });
+        txtCrewmanBOD.setOnAction((e) -> {
+            txtCrewmanEmail.requestFocus();
+        });
+        txtCrewmanEmail.setOnAction((e) -> {
+            txtContactNo.requestFocus();
+        });
+        txtContactNo.setOnAction((e) -> {
+            btnAddCrewman.fire();
+            txtCrewmanName.requestFocus();
+        });
+
+        txtBoatRegistrationNo.setOnAction((e) -> {
+            txtBoatModel.requestFocus();
+        });
+        txtBoatModel.setOnAction((e) -> {
+            cbBoatType.requestFocus();
+        });
+        cbBoatType.setOnAction((e) -> {
+            txtBoatSattelitePhoneNo.requestFocus();
+        });
+        txtBoatSattelitePhoneNo.setOnAction((e) -> {
+            btnAddBoat.fire();
+            txtBoatRegistrationNo.requestFocus();
+        });
+
+        txtOwnerName.setOnAction((e) -> {
+            txtOwnerNIC.requestFocus();
+        });
+        txtOwnerNIC.setOnAction((e) -> {
+            txtOwnerAddress.requestFocus();
+        });
+        txtOwnerAddress.setOnAction((e) -> {
+            txtOwnerContactNo.requestFocus();
+        });
+        txtOwnerContactNo.setOnAction((e) -> {
+            btnAddOwner.fire();
+            txtOwnerName.requestFocus();
+        });
     }
 
     private void loadTables(String crewId) {
@@ -498,12 +547,10 @@ public class CrewRegistrationFormController implements Initializable {
 
         if(prase == 1){
             btnBack.setDisable(true);
-            progressBar.setProgress(40);
 
             paneVisible(1);
         }else if(prase == 2){
             btnNext.setText("Next");
-            progressBar.setProgress(80);
 
             paneVisible(2);
         }
@@ -520,13 +567,12 @@ public class CrewRegistrationFormController implements Initializable {
 
         if(prase == 2) {
             btnBack.setDisable(false);
-            progressBar.setProgress(80);
+            loadCbCrewmembers();
 
             paneVisible(2);
         }else if(prase == 3){
             loadCrewDetails();
             loadBoatsDetails();
-            progressBar.setProgress(100);
 
             if(CrewManageFormController.isBtnUpdatePressed){
                 btnNext.setText("Update");
@@ -536,6 +582,14 @@ public class CrewRegistrationFormController implements Initializable {
 
             paneVisible(3);
         }
+    }
+
+    private void loadCbCrewmembers() {
+        ObservableList<String> crewmembers = FXCollections.observableArrayList();
+        for(CrewmanTM crewmanTM : crewmenList){
+            crewmembers.add(crewmanTM.getName());
+        }
+        cbCrewMembers.setItems(crewmembers);
     }
 
     private void loadCrewDetails() {
@@ -630,6 +684,7 @@ public class CrewRegistrationFormController implements Initializable {
 
                     BoatRegTM boatRegTM = new BoatRegTM(boatId, registrationNo, model, ownerId, ownerName);
                     boatsRegList.add(boatRegTM);
+                    break;
                 }
             }
         }
@@ -695,10 +750,15 @@ public class CrewRegistrationFormController implements Initializable {
     private List<BoatOwner> getAllBoatOwners() throws SQLException {
         List<BoatOwner> boatOwnerList = new ArrayList<>();
 
+        String id = "";
         for(int i = 0; i < this.ownersList.size(); i++) {
             BoatOwnerTM boatOwnerTM = this.ownersList.get(i);
 
-            String id = boatOwnerTM.getId();
+            if(id.equals(boatOwnerTM.getId())){
+                continue;
+            }
+
+            id = boatOwnerTM.getId();
             String name = boatOwnerTM.getName();
             String nic = boatOwnerTM.getNic();
             String address = boatOwnerTM.getAddress();
@@ -756,40 +816,6 @@ public class CrewRegistrationFormController implements Initializable {
         return crewmenList;
     }
 
-    String getNewId(String lastId){
-        String[] t = lastId.split("0", 3);
-        int len = t[0].length();
-        String[] ar = new String[0];
-        int lastIndex = 0;
-        int newIndex = 0;
-        String zeros = "";
-
-        if(lastId.charAt(len + 1) == '0') {
-            ar = lastId.split("0", 3);
-            int count = 1;
-
-            lastIndex = Integer.parseInt(ar[2]);
-            newIndex = lastIndex + 1;
-
-            if (lastIndex == 99) count = 0;
-
-            for (int i = 0; i <= count; i++) {
-                zeros += "0";
-            }
-        }else{
-            ar = lastId.split("0", 2);
-
-            lastIndex = Integer.parseInt(ar[1]);
-            newIndex = lastIndex + 1;
-
-            for (int i = 0; i <= 0; i++) {
-                zeros += "0";
-            }
-        }
-
-        return ar[0] + zeros + newIndex;
-    }
-
     void paneVisible(int prase){
         Pane[] panes = {paneCrewDetails, paneBoatsDetails, paneRegistrationForm};
 
@@ -827,15 +853,6 @@ public class CrewRegistrationFormController implements Initializable {
             tableBoats.setItems(boatList);
 
         }
-        if(boatList.size() > 1){
-            paneYesNo.setDisable(false);
-            cbSelectBoat.setDisable(false);
-            paneOwnerDetails.setDisable(true);
-        }else{
-            paneYesNo.setDisable(true);
-            cbSelectBoat.setDisable(true);
-            paneOwnerDetails.setDisable(false);
-        }
         btnBoatClearOnAction(event);
     }
 
@@ -856,15 +873,6 @@ public class CrewRegistrationFormController implements Initializable {
                     ex.printStackTrace();
                 }
                 tableBoats.refresh();
-            }
-            if(boatList.size() > 1){
-                paneYesNo.setDisable(false);
-                cbSelectBoat.setDisable(false);
-                paneOwnerDetails.setDisable(true);
-            }else{
-                paneYesNo.setDisable(true);
-                cbSelectBoat.setDisable(true);
-                paneOwnerDetails.setDisable(false);
             }
             btnAddBoat.setText("Add");
             btnBoatClearOnAction(e);
@@ -944,6 +952,10 @@ public class CrewRegistrationFormController implements Initializable {
 
     @FXML
     void btnAddOwnerOnAction(ActionEvent event) {
+        if(cbSelectBoat.getValue() == null){
+            new Alert(Alert.AlertType.WARNING, "Choose the a boat!!!").show();
+        }
+
         newBoatOwnerId = getNewId(newBoatOwnerId);
         String boatId = cbSelectBoat.getValue();
         String name = txtOwnerName.getText();
@@ -1051,7 +1063,8 @@ public class CrewRegistrationFormController implements Initializable {
         BoatOwnerTM selectedItem = tableOwners.getSelectionModel().getSelectedItem();
         boatOwnerIndex = tableOwners.getSelectionModel().getSelectedIndex();
 
-        cbSelectBoat.setValue(selectedItem.getId());
+        selectedBoatOwnerId = selectedItem.getId();
+        cbSelectBoat.setValue(selectedItem.getBoatId());
         txtOwnerName.setText(selectedItem.getName());
         txtOwnerNIC.setText(selectedItem.getNic());
         txtOwnerAddress.setText(selectedItem.getAddress());
@@ -1133,22 +1146,15 @@ public class CrewRegistrationFormController implements Initializable {
     }
 
     @FXML
-    void rBtnNoOnMouseClicked(MouseEvent event) {
-        if(rbtnNo.isSelected()){
-            rbtnYes.setSelected(false);
-
-            cbSelectBoat.setDisable(false);
-            paneOwnerDetails.setDisable(false);
-        }
-    }
-
-    @FXML
-    void rBtnYesOnMouseClicked(MouseEvent event) {
-        if(rbtnYes.isSelected()){
-            rbtnNo.setSelected(false);
-
-            cbSelectBoat.setDisable(true);
-            paneOwnerDetails.setDisable(false);
+    void cbCrewMembersOnAction(ActionEvent event) {
+        String selectedItem = cbCrewMembers.getSelectionModel().getSelectedItem();
+        for(CrewmanTM crewmanTM:crewmenList){
+            if(selectedItem.equals(crewmanTM.getName())){
+                txtOwnerName.setText(crewmanTM.getName());
+                txtOwnerNIC.setText(crewmanTM.getNic());
+                txtOwnerAddress.setText(crewmanTM.getAddress());
+                txtOwnerContactNo.setText(crewmanTM.getContactNo());
+            }
         }
     }
 }

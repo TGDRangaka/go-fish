@@ -3,10 +3,11 @@
 <?import com.jfoenix.controls.JFXButton?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
@@ -16,13 +17,13 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="700.0" prefWidth="1366.0" style="-fx-background-color: linear-gradient(to right, #36d1dc, #5b86e5);" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.Controller.MainWindowFormController">
+<AnchorPane prefHeight="700.0" prefWidth="1366.0" style="-fx-background-color: linear-gradient(to right, #54ABFE, #6F94F0);" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.Controller.MainWindowFormController">
    <children>
-      <VBox layoutX="-1.0" layoutY="-1.0" prefHeight="700.0" prefWidth="298.0">
+      <VBox alignment="TOP_CENTER" layoutX="-1.0" layoutY="-1.0" prefHeight="700.0" prefWidth="288.0" style="-fx-border-color: gold; -fx-border-width: 0 3 0 0;">
          <children>
             <HBox alignment="CENTER" minHeight="80.0" prefHeight="82.0" prefWidth="283.0" style="-fx-background-color: transparent;">
                <children>
-                  <Label alignment="CENTER" prefHeight="35.0" prefWidth="64.0" text="Admin" textFill="WHITE">
+                  <Label alignment="CENTER" prefHeight="35.0" prefWidth="64.0" text="Admin" textFill="#3e4756">
                      <font>
                         <Font name="System Bold" size="20.0" />
                      </font>
@@ -34,106 +35,129 @@
                   </Pane>
                </children>
             </HBox>
-            <ScrollPane hbarPolicy="NEVER" prefHeight="668.0" prefWidth="586.0" vbarPolicy="NEVER">
-               <content>
-                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="798.0" prefWidth="283.0" style="-fx-background-color: linear-gradient(to right, #36d1dc, #5b86e5);">
-                     <children>
-                        <VBox alignment="TOP_CENTER" prefHeight="798.0" prefWidth="284.0">
-                           <children>
-                              <JFXButton focusTraversable="false" layoutX="50.0" layoutY="578.0" onAction="#btnDashboardOnAction" prefHeight="300.0" prefWidth="233.0" style="-fx-background-color: #71c7ec; -fx-background-radius: 10; -fx-border-radius: 10;" stylesheets="@../CSS/styles.css" text="Dashboard">
-                                 <font>
-                                    <Font size="19.0" />
-                                 </font>
-                                 <effect>
-                                    <DropShadow spread="0.08" />
-                                 </effect>
-                                 <VBox.margin>
-                                    <Insets top="20.0" />
-                                 </VBox.margin>
-                              </JFXButton>
-                              <JFXButton fx:id="btnCrewManage" focusTraversable="false" onAction="#btnCrewManageOnAction" prefHeight="300.0" prefWidth="233.0" style="-fx-background-color: #71c7ec; -fx-background-radius: 10; -fx-border-radius: 10;" stylesheets="@../CSS/styles.css" text="Crew Manage">
-                                 <font>
-                                    <Font size="19.0" />
-                                 </font>
-                                 <VBox.margin>
-                                    <Insets top="20.0" />
-                                 </VBox.margin>
-                                 <effect>
-                                    <DropShadow spread="0.08" />
-                                 </effect>
-                              </JFXButton>
-                              <JFXButton focusTraversable="false" layoutX="74.0" layoutY="108.0" onAction="#btnCatchManageOnAction" prefHeight="300.0" prefWidth="233.0" style="-fx-background-color: #71c7ec; -fx-background-radius: 10; -fx-border-radius: 10;" stylesheets="@../CSS/styles.css" text="Catch Manage">
-                                 <font>
-                                    <Font size="19.0" />
-                                 </font>
-                                 <VBox.margin>
-                                    <Insets top="20.0" />
-                                 </VBox.margin>
-                                 <effect>
-                                    <DropShadow spread="0.08" />
-                                 </effect>
-                              </JFXButton>
-                              <JFXButton focusTraversable="false" layoutX="74.0" layoutY="163.0" prefHeight="300.0" prefWidth="233.0" style="-fx-background-color: #71c7ec; -fx-background-radius: 10; -fx-border-radius: 10;" stylesheets="@../CSS/styles.css" text="Fish Manage">
-                                 <font>
-                                    <Font size="19.0" />
-                                 </font>
-                                 <VBox.margin>
-                                    <Insets top="20.0" />
-                                 </VBox.margin>
-                                 <effect>
-                                    <DropShadow spread="0.08" />
-                                 </effect>
-                              </JFXButton>
-                              <JFXButton focusTraversable="false" layoutX="74.0" layoutY="218.0" prefHeight="300.0" prefWidth="233.0" style="-fx-background-color: #71c7ec; -fx-background-radius: 10; -fx-border-radius: 10;" stylesheets="@../CSS/styles.css" text="Payment Records">
-                                 <font>
-                                    <Font size="19.0" />
-                                 </font>
-                                 <VBox.margin>
-                                    <Insets top="20.0" />
-                                 </VBox.margin>
-                                 <effect>
-                                    <DropShadow spread="0.08" />
-                                 </effect>
-                              </JFXButton>
-                              <JFXButton focusTraversable="false" layoutX="74.0" layoutY="273.0" prefHeight="300.0" prefWidth="233.0" style="-fx-background-color: #71c7ec; -fx-background-radius: 10; -fx-border-radius: 10;" stylesheets="@../CSS/styles.css" text="Analytics &amp; Get Reports">
-                                 <font>
-                                    <Font size="19.0" />
-                                 </font>
-                                 <VBox.margin>
-                                    <Insets top="20.0" />
-                                 </VBox.margin>
-                                 <effect>
-                                    <DropShadow spread="0.08" />
-                                 </effect>
-                              </JFXButton>
-                              <JFXButton focusTraversable="false" layoutX="73.0" layoutY="328.0" prefHeight="300.0" prefWidth="233.0" style="-fx-background-color: #71c7ec; -fx-background-radius: 10; -fx-border-radius: 10;" stylesheets="@../CSS/styles.css" text="Send Mails">
-                                 <font>
-                                    <Font size="19.0" />
-                                 </font>
-                                 <VBox.margin>
-                                    <Insets top="20.0" />
-                                 </VBox.margin>
-                                 <effect>
-                                    <DropShadow spread="0.08" />
-                                 </effect>
-                              </JFXButton>
-                              <JFXButton focusTraversable="false" layoutX="73.0" layoutY="383.0" prefHeight="300.0" prefWidth="233.0" style="-fx-background-color: #71c7ec; -fx-background-radius: 10; -fx-border-radius: 10;" stylesheets="@../CSS/styles.css" text="Log Out">
-                                 <font>
-                                    <Font size="19.0" />
-                                 </font>
-                                 <VBox.margin>
-                                    <Insets top="20.0" />
-                                 </VBox.margin>
-                                 <effect>
-                                    <DropShadow spread="0.08" />
-                                 </effect>
-                              </JFXButton>
-                           </children>
-                        </VBox>
-                     </children>
-                  </AnchorPane>
-               </content>
-            </ScrollPane>
+            <JFXButton contentDisplay="RIGHT" focusTraversable="false" onAction="#btnDashboardOnAction" prefHeight="60.0" prefWidth="250.0" stylesheets="@../CSS/styles.css" text="Dashboard      ">
+               <font>
+                  <Font size="19.0" />
+               </font>
+               <VBox.margin>
+                  <Insets top="20.0" />
+               </VBox.margin>
+               <effect>
+                  <DropShadow height="35.83" offsetY="-10.0" radius="15.932499999999997" spread="0.02" width="29.9" />
+               </effect>
+               <graphic>
+                  <ImageView fitHeight="40.0" fitWidth="40.0">
+                     <image>
+                        <Image url="@../img/dashboard.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </JFXButton>
+            <JFXButton fx:id="btnCrewManage" contentDisplay="RIGHT" focusTraversable="false" onAction="#btnCrewManageOnAction" prefHeight="60.0" prefWidth="250.0" stylesheets="@../CSS/styles.css" text="Crew Manage  ">
+               <font>
+                  <Font size="19.0" />
+               </font>
+               <VBox.margin>
+                  <Insets top="20.0" />
+               </VBox.margin>
+               <effect>
+                  <DropShadow height="35.83" offsetY="-10.0" radius="15.932499999999997" spread="0.02" width="29.9" />
+               </effect>
+               <graphic>
+                  <ImageView fitHeight="40.0" fitWidth="40.0">
+                     <image>
+                        <Image url="@../img/developers.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </JFXButton>
+            <JFXButton contentDisplay="RIGHT" focusTraversable="false" onAction="#btnCatchManageOnAction" prefHeight="60.0" prefWidth="250.0" stylesheets="@../CSS/styles.css" text="Catch Manage ">
+               <font>
+                  <Font size="19.0" />
+               </font>
+               <VBox.margin>
+                  <Insets top="20.0" />
+               </VBox.margin>
+               <effect>
+                  <DropShadow height="35.83" offsetY="-10.0" radius="15.932499999999997" spread="0.02" width="29.9" />
+               </effect>
+               <graphic>
+                  <ImageView fitHeight="40.0" fitWidth="40.0">
+                     <image>
+                        <Image url="@../img/catch.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </JFXButton>
+            <JFXButton contentDisplay="RIGHT" focusTraversable="false" onAction="#btnFishManageOnAction" prefHeight="60.0" prefWidth="250.0" stylesheets="@../CSS/styles.css" text="Fish Manage    ">
+               <font>
+                  <Font size="19.0" />
+               </font>
+               <VBox.margin>
+                  <Insets top="20.0" />
+               </VBox.margin>
+               <effect>
+                  <DropShadow height="35.83" offsetY="-10.0" radius="15.932499999999997" spread="0.02" width="29.9" />
+               </effect>
+               <graphic>
+                  <ImageView fitHeight="40.0" fitWidth="40.0">
+                     <image>
+                        <Image url="@../img/dead-fish.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </JFXButton>
+            <JFXButton contentDisplay="RIGHT" focusTraversable="false" onAction="#btnViewAnalysticOnAction" prefHeight="60.0" prefWidth="250.0" stylesheets="@../CSS/styles.css" text="View Analytics ">
+               <font>
+                  <Font size="19.0" />
+               </font>
+               <VBox.margin>
+                  <Insets top="20.0" />
+               </VBox.margin>
+               <graphic>
+                  <ImageView fitHeight="40.0" fitWidth="40.0">
+                     <image>
+                        <Image url="@../img/analysis.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </JFXButton>
+            <JFXButton contentDisplay="RIGHT" focusTraversable="false" onAction="#btnSendMailOnAction" prefHeight="60.0" prefWidth="250.0" stylesheets="@../CSS/styles.css" text="Send Mails       ">
+               <font>
+                  <Font size="19.0" />
+               </font>
+               <VBox.margin>
+                  <Insets top="20.0" />
+               </VBox.margin>
+               <effect>
+                  <DropShadow height="35.83" offsetY="-10.0" radius="15.932499999999997" spread="0.02" width="29.9" />
+               </effect>
+               <graphic>
+                  <ImageView fitHeight="40.0" fitWidth="40.0">
+                     <image>
+                        <Image url="@../img/sending.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </JFXButton>
+            <JFXButton contentDisplay="RIGHT" focusTraversable="false" onAction="#btnLogOutOnAction" prefHeight="60.0" prefWidth="250.0" stylesheets="@../CSS/styles.css" text="Log Out           ">
+               <font>
+                  <Font size="19.0" />
+               </font>
+               <VBox.margin>
+                  <Insets bottom="10.0" top="60.0" />
+               </VBox.margin>
+               <effect>
+                  <DropShadow height="35.83" offsetY="-10.0" radius="15.932499999999997" spread="0.02" width="29.9" />
+               </effect>
+               <graphic>
+                  <ImageView fitHeight="40.0" fitWidth="40.0">
+                     <image>
+                        <Image url="@../img/logout.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </JFXButton>
          </children>
       </VBox>
       <GridPane layoutX="287.0" prefHeight="700.0" prefWidth="1079.0">
@@ -146,17 +170,17 @@
          <children>
             <VBox prefHeight="200.0" prefWidth="100.0">
                <children>
-                  <HBox alignment="CENTER_RIGHT" prefHeight="37.0" prefWidth="1079.0" style="-fx-border-color: gold; -fx-border-width: 0 0 4 0;">
+                  <HBox alignment="CENTER_RIGHT" prefHeight="37.0" prefWidth="1067.0" style="-fx-border-color: gold; -fx-border-width: 0 0 4 0;">
                      <children>
-                        <Label prefHeight="47.0" prefWidth="886.0" text="Dashboard" textFill="WHITE">
+                        <Label fx:id="lblTitle" prefHeight="47.0" prefWidth="886.0" text="Dashboard" textFill="#3e4756">
                            <font>
-                              <Font name="System Bold" size="40.0" />
+                              <Font name="Segoe UI Semibold" size="40.0" />
                            </font>
                            <padding>
                               <Insets left="10.0" />
                            </padding>
                         </Label>
-                        <Label alignment="CENTER" layoutX="909.0" layoutY="21.0" prefHeight="47.0" prefWidth="196.0" text="YYYY/MM/DD--HH:MM" textFill="WHITE">
+                        <Label alignment="CENTER" layoutX="909.0" layoutY="21.0" prefHeight="47.0" prefWidth="196.0" text="YYYY/MM/DD--HH:MM" textFill="#3e4756">
                            <font>
                               <Font size="17.0" />
                            </font>
@@ -182,22 +206,22 @@
                      <children>
                         <HBox prefHeight="155.0" prefWidth="878.0">
                            <children>
-                              <Pane prefHeight="200.0" prefWidth="213.0" style="-fx-border-color: lightblue; -fx-background-radius: 10; -fx-border-radius: 10;">
+                              <Pane prefHeight="200.0" prefWidth="213.0" style="-fx-border-color: black; -fx-background-radius: 10; -fx-border-radius: 10;">
                                  <HBox.margin>
                                     <Insets left="10.0" top="10.0" />
                                  </HBox.margin>
                               </Pane>
-                              <Pane layoutX="20.0" layoutY="20.0" prefHeight="200.0" prefWidth="213.0" style="-fx-border-color: lightblue; -fx-background-radius: 10; -fx-border-radius: 10;">
+                              <Pane layoutX="20.0" layoutY="20.0" prefHeight="200.0" prefWidth="213.0" style="-fx-border-color: black; -fx-background-radius: 10; -fx-border-radius: 10;">
                                  <HBox.margin>
                                     <Insets left="10.0" top="10.0" />
                                  </HBox.margin>
                               </Pane>
-                              <Pane layoutX="220.0" layoutY="10.0" prefHeight="200.0" prefWidth="213.0" style="-fx-border-color: lightblue; -fx-background-radius: 10; -fx-border-radius: 10;">
+                              <Pane layoutX="220.0" layoutY="10.0" prefHeight="200.0" prefWidth="213.0" style="-fx-border-color: black; -fx-background-radius: 10; -fx-border-radius: 10;">
                                  <HBox.margin>
                                     <Insets left="10.0" top="10.0" />
                                  </HBox.margin>
                               </Pane>
-                              <Pane layoutX="420.0" layoutY="10.0" prefHeight="200.0" prefWidth="213.0" style="-fx-border-color: lightblue; -fx-background-radius: 10; -fx-border-radius: 10;">
+                              <Pane layoutX="420.0" layoutY="10.0" prefHeight="200.0" prefWidth="213.0" style="-fx-border-color: black; -fx-background-radius: 10; -fx-border-radius: 10;">
                                  <HBox.margin>
                                     <Insets left="10.0" right="10.0" top="10.0" />
                                  </HBox.margin>
@@ -206,12 +230,12 @@
                         </HBox>
                         <HBox prefHeight="326.0" prefWidth="1083.0">
                            <children>
-                              <Pane prefHeight="316.0" prefWidth="371.0" style="-fx-border-color: lightblue; -fx-background-radius: 10; -fx-border-radius: 10;">
+                              <Pane prefHeight="316.0" prefWidth="371.0" style="-fx-border-color: black; -fx-background-radius: 10; -fx-border-radius: 10;">
                                  <HBox.margin>
                                     <Insets left="10.0" right="10.0" top="10.0" />
                                  </HBox.margin>
                               </Pane>
-                              <Pane layoutX="20.0" layoutY="20.0" prefHeight="316.0" prefWidth="507.0" style="-fx-border-color: lightblue; -fx-background-radius: 10; -fx-border-radius: 10;">
+                              <Pane layoutX="20.0" layoutY="20.0" prefHeight="316.0" prefWidth="507.0" style="-fx-border-color: black; -fx-background-radius: 10; -fx-border-radius: 10;">
                                  <HBox.margin>
                                     <Insets right="10.0" top="10.0" />
                                  </HBox.margin>
@@ -220,7 +244,7 @@
                         </HBox>
                         <HBox prefHeight="156.0" prefWidth="899.0">
                            <children>
-                              <Pane prefHeight="132.0" prefWidth="879.0" style="-fx-border-color: lightblue; -fx-background-radius: 10; -fx-border-radius: 10;">
+                              <Pane prefHeight="132.0" prefWidth="879.0" style="-fx-border-color: black; -fx-background-radius: 10; -fx-border-radius: 10;">
                                  <HBox.margin>
                                     <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                                  </HBox.margin>
@@ -234,11 +258,11 @@
                         <Insets bottom="10.0" right="10.0" top="10.0" />
                      </GridPane.margin>
                      <children>
-                        <TableView editable="true" prefHeight="616.0" prefWidth="310.0" styleClass="table-row-cell" stylesheets="@../CSS/styles.css">
+                        <TableView editable="true" prefHeight="616.0" prefWidth="310.0" stylesheets="@../CSS/table_style.css">
                           <columns>
-                            <TableColumn prefWidth="156.0" text="Fish" />
-                            <TableColumn prefWidth="53.0" text="Unit" />
-                              <TableColumn minWidth="0.0" prefWidth="101.0" text="Unit Price" />
+                            <TableColumn prefWidth="140.0" text="Fish" />
+                            <TableColumn prefWidth="73.0" text="Unit Weight" />
+                              <TableColumn minWidth="0.0" prefWidth="97.0" text="Unit Price" />
                           </columns>
                         </TableView>
                      </children>

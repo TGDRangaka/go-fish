@@ -1,0 +1,53 @@
+.checkbox {
+    -fx-padding: 0.5em 0.4167em 0.5em 0.4167em; /* top | right | bottom | left */
+    -fx-font-size: 1em;
+}
+
+.checkbox .box {
+    -fx-background-color: white;
+    -fx-background-insets: 0;
+    -fx-background-radius: 0.1667em;
+    -fx-border-color: gray;
+    -fx-border-radius: 0.1667em;
+    -fx-border-width: 0.0833em;
+    -fx-box-shadow: inset 0 0 0 0.0833em white;
+    -fx-padding: 0.1667em;
+}
+
+.checkbox .box:hover {
+    -fx-background-color: lightgray;
+}
+
+.checkbox:selected .box {
+    -fx-background-color: #1dbbdd;
+    -fx-border-color: #1dbbdd;
+    -fx-box-shadow: inset 0 0 0 0.0833em white, 0 0 0 0.0833em #1dbbdd;
+}
+
+.checkbox:selected .box:hover {
+    -fx-background-color: #5edcf9;
+}
+
+.checkbox .box .mark {
+    -fx-background-color: white;
+    -fx-background-insets: 0;
+    -fx-background-radius: 0.0833em;
+    -fx-border-color: #1dbbdd;
+    -fx-border-radius: 0.0833em;
+    -fx-border-width: 0.0833em;
+    -fx-box-shadow: 0 0 0 0.0833em #1dbbdd;
+    -fx-opacity: 0;
+    -fx-translate-x: -0.0833em;
+    -fx-translate-y: 0.0833em;
+    -fx-scale-x: 0;
+    -fx-scale-y: 0;
+    -fx-transition: all 0.2s;
+}
+
+.checkbox:selected .box .mark {
+    -fx-opacity: 1;
+    -fx-translate-x: 0;
+    -fx-translate-y: 0;
+    -fx-scale-x: 1;
+    -fx-scale-y: 1;
+}

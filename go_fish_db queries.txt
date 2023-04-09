@@ -80,11 +80,12 @@ CREATE TABLE catchdetail(
 	catchId VARCHAR(6) NOT NULL,
 	fishId VARCHAR(5) NOT NULL,
 	weight DECIMAL(5,2) NOT NULL,
+	total DECIMAL(8,2) NOT NULL,
 	FOREIGN KEY(catchId) REFERENCES catch(catchId),
 	FOREIGN KEY(fishId) REFERENCES fish(fishId)
 );
 
-CREATE TABLE mail(
+CREATE TABLE sendMail(
 	mailId VARCHAR(5) PRIMARY KEY,
 	description TEXT NOT NULL,
 	sentDate DATETIME NOT NULL
@@ -94,7 +95,7 @@ CREATE TABLE maildetail(
 	crewId VARCHAR(5) NOT NULL,
 	mailId VARCHAR(5) NOT NULL,
 	FOREIGN KEY(crewId) REFERENCES crew(crewId),
-	FOREIGN KEY(mailId) REFERENCES mail(mailId)
+	FOREIGN KEY(mailId) REFERENCES sendMail(mailId)
 );
 
 SHOW TABLES;
@@ -107,15 +108,15 @@ DESC boatowner;
 DESC catch;
 DESC fish;
 DESC catchdetail;
-DESC mail;
+DESC sendMail;
 DESC maildetail;
 
 
 INSERT INTO admin VALUES ('A001', 'Kamal Perera', 'kamalperera', 'kamal1234', 'kamalperera@gmail.com'),
 	('A002', 'Vihaga Dilshan', 'vihagadilshan', 'vihaga1234', 'vihagadilshan@gmail.com');
 
-INSERT INTO crew VALUES ('C001', 'CL001', 5, 1, '101', '1111100', 'A002'),
-	('C002', 'CL002', 4, 1, '111', '1101111', 'A002');
+INSERT INTO crew VALUES ('C001', 'Amal', 5, 1, '101', '1111100', 'A002'),
+	('C002', 'Janith', 4, 1, '111', '1101111', 'A002');
 
 INSERT INTO crewman VALUES ('CL001', 'Amal', '200223401234', 'Weligama', '1992-02-13', 'amal@gmail.com', '0770438967', 'C001'),
 	('CM001', 'Thilina', '200254761234', 'Weligama', '1990-06-22', 'thilina@gmail.com', '0757698967', 'C001'),
@@ -133,16 +134,186 @@ INSERT INTO boatowner VALUES ('BO001', 'Perera', '199334638516', 'Mirissa', '077
 INSERT INTO boat VALUES ('B001', 'IA-1234-AA', 'NMDF-72', 'NULL', NULL, 'BO001', 'C001'),
 	('B002', 'IB-3476-AA', 'NMDF-72', 'NULL', NULL, 'BO002', 'C002');
 
-INSERT INTO catch VALUES ('CA001', 87, '2023-03-27', 80000, '08:30:00', '05:00:00', '08:00:00', 'C001', 'A001');
+INSERT INTO catch VALUES ('CA001', 87, '2023-03-27', 17400, '08:30:00', '05:00:00', '08:00:00', 'C001', 'A001');
 
-INSERT INTO fish VALUES ('F001', 'Yellowfin Tuna', 10, 2000),
-	('F002', 'Bluefin Tuna', 10, 1800);
+INSERT INTO fish VALUES ('F001', 'Yellowfin Tuna', 1.5, 300),
+	('F002', 'Bluefin Tuna', 1.5, 380);
 
-INSERT INTO catchdetail VALUES ('CA001', 'F001', 87);
+INSERT INTO catchdetail VALUES ('CA001', 'F001', 87, 17400);
 
-INSERT INTO mail VALUES ('M001', 'test test test', '2023-03-23 10:20');
+INSERT INTO sendMail VALUES ('M001', 'test test test', '2023-03-23 10:20');
 
 INSERT INTO maildetail VALUES ('C001', 'M001'), ('C002', 'M001');
+
+
+INSERT INTO admin (adminId, name, userName, password, email) VALUES
+('A003', 'Saman Kumara', 'saman123', 'password123', 'saman.kumara@example.com'),
+('A004', 'Nimali Fernando', 'nimali123', 'password456', 'nimali.fernando@example.com'),
+('A005', 'Kasun Rajapaksa', 'kasun123', 'password789', 'kasun.rajapaksa@example.com');
+
+
+
+INSERT INTO crew (crewId, leader, crewmencount, boatscount, availabletime, availabledays, adminId) VALUES
+('C003', 'Dinusha Fernando', 12, 2, '111', '1111111', 'A002'),
+('C004', 'Rajitha Perera', 10, 2, '111', '1111111', 'A002'),
+('C005', 'Shanika Silva', 12, 3, '111', '1111111', 'A002'),
+('C006', 'Sampath Kumarasinghe', 8, 2, '111', '1111111', 'A003'),
+('C007', 'Kamal Perera', 5, 1, '100', '1111111', 'A003'),
+('C008', 'Malinda Fernando', 11, 2, '101', '1111111', 'A003'),
+('C009', 'Roshan Rajapaksa', 9, 2, '011', '1111111', 'A003'),
+('C010', 'Kasun Senarathne', 8, 1, '111', '1111111', 'A003');
+
+
+
+INSERT INTO crewman (crewmanId, name, nic, address, bod, email, contactNo, crewId) VALUES
+('CM008', 'Tharindu Jayawardhana', '961302850V', 'No. 123, Galle Road, Colombo 03', '1990-05-16', 'tharindu.j@gmail.com', '0771234567', 'C003'),
+('CM009', 'Dilanka Perera', '881451968V', 'No. 456, Highlevel Road, Nugegoda', '1995-02-28', 'dilanka.p@gmail.com', '0712345678', 'C003'),
+('CM010', 'Kasun Fernando', '908756394V', 'No. 789, Negombo Road, Wattala', '1993-08-12', 'kasun.f@gmail.com', '0763456789', 'C003'),
+('CM011', 'Kavinda Silva', '945612378V', 'No. 246, Kandy Road, Kadawatha', '1987-11-19', 'kavinda.s@gmail.com', '0713456789', 'C003'),
+('CM012', 'Nipun Gunawardhana', '893402175V', 'No. 567, Galle Road, Colombo 06', '1998-07-05', 'nipun.g@gmail.com', '0774567890', 'C003'),
+('CM013', 'Chamara Ranasinghe', '886583490V', 'No. 234, Negombo Road, Wattala', '1991-01-29', 'chamara.r@gmail.com', '0764567890', 'C003'),
+('CM014', 'Tharindu Kumara', '934567123V', 'No. 456, Highlevel Road, Nugegoda', '1989-09-18', 'tharindu.k@gmail.com', '0715678901', 'C003'),
+('CM015', 'Sachin Fernando', '917653412V', 'No. 123, Galle Road, Colombo 03', '1994-03-27', 'sachin.f@gmail.com', '0775678901', 'C003'),
+('CM016', 'Nuwan Silva', '892340176V', 'No. 789, Negombo Road, Wattala', '1992-10-14', 'nuwan.s@gmail.com', '0766789012', 'C003'),
+('CM017', 'Kamal Perera', '931456789V', 'No. 246, Kandy Road, Kadawatha', '1988-04-07', 'kamal.p@gmail.com', '0716789012', 'C003'),
+('CM018', 'Dinesh Gunawardhana', '889350120V', 'No. 567, Galle Road, Colombo 06', '1997-12-25', 'dinesh.g@gmail.com', '0777890123', 'C003'),
+('CM019', 'Chathura Perera', '836749815V', 'No. 234, Negombo Road, Wattala', '1990-06-15', 'chathura.p@gmail.com', '0767890123', 'C003');
+
+INSERT INTO crewman (crewmanId, name, nic, address, bod, email, contactNo, crewId) VALUES
+('CM020', 'Kavindu Perera', '982662743V', 'No. 20, Galle Road, Colombo 03', '1989-06-12', 'kavinduperera@example.com', '0712348678', 'C004'),
+('CM021', 'Nadeesha Kumara', '913399230V', 'No. 10, Kandy Road, Peradeniya', '1992-11-21', 'nadeeshakumara@example.com', '0767390123', 'C004'),
+('CM022', 'Sahan Rajapaksha', '874491045V', 'No. 15, Main Street, Galle', '1994-03-08', 'sahanrajapaksha@example.com', '0723826789', 'C004'),
+('CM023', 'Dinusha Fernando', '956378298V', 'No. 45, Katugastota Road, Kandy', '1991-08-15', 'dinushafernando@example.com', '0789560345', 'C004'),
+('CM024', 'Tharindu Silva', '875692187V', 'No. 75, Galle Road, Moratuwa', '1993-05-18', 'tharindusilva@example.com', '0773438789', 'C004'),
+('CM025', 'Mihindu Jayasuriya', '972340184V', 'No. 8, Ananda Coomaraswamy Mawatha, Colombo 07', '1990-01-23', 'mihindujayasuriya@example.com', '0719145678', 'C004'),
+('CM026', 'Samantha Weerasinghe', '882926399V', 'No. 35, Old Kottawa Road, Pannipitiya', '1995-11-05', 'samanthaweerasinghe@example.com', '0760290123', 'C004'),
+('CM027', 'Nuwan Lakmal', '913089336V', 'No. 15, Galle Road, Hikkaduwa', '1992-09-19', 'nuwanlakmal@example.com', '0723456789', 'C004'),
+('CM028', 'Chaminda Rajapaksha', '854673492V', 'No. 50, High Level Road, Nugegoda', '1994-12-02', 'chamindarajapaksha@example.com', '0784812345', 'C004'),
+('CM029', 'Kumara Perera', '956728394V', 'No. 23, Dharmapala Mawatha, Colombo 07', '1991-02-15', 'kumaraperera@example.com', '0773286789', 'C004');
+
+INSERT INTO crewman (crewmanId, name, nic, address, bod, email, contactNo, crewId) VALUES
+('CM030', 'Dineth Perera', '973214567V', 'Mirissa', '1995-07-12', 'dinethperera@gmail.com', '0778234567', 'C005'),
+('CM031', 'Kamal Gunawardena', '956781234V', 'Weligama', '1992-05-08', 'kamalgunawardena@gmail.com', '0712325678', 'C005'),
+('CM032', 'Kasun Weerasinghe', '975643210V', 'Matara', '1997-01-15', 'kasunweerasinghe@gmail.com', '0767132109', 'C005'),
+('CM033', 'Lahiru Silva', '984567123V', 'Mirissa', '1994-09-23', 'lahirusilva@gmail.com', '0772300678', 'C005'),
+('CM034', 'Samantha Liyanage', '963450912V', 'Dickwella', '1993-04-01', 'samanthal@gmail.com', '0713472789', 'C005'),
+('CM035', 'Nimmi Perera', '972345678V', 'Matara', '1996-06-18', 'nimmiperera@gmail.com', '0761904567', 'C005'),
+('CM036', 'Nuwan Wickramasinghe', '956789012V', 'Mirissa', '1991-12-20', 'nuwanwickrama@gmail.com', '0714807890', 'C005'),
+('CM037', 'Priya Ranasinghe', '987654321V', 'Weligama', '1990-10-10', 'priyaranasinghe@gmail.com', '0767410123', 'C005'),
+('CM038', 'Roshan Jayawardena', '965432109V', 'Matara', '1993-11-27', 'roshanjayawardena@gmail.com', '0728256789', 'C005'),
+('CM039', 'Sandun Perera', '967890123V', 'Mirissa', '1995-03-05', 'sandunperera@gmail.com', '0778911234', 'C005'),
+('CM040', 'Sujitha Senarathne', '954321078V', 'Matara', '1992-07-22', 'sujithasenarathne@gmail.com', '0715028901', 'C005'),
+('CM041', 'Tharindu Rathnayake', '971234567V', 'Weligama', '1994-12-03', 'tharindurathnayake@gmail.com', '0761024567', 'C005');
+
+INSERT INTO crewman (crewmanId, name, nic, address, bod, email, contactNo, crewId) VALUES
+('CM042', 'Dilshan Ranawaka', '950581145V', 'Mirissa', '1985-04-25', 'dilshan.ranawaka@gmail.com', '0777734567', 'C006'),
+('CM043', 'Kamal Perera', '896130049V', 'Mirissa', '1990-06-10', 'kamal.perera@gmail.com', '0712336678', 'C006'),
+('CM044', 'Samantha Karunarathne', '912361253V', 'Mirissa', '1987-11-30', 'samantha.karunarathne@gmail.com', '0765852109', 'C006'),
+('CM045', 'Prasad Gunawardena', '842564382V', 'Mirissa', '1986-09-15', 'prasad.gunawardena@gmail.com', '0777984321', 'C006'),
+('CM046', 'Kasun Rajapaksha', '936549291V', 'Mirissa', '1992-03-18', 'kasun.rajapaksha@gmail.com', '0767901234', 'C006'),
+('CM047', 'Tharaka Fernando', '873691045V', 'Mirissa', '1989-05-20', 'tharaka.fernando@gmail.com', '0778201234', 'C006'),
+('CM048', 'Sachintha Jayasuriya', '903123434V', 'Mirissa', '1993-01-01', 'sachintha.jayasuriya@gmail.com', '0712300678', 'C006'),
+('CM049', 'Raveen Silva', '910876543V', 'Mirissa', '1990-11-12', 'raveen.silva@gmail.com', '0773817890', 'C006');
+
+INSERT INTO crewman (crewmanId, name, nic, address, bod, email, contactNo, crewId) VALUES
+('CM050', 'Samantha Perera', '970785032V', 'Mirissa, Matara', '1995-02-15', 'samantha.perera@example.com', '0712775678', 'C007'),
+('CM051', 'Chathurika Fernando', '950654987V', 'Mirissa, Matara', '1993-07-18', 'chathurika.fernando@example.com', '0779366543', 'C007'),
+('CM052', 'Nishantha Silva', '890753421V', 'Mirissa, Matara', '1989-11-22', 'nishantha.silva@example.com', '0723489789', 'C007'),
+('CM053', 'Kavindu Jayakody', '961234567V', 'Mirissa, Matara', '1992-04-03', 'kavindu.jayakody@example.com', '0713656789', 'C007'),
+('CM054', 'Kumari Rajapaksha', '920987654V', 'Mirissa, Matara', '1990-10-29', 'kumari.rajapaksha@example.com', '0770943210', 'C007');
+
+INSERT INTO crewman (crewmanId, name, nic, address, bod, email, contactNo, crewId)VALUES
+('CM055', 'Samantha Fernando', '985753692V', 'No 27, Galle Road, Mirissa', '1995-06-12', 'samantha.fernando@gmail.com', '0778334567', 'C008'),
+('CM056', 'Dinesh Liyanage', '874512569V', 'No 56, Matara Road, Mirissa', '1998-01-25', 'dinesh.liyanage@gmail.com', '0712945678', 'C008'),
+('CM057', 'Chathura Perera', '955423698V', 'No 42, New Lane, Mirissa', '1992-11-05', 'chathura.perera@gmail.com', '0768256789', 'C008'),
+('CM058', 'Nishanthi Silva', '878965423V', 'No 12, Beach Road, Mirissa', '1996-09-15', 'nishanthi.silva@gmail.com', '0712995678', 'C008'),
+('CM059', 'Lahiru Wijesekara', '951236547V', 'No 64, Galle Road, Mirissa', '1994-02-27', 'lahiru.wijesekara@gmail.com', '0773226789', 'C008'),
+('CM060', 'Nilmini Fernando', '856432587V', 'No 19, Temple Road, Mirissa', '1993-05-20', 'nilmini.fernando@gmail.com', '0712915678', 'C008'),
+('CM061', 'Tharindu Bandara', '945632178V', 'No 33, Station Road, Mirissa', '1991-08-08', 'tharindu.bandara@gmail.com', '0764747890', 'C008'),
+('CM062', 'Rashini Perera', '968745321V', 'No 47, Hill Street, Mirissa', '1997-11-30', 'rashini.perera@gmail.com', '0713786789', 'C008'),
+('CM063', 'Dilshan Rajapaksa', '987456321V', 'No 8, Sea View Avenue, Mirissa', '1990-03-17', 'dilshan.rajapaksa@gmail.com', '0772390678', 'C008'),
+('CM064', 'Kumari Fernando', '852369875V', 'No 50, Beach Lane, Mirissa', '1999-07-05', 'kumari.fernando@gmail.com', '0714607890', 'C008'),
+('CM065', 'Samantha Liyanage', '963214785V', 'No 16, Main Street, Mirissa', '1998-10-12', 'samantha.liyanage@gmail.com', '0763356789', 'C008');
+
+INSERT INTO crewman (crewmanId, name, nic, address, bod, email, contactNo, crewId)VALUES
+('CM066', 'Amanda Silva', '936563203V', 'No. 123, Galle Road, Mirissa', '1993-06-12', 'amanda.silva@gmail.com', '0771744567', 'C009'),
+('CM067', 'Nimesh Fernando', '870491326V', 'No. 234, Mirissa Beach Road, Mirissa', '1994-01-23', 'nimesh.fernando@gmail.com', '0778445678', 'C009'),
+('CM068', 'Sanjeewa Perera', '924517634V', 'No. 456, Matara Road, Mirissa', '1995-07-08', 'sanjeewa.perera@gmail.com', '0773946789', 'C009'),
+('CM069', 'Dinuka Jayawardena', '895431276V', 'No. 567, Kamburugamuwa Road, Mirissa', '1996-09-15', 'dinuka.jayawardena@gmail.com', '0774887890', 'C009'),
+('CM070', 'Kavinda Liyanage', '931245678V', 'No. 678, Polhena Road, Mirissa', '1992-04-03', 'kavinda.liyanage@gmail.com', '0775518901', 'C009'),
+('CM071', 'Shanika Gunawardena', '912341567V', 'No. 789, Udupila Road, Mirissa', '1993-12-27', 'shanika.gunawardena@gmail.com', '0776786012', 'C009'),
+('CM072', 'Chamika Weerasinghe', '936543210V', 'No. 890, Beach Road, Mirissa', '1994-03-17', 'chamika.weerasinghe@gmail.com', '0777800123', 'C009'),
+('CM073', 'Tharindu Kumara', '890234567V', 'No. 901, New Galle Road, Mirissa', '1995-08-22', 'tharindu.kumara@gmail.com', '0778391234', 'C009'),
+('CM074', 'Nishanthi Wijesinghe', '916785432V', 'No. 102, Paraviya Road, Mirissa', '1996-11-13', 'nishanthi.wijesinghe@gmail.com', '0771112345', 'C009');
+
+INSERT INTO crewman (crewmanId, name, nic, address, bod, email, contactNo, crewId)VALUES
+('CM075', 'Kasun Silva', '941234567V', 'No 23, Beach Road, Mirissa', '1995-05-12', 'kasun.silva@gmail.com', '0771674567', 'C010'),
+('CM076', 'Nadeeka Fernando', '985432109V', 'No 45, Galle Road, Mirissa', '1994-09-30', 'nadeeka.fernando@gmail.com', '0713345678', 'C010'),
+('CM077', 'Chamara Perera', '923456789V', 'No 17, Wewala, Mirissa', '1993-06-20', 'chamara.perera@gmail.com', '0778254321', 'C010'),
+('CM078', 'Priyantha Rajapaksa', '868765432V', 'No 32, Hill Street, Mirissa', '1992-02-15', 'priyantha.rajapaksa@gmail.com', '0768132198', 'C010'),
+('CM079', 'Ravindu Fernando', '932145678V', 'No 78, Beach Road, Mirissa', '1991-08-09', 'ravindu.fernando@gmail.com', '0787944321', 'C010'),
+('CM080', 'Kavinda Senarathna', '915432107V', 'No 67, Station Road, Mirissa', '1990-04-28', 'kavinda.senarathna@gmail.com', '0774443210', 'C010'),
+('CM081', 'Sampath Jayasinghe', '981154321V', 'No 12, Wewala, Mirissa', '1989-01-23', 'sampath.jayasinghe@gmail.com', '0712306678', 'C010'),
+('CM082', 'Roshan Silva', '942345678V', 'No 56, Station Road, Mirissa', '1988-07-15', 'roshan.silva@gmail.com', '0765372198', 'C010');
+
+
+
+INSERT INTO boatowner (ownerId, name, nic, address, contactNo) VALUES
+('BO003', 'Dilanka Perera', '881451968V', 'No. 456, Highlevel Road, Nugegoda', '0712345678'),
+('BO004', 'Nadeesha Kumara', '913399230V', 'No. 10, Kandy Road, Peradeniya', '0767390123'),
+('BO005', 'Samantha Liyanage', '963450912V', 'Dickwella', '0713472789'),
+('BO006', 'Sujitha Senarathne', '954321078V', 'Matara', '0715028901'),
+('BO007', 'Sachintha Jayasuriya', '903123434V', 'Mirissa', '0712300678'),
+('BO008', 'Samantha Bandara', '876743679V', '321, Negombo Road, Wattala', '0775554445'),
+('BO009', 'Rashini Perera', '968745321V', 'No 47, Hill Street, Mirissa', '0713786789'),
+('BO010', 'Dilshan Rajapaksa', '987456321V', 'No 8, Sea View Avenue, Mirissa', '0772390678'),
+('BO011', 'Chamika Weerasinghe', '936543210V', 'No. 890, Beach Road, Mirissa', '0777800123'),
+('BO012', 'Kavinda Senarathna', '915432107V', 'No 67, Station Road, Mirissa', '0774443210');
+
+
+
+INSERT INTO boat (boatId, registrationNo, model, type, sattelitePhoneNo, ownerId, crewId) VALUES
+('B004', 'WPE 2574', 'Silverline', 'Fishing Boat', '882115558877', 'BO003', 'C003'),
+('B005', 'KLP 3521', 'Sealine', 'Fishing Boat', '882156986574', 'BO003', 'C003'),
+('B006', 'UPL 2354', 'Sea Ray', 'Fishing Boat', '882157964527', 'BO004', 'C004'),
+('B007', 'QWR 8462', 'Trophy', 'Fishing Boat', '882154864888', 'BO004', 'C004'),
+('B008', 'VRO 2589', 'Quintrex', 'Fishing Boat', '882155824445', 'BO005', 'C005'),
+('B009', 'GJL 9852', 'Stacer', 'Fishing Boat', '882156937451', 'BO005', 'C005'),
+('B010', 'AWR 4659', 'Pursuit', 'Fishing Boat', '882157748969', 'BO006', 'C005'),
+('B011', 'OER 4572', 'Bayliner', 'Fishing Boat', '882152642678', 'BO007', 'C006'),
+('B012', 'LRE 1579', 'Sea Fox', 'Fishing Boat', '882155759563', 'BO007', 'C006'),
+('B013', 'YRE 6589', 'Lund', 'Fishing Boat', '882155555555', 'BO008', 'C007'),
+('B014', 'MRE 3658', 'Tracker', 'Fishing Boat', '882156945788', 'BO009', 'C008'),
+('B015', 'QRE 8745', 'Boston Whaler', 'Fishing Boat', '882157654227', 'BO010', 'C008'),
+('B016', 'WRE 5874', 'Grady-White', 'Fishing Boat', '882157944545', 'BO011', 'C009'),
+('B017', 'ZRE 2547', 'Robalo', 'Fishing Boat', '882158844552', 'BO011', 'C009'),
+('B018', 'XRE 6954', 'Skeeter', 'Fishing Boat', '882158642356', 'BO012', 'C010');
+
+
+
+INSERT INTO fish (fishId, fishType, unitWeight, unitPrice)VALUES
+    ('F003', 'Tuna', 1.50, 300.00),
+    ('F004', 'Seer Fish', 2.00, 500.00),
+    ('F005', 'Skipjack Tuna', 1.00, 200.00),
+    ('F006', 'King Fish', 2.50, 600.00),
+    ('F007', 'Swordfish', 3.00, 700.00),
+    ('F008', 'Shark', 1.50, 250.00),
+    ('F009', 'Barracuda', 1.75, 350.00),
+    ('F010', 'Grouper', 2.00, 450.00),
+    ('F011', 'Mackerel', 0.75, 150.00),
+    ('F012', 'Mahi Mahi', 1.75, 400.00),
+    ('F013', 'Sardine', 0.25, 50.00),
+    ('F014', 'Red Snapper', 1.50, 350.00),
+    ('F015', 'Prawn', 0.25, 50.00),
+    ('F016', 'Bluefin Trevally', 1.50, 350.00),
+    ('F017', 'Yellowtail Scad', 0.75, 150.00),
+    ('F018', 'Octopus', 0.50, 200.00),
+    ('F019', 'Cuttlefish', 0.75, 250.00),
+    ('F020', 'Crab', 0.50, 150.00),
+    ('F021', 'Lobster', 1.00, 500.00);
+
+
+
 
 
 SELECT * FROM admin;
@@ -153,5 +324,5 @@ SELECT * FROM boat;
 SELECT * FROM catch;
 SELECT * FROM fish;
 SELECT * FROM catchdetail;
-SELECT * FROM mail;
+SELECT * FROM sendMail;
 SELECT * FROM maildetail;

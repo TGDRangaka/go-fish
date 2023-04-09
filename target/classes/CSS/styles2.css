@@ -1,0 +1,19 @@
+.clear {
+    -fx-border-color: white;
+    -fx-border-radius: 10px;
+}
+
+.reg-text {
+    -fx-text-fill: #013f80;
+}
+
+.fish-text {
+    -fx-text-fill: #86c4ff;
+}
+
+.fish-pane {
+    -fx-background-color: #6f8498;
+    -fx-background-radius: 10px;
+    -fx-border-color: white;
+    -fx-border-radius: 10px;
+}

@@ -53,7 +53,8 @@ public class BoatOwnerModel {
         String sql = "SELECT boatowner.ownerId FROM boatowner " +
                 "INNER JOIN boat " +
                 "ON boatowner.ownerId = boat.ownerId " +
-                "WHERE boat.crewId = ?";
+                "WHERE boat.crewId = ? " +
+                "GROUP BY boatowner.ownerId";
 
         ResultSet rs =  CrudUtil.execute(sql, crewId);
         List<String> boatOwnerIdList = new ArrayList<>();
@@ -82,11 +83,7 @@ public class BoatOwnerModel {
     }
 
     public static List<BoatOwner> getOwners() throws SQLException {
-        String sql = "SELECT * FROM boatowner " +
-                "INNER JOIN boat " +
-                "ON boatowner.ownerId = boat.ownerId " +
-                "INNER JOIN crew " +
-                "ON boat.crewId = crew.crewId ";
+        String sql = "SELECT * FROM boatowner ";
 
         List<BoatOwner> boatOwners = new ArrayList<>();
         ResultSet rs = CrudUtil.execute(sql);
@@ -107,9 +104,8 @@ public class BoatOwnerModel {
         String sql = "SELECT * FROM boatowner " +
                 "INNER JOIN boat " +
                 "ON boatowner.ownerId = boat.ownerId " +
-                "INNER JOIN crew " +
-                "ON boat.crewId = crew.crewId " +
-                "WHERE crew.crewId = ?";
+                "WHERE boat.crewId = ? " +
+                "GROUP BY boatowner.ownerId";
 
         List<BoatOwner> boatOwners = new ArrayList<>();
         ResultSet rs = CrudUtil.execute(sql, crewId);
