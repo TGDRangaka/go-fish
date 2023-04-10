@@ -7,9 +7,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
-import javafx.scene.control.Button;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import lk.ijse.Model.MailDetailModel;
@@ -23,6 +21,7 @@ import java.net.URL;
 import java.sql.SQLException;
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Optional;
 import java.util.ResourceBundle;
 
 public class SendMailsFormController implements Initializable {
@@ -78,7 +77,26 @@ public class SendMailsFormController implements Initializable {
 
     private void setDeleteButtonOnAction(Button action, MailRecordsTM mailRecord) {
         action.setOnAction((e) -> {
-            System.out.println(mailRecord.toString());
+            ButtonType yes = new ButtonType("Yes", ButtonBar.ButtonData.OK_DONE);
+            ButtonType no = new ButtonType("No", ButtonBar.ButtonData.CANCEL_CLOSE);
+            Optional<ButtonType> result = new Alert(Alert.AlertType.CONFIRMATION, "Are sure want to delete this mail", yes, no).showAndWait();
+
+            if(result.orElse(no) == yes){
+                try {
+                    boolean isMailDeleted = MailModel.deleteMail(mailRecord.getMailId());
+
+                    if(isMailDeleted){
+                        mailRecords.removeAll(mailRecord);
+                        tableMailRecords.refresh();
+                        new Alert(Alert.AlertType.CONFIRMATION, "Mail Deleted Succesfully!").show();
+                    }else {
+                        new Alert(Alert.AlertType.WARNING, "Mail Not Deleted").show();
+                    }
+                } catch (SQLException ex) {
+                    ex.printStackTrace();
+                    new Alert(Alert.AlertType.ERROR, "Oops... Something went wrong!!!").show();
+                }
+            }
         });
     }
 

@@ -1,8 +1,11 @@
 package lk.ijse.Model;
 
+import lk.ijse.DB.DBConnection;
 import lk.ijse.dto.Mail;
 import lk.ijse.util.CrudUtil;
 
+import java.awt.image.DataBuffer;
+import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDate;
@@ -31,5 +34,75 @@ public class MailModel {
         }
 
         return mailList;
+    }
+
+    public static String getLastId() throws SQLException {
+        String sql = "SELECT * FROM mail ORDER BY mailId desc LIMIT 1";
+
+        ResultSet rs = CrudUtil.execute(sql);
+        if(rs.next()){
+            return rs.getString(1);
+        }
+        return "M000";
+    }
+
+    public static boolean save(Mail mail, List<String> idList) throws SQLException {
+        Connection con = null;
+        try{
+            con = DBConnection.getInstance().getConnection();
+            con.setAutoCommit(false);
+
+            boolean isMailSaved = save(mail);
+            if(isMailSaved){
+                boolean isMailDetailSaved = MailDetailModel.save(mail.getId(), idList);
+                if(isMailDetailSaved){
+                    con.commit();
+                    return true;
+                }
+            }
+
+            return false;
+        }catch (SQLException e){
+            System.out.println(e);
+            con.rollback();
+            return false;
+        }finally {
+            con.setAutoCommit(true);
+        }
+    }
+
+    private static boolean save(Mail mail) throws SQLException {
+        String sql = "INSERT INTO mail(mailId,description,sentDate) VALUES (?,?,?)";
+
+        return CrudUtil.execute(sql, mail.getId(), mail.getDescription(), mail.getDateTime());
+    }
+
+    public static boolean deleteMail(String mailId) throws SQLException {
+        Connection con = null;
+        try {
+            con = DBConnection.getInstance().getConnection();
+            con.setAutoCommit(false);
+
+            boolean isMailDetailsDeleted = MailDetailModel.delete(mailId);
+            if(isMailDetailsDeleted){
+                boolean isMailDeleted = MailModel.delete(mailId);
+                if(isMailDeleted){
+                    con.commit();
+                    return true;
+                }
+            }
+            return false;
+        }catch (SQLException e){
+            con.rollback();
+            return false;
+        }finally {
+            con.setAutoCommit(true);
+        }
+    }
+
+    private static boolean delete(String mailId) throws SQLException {
+        String sql = "DELETE FROM mail WHERE mailId =?";
+
+        return CrudUtil.execute(sql, mailId);
     }
 }

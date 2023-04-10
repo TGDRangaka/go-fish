@@ -45,6 +45,7 @@ public class MainWindowFormController implements Initializable {
                 "catch_manage_form.fxml",
                 "catch_record_form.fxml",
                 "fish_manage_form.fxml"
+//                "send_mails_form.fxml"
         };
 
         for(String s : ar) {

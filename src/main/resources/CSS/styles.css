@@ -1,18 +1,3 @@
-/*.pane {*/
-/*    -fx-background-color: #111; !* Set pane background color *!*/
-/*    -fx-border-color: #f7d00c; !* Set border color to neon gold *!*/
-/*    -fx-border-width: 1px; !* Set border width *!*/
-/*    -fx-border-radius: 10px; !* Set border radius *!*/
-/*    !*-fx-padding: 10px; !* Set padding *!*!*/
-/*}*/
-
-/*.table-row-cell:odd {*/
-/*    -fx-background-color: black; !* Set background color for odd rows *!*/
-/*}*/
-
-/*.table-row-cell:hover {*/
-/*    -fx-background-color: #c7d0cc; !* Set background color for hovered rows *!*/
-/*}*/
 
 .button {
     -fx-background-color: #dcece5; /* Set button background color */
@@ -20,7 +5,7 @@
     -fx-text-fill: black; /* Set button text color */
     -fx-font-family: "Segoe UI Semibold";
     -fx-font-size: 20px; /* Set font size */
-    -fx-padding: 10px 20px; /* Set padding */
+    /*-fx-padding: 10px 20px; !* Set padding *!*/
     -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.5), 10, 0, 0, 0); /* Add drop shadow effect */
 }
 
@@ -29,51 +14,13 @@
     -fx-background-color: #ffffff;
     -fx-text-fill: black; /* Change button text color on hover */
     -fx-font-size: 22px; /* Set font size */
-    -fx-border-color: white; /* Add border color on hover */
+    -fx-border-color: #ffffff; /* Add border color on hover */
     -fx-border-radius: 20px; /* Set border radius */
     -fx-border-width: 2px; /* Add border width on hover */
     -fx-effect: dropshadow(three-pass-box, #71c7ec, 10, 0, 0, 0); /* Add neon glow effect on hover */
 }
 
-/*.tab-pane {*/
-/*    -fx-tab-min-height: 40px;*/
-/*    -fx-tab-max-height: 40px;*/
-/*}*/
 
-/*.tab-pane .tab-header-area {*/
-/*    -fx-background-color: #111111;*/
-/*    -fx-border-color: #ff0099;*/
-/*    -fx-border-width: 0 0 2 0;*/
-/*}*/
-
-/*.tab-pane .tab:selected .tab-label {*/
-/*    -fx-background-color: #ff0099;*/
-/*    -fx-text-fill: #111111;*/
-/*    -fx-effect: dropshadow(three-pass-box, #ff0099, 10, 0, 0, 0);*/
-/*}*/
-
-/*.tab-pane .tab .tab-label {*/
-/*    -fx-font-size: 14px;*/
-/*    -fx-font-weight: bold;*/
-/*    -fx-padding: 10px;*/
-/*    -fx-text-fill: #ff0099;*/
-/*    -fx-effect: dropshadow(three-pass-box, #ff0099, 10, 0, 0, 0);*/
-/*}*/
-
-
-.progress-bar .track {
-    -fx-background-color: #E0E0E0;
-}
-
-.progress-bar .bar {
-    -fx-background-color: #59ff24;
-}
-
-.progress-bar .text {
-    -fx-font-size: 14px;
-    -fx-font-weight: bold;
-    -fx-text-fill: #00E0FF;
-}
 
 
 

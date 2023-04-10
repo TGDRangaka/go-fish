@@ -26,22 +26,22 @@
                <children>
                   <HBox prefHeight="155.0" prefWidth="878.0">
                      <children>
-                        <Pane prefHeight="200.0" prefWidth="213.0" style="-fx-border-color: lightblue; -fx-background-radius: 10; -fx-border-radius: 10;">
+                        <Pane prefHeight="200.0" prefWidth="213.0" style="-fx-border-color: black; -fx-background-radius: 10; -fx-border-radius: 10;">
                            <HBox.margin>
                               <Insets left="10.0" top="10.0" />
                            </HBox.margin>
                         </Pane>
-                        <Pane layoutX="20.0" layoutY="20.0" prefHeight="200.0" prefWidth="213.0" style="-fx-border-color: lightblue; -fx-background-radius: 10; -fx-border-radius: 10;">
+                        <Pane layoutX="20.0" layoutY="20.0" prefHeight="200.0" prefWidth="213.0" style="-fx-border-color: black; -fx-background-radius: 10; -fx-border-radius: 10;">
                            <HBox.margin>
                               <Insets left="10.0" top="10.0" />
                            </HBox.margin>
                         </Pane>
-                        <Pane layoutX="220.0" layoutY="10.0" prefHeight="200.0" prefWidth="213.0" style="-fx-border-color: lightblue; -fx-background-radius: 10; -fx-border-radius: 10;">
+                        <Pane layoutX="220.0" layoutY="10.0" prefHeight="200.0" prefWidth="213.0" style="-fx-border-color: black; -fx-background-radius: 10; -fx-border-radius: 10;">
                            <HBox.margin>
                               <Insets left="10.0" top="10.0" />
                            </HBox.margin>
                         </Pane>
-                        <Pane layoutX="420.0" layoutY="10.0" prefHeight="200.0" prefWidth="213.0" style="-fx-border-color: lightblue; -fx-background-radius: 10; -fx-border-radius: 10;">
+                        <Pane layoutX="420.0" layoutY="10.0" prefHeight="200.0" prefWidth="213.0" style="-fx-border-color: black; -fx-background-radius: 10; -fx-border-radius: 10;">
                            <HBox.margin>
                               <Insets left="10.0" right="10.0" top="10.0" />
                            </HBox.margin>
@@ -50,12 +50,12 @@
                   </HBox>
                   <HBox prefHeight="326.0" prefWidth="1083.0">
                      <children>
-                        <Pane prefHeight="316.0" prefWidth="371.0" style="-fx-border-color: lightblue; -fx-background-radius: 10; -fx-border-radius: 10;">
+                        <Pane prefHeight="316.0" prefWidth="371.0" style="-fx-border-color: black; -fx-background-radius: 10; -fx-border-radius: 10;">
                            <HBox.margin>
                               <Insets left="10.0" right="10.0" top="10.0" />
                            </HBox.margin>
                         </Pane>
-                        <Pane layoutX="20.0" layoutY="20.0" prefHeight="316.0" prefWidth="507.0" style="-fx-border-color: lightblue; -fx-background-radius: 10; -fx-border-radius: 10;">
+                        <Pane layoutX="20.0" layoutY="20.0" prefHeight="316.0" prefWidth="507.0" style="-fx-border-color: black; -fx-background-radius: 10; -fx-border-radius: 10;">
                            <HBox.margin>
                               <Insets right="10.0" top="10.0" />
                            </HBox.margin>
@@ -64,7 +64,7 @@
                   </HBox>
                   <HBox prefHeight="156.0" prefWidth="899.0">
                      <children>
-                        <Pane prefHeight="132.0" prefWidth="879.0" style="-fx-border-color: lightblue; -fx-background-radius: 10; -fx-border-radius: 10;">
+                        <Pane prefHeight="132.0" prefWidth="879.0" style="-fx-border-color: black; -fx-background-radius: 10; -fx-border-radius: 10;">
                            <HBox.margin>
                               <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                            </HBox.margin>
@@ -73,20 +73,16 @@
                   </HBox>
                </children>
             </VBox>
-            <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: gold; -fx-background-radius: 10; -fx-border-radius: 10;" GridPane.columnIndex="1">
+            <TableView editable="true" prefHeight="616.0" prefWidth="310.0" stylesheets="@../CSS/table_style.css" GridPane.columnIndex="1">
+               <columns>
+                  <TableColumn prefWidth="156.0" text="Fish" />
+                  <TableColumn prefWidth="53.0" text="Unit" />
+                  <TableColumn minWidth="0.0" prefWidth="101.0" text="Unit Price" />
+               </columns>
                <GridPane.margin>
                   <Insets bottom="10.0" right="10.0" top="10.0" />
                </GridPane.margin>
-               <children>
-                  <TableView editable="true" prefHeight="616.0" prefWidth="310.0" style="-fx-background-color: transparent;" stylesheets="@../CSS/table_style.css">
-                     <columns>
-                        <TableColumn prefWidth="156.0" text="Fish" />
-                        <TableColumn prefWidth="53.0" text="Unit" />
-                        <TableColumn minWidth="0.0" prefWidth="101.0" text="Unit Price" />
-                     </columns>
-                  </TableView>
-               </children>
-            </Pane>
+            </TableView>
          </children>
       </GridPane>
    </children>

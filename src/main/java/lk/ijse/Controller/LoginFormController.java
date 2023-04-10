@@ -1,27 +1,69 @@
 package lk.ijse.Controller;
 
+import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXTextField;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
+import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
-import lk.ijse.Launcher;
 import lk.ijse.Model.AdminModel;
-import lk.ijse.util.CrudUtil;
 
 import java.io.IOException;
-import java.sql.ResultSet;
+import java.net.URL;
 import java.sql.SQLException;
+import java.util.ResourceBundle;
 
-public class LoginFormController {
+public class LoginFormController implements Initializable {
+    @FXML
+    private JFXTextField txtPasswordValue;
 
     @FXML
-    private JFXTextField txtPassword;
+    private ImageView imgEyeOpen;
+
+    @FXML
+    private ImageView imgEyeClose;
 
     @FXML
     private JFXTextField txtUserName;
+
+    @FXML
+    private JFXPasswordField txtPassword;
+
+    @FXML
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        loadFieldsOnActions();
+    }
+
+    private void loadFieldsOnActions() {
+        txtUserName.setOnAction((e) -> {
+            txtPassword.requestFocus();
+        });
+        txtPassword.setOnAction((e) -> {
+            btnLoginOnAction(e);
+        });
+
+
+        txtPasswordValue.textProperty().bindBidirectional(txtPassword.textProperty());
+        imgEyeClose.setOnMouseClicked((e) -> {
+            imgEyeClose.setVisible(!imgEyeClose.isVisible());
+            imgEyeOpen.setVisible(true);
+
+            txtPassword.setVisible(false);
+        });
+
+        imgEyeOpen.setOnMouseClicked((e) -> {
+            imgEyeOpen.setVisible(!imgEyeOpen.isVisible());
+            imgEyeClose.setVisible(true);
+
+            txtPassword.setVisible(true);
+        });
+        txtUserName.requestFocus();
+    }
 
     @FXML
     void btnLoginOnAction(ActionEvent event) {
@@ -29,27 +71,26 @@ public class LoginFormController {
         String password = txtPassword.getText();
 
         try {
-
             boolean isUserVerified = AdminModel.userVerify(username, password);
 
-            if (isUserVerified){
-                Launcher.stage.close();
+            if(isUserVerified){
+                new Alert(Alert.AlertType.CONFIRMATION, "User Verified!").show();
+                Stage stage = (Stage) txtUserName.getScene().getWindow();
+                stage.close();
 
                 FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/view/main_window_form.fxml"));
                 Scene scene = new Scene(fxmlLoader.load());
-
-                Stage primaryStage = new Stage();
-                primaryStage.setTitle("Go Fish");
-                primaryStage.setScene(scene);
-                primaryStage.setResizable(false);
-                primaryStage.centerOnScreen();
-                primaryStage.show();
-            }else{
-                new Alert(Alert.AlertType.WARNING, "wrong username and password!!!").show();
+                stage = new Stage();
+                stage.setTitle("Go Fish");
+                stage.centerOnScreen();
+                stage.setScene(scene);
+                stage.show();
+            }else {
+                new Alert(Alert.AlertType.WARNING, "User name or password is wrong!!").show();
             }
-
         } catch (SQLException | IOException e) {
-            new Alert(Alert.AlertType.ERROR, "Ops something went wrong!!!");
+            e.printStackTrace();
+            new Alert(Alert.AlertType.ERROR, "Oops... Something went wrong!!!").show();
         }
     }
 

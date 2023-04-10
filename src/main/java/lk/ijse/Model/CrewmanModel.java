@@ -102,4 +102,19 @@ public class CrewmanModel {
         }
         return crewmenList;
     }
+
+    public static List<String> getEmails(List<String> idList) throws SQLException {
+        String sql = "SELECT name,email FROM crewman WHERE crewId = ?";
+
+        List<String> emailList = new ArrayList<>();
+        for (String crewId : idList){
+            ResultSet rs = CrudUtil.execute(sql, crewId);
+            while (rs.next()){
+                emailList.add(rs.getString(1));
+                emailList.add(rs.getString(2));
+            }
+        }
+
+        return emailList;
+    }
 }

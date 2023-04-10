@@ -8,10 +8,15 @@ import java.sql.SQLException;
 import java.util.List;
 
 public class MailDetailModel {
-    public static boolean delete(String crewId) throws SQLException {
-        String sql = "DELETE FROM maildetail WHERE crewId = ?";
+    public static boolean delete(String id) throws SQLException {
+        String sql = "";
+        if(id.charAt(0) == 'C') {
+            sql = "DELETE FROM maildetail WHERE crewId = ?";
+        }else {
+            sql = "DELETE FROM maildetail WHERE mailId = ?";
+        }
 
-        return CrudUtil.execute(sql, crewId);
+        return CrudUtil.execute(sql, id);
     }
 
     public static boolean isHaveData(String crewId) throws SQLException {
@@ -35,5 +40,21 @@ public class MailDetailModel {
         }
 
         return String.valueOf(to.deleteCharAt(to.length() - 1));
+    }
+
+    public static boolean save(String id, List<String> idList) throws SQLException {
+        for(String crewId : idList){
+            boolean isMailDetailSaved = save(id, crewId);
+            if(!isMailDetailSaved){
+                return false;
+            }
+        }
+        return true;
+    }
+
+    public static boolean save(String mailId, String crewId) throws SQLException {
+        String sql = "INSERT INTO maildetail(crewId, mailId) VALUES (?,?)";
+
+        return CrudUtil.execute(sql, crewId, mailId);
     }
 }

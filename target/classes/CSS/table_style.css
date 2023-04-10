@@ -1,8 +1,8 @@
 .table-view {
-    -fx-background-color: rgba(214, 250, 220, 0.6);
-    -fx-background-radius: 9px 9px 0 0;
-    -fx-border-color: white;
-    -fx-border-radius: 9px 9px 0 0;
+    -fx-background-color: rgba(214, 250, 220, 0.2);
+    -fx-background-radius: 9px;
+    -fx-border-color: rgba(255, 255, 255, 0.4);
+    -fx-border-radius: 9px;
 }
 
 .table-view .column-header-background .filler {

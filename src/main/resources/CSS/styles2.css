@@ -17,3 +17,21 @@
     -fx-border-color: white;
     -fx-border-radius: 10px;
 }
+
+.mainmenu-vbox {
+    -fx-background-color: linear-gradient(to top, #88C2EA, #C7E2F2);
+    -fx-background-radius: 15px;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.4), 10, 0, 2, 2);
+}
+
+.label-with-drop-shadow {
+    /*-fx-font-size: 16px;*/
+    /*-fx-font-weight: bold;*/
+    /*-fx-text-fill: white;*/
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.4), 15, 0.0, 0, 18);
+}
+
+.create-acc:hover {
+    -fx-text-fill: white;
+    -fx-cursor: hand;
+}

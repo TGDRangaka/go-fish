@@ -50,11 +50,16 @@
             <artifactId>activation</artifactId>
             <version>1.1.1</version>
         </dependency>
+
+
+        <!-- https://mvnrepository.com/artifact/com.sun.mail/jakarta.mail -->
         <dependency>
-            <groupId>com.sun.sendMail</groupId>
-            <artifactId>javax.sendMail</artifactId>
-            <version>1.6.2</version>
+            <groupId>com.sun.mail</groupId>
+            <artifactId>jakarta.mail</artifactId>
+            <version>1.6.7</version>
         </dependency>
+
+
     </dependencies>
 
 </project>
