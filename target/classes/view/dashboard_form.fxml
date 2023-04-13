@@ -1,8 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import com.jfoenix.controls.JFXTextField?>
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.chart.BarChart?>
+<?import javafx.scene.chart.CategoryAxis?>
+<?import javafx.scene.chart.NumberAxis?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
@@ -11,7 +18,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane prefHeight="640.0" prefWidth="1083.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.Controller.DashboardFormController">
+<AnchorPane prefHeight="640.0" prefWidth="1083.0" style="-fx-background-color: #6F94F0;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.Controller.DashboardFormController">
    <children>
       <GridPane prefHeight="640.0" prefWidth="1083.0">
          <columnConstraints>
@@ -24,60 +31,180 @@
          <children>
             <VBox prefHeight="200.0" prefWidth="100.0">
                <children>
-                  <HBox prefHeight="155.0" prefWidth="878.0">
+                  <HBox prefHeight="130.0" prefWidth="878.0">
                      <children>
-                        <Pane prefHeight="200.0" prefWidth="213.0" style="-fx-border-color: black; -fx-background-radius: 10; -fx-border-radius: 10;">
+                        <Pane prefHeight="145.0" prefWidth="213.0" styleClass="dashboard-panes" stylesheets="@../CSS/styles2.css">
                            <HBox.margin>
                               <Insets left="10.0" top="10.0" />
                            </HBox.margin>
+                           <children>
+                              <JFXTextField alignment="CENTER" editable="false" focusColor="#405aa800" focusTraversable="false" prefHeight="40.0" prefWidth="178.0" styleClass="dashboard-label" stylesheets="@../CSS/styles2.css" text="Today" unFocusColor="#4d4d4d00">
+                                 <cursor>
+                                    <Cursor fx:constant="DEFAULT" />
+                                 </cursor>
+                              </JFXTextField>
+                              <JFXTextField alignment="CENTER" editable="false" focusColor="#405aa800" focusTraversable="false" layoutY="27.0" prefHeight="40.0" prefWidth="178.0" styleClass="dashboard-label" stylesheets="@../CSS/styles2.css" text="Catches" unFocusColor="#4d4d4d00">
+                                 <cursor>
+                                    <Cursor fx:constant="DEFAULT" />
+                                 </cursor>
+                              </JFXTextField>
+                              <Label fx:id="lblCatchesCount" alignment="CENTER" layoutX="1.0" layoutY="66.0" prefHeight="50.0" prefWidth="178.0" styleClass="dashboard-values" stylesheets="@../CSS/styles2.css" text="58" textFill="WHITE" />
+                           </children>
                         </Pane>
-                        <Pane layoutX="20.0" layoutY="20.0" prefHeight="200.0" prefWidth="213.0" style="-fx-border-color: black; -fx-background-radius: 10; -fx-border-radius: 10;">
+                        <Pane layoutX="20.0" layoutY="20.0" prefHeight="145.0" prefWidth="213.0" styleClass="dashboard-panes" stylesheets="@../CSS/styles2.css">
                            <HBox.margin>
                               <Insets left="10.0" top="10.0" />
                            </HBox.margin>
+                           <children>
+                              <JFXTextField alignment="CENTER" editable="false" focusColor="#405aa800" focusTraversable="false" prefHeight="40.0" prefWidth="178.0" styleClass="dashboard-label" stylesheets="@../CSS/styles2.css" text="Today Catches" unFocusColor="#4d4d4d00">
+                                 <cursor>
+                                    <Cursor fx:constant="DEFAULT" />
+                                 </cursor>
+                              </JFXTextField>
+                              <JFXTextField alignment="CENTER" editable="false" focusColor="#405aa800" focusTraversable="false" layoutY="27.0" prefHeight="40.0" prefWidth="178.0" styleClass="dashboard-label" stylesheets="@../CSS/styles2.css" text="Weight" unFocusColor="#4d4d4d00">
+                                 <cursor>
+                                    <Cursor fx:constant="DEFAULT" />
+                                 </cursor>
+                              </JFXTextField>
+                              <Label fx:id="lblCatchesWeight" alignment="CENTER" layoutY="68.0" prefHeight="50.0" prefWidth="178.0" styleClass="dashboard-values" stylesheets="@../CSS/styles2.css" text="1.56t" textFill="WHITE" />
+                           </children>
                         </Pane>
-                        <Pane layoutX="220.0" layoutY="10.0" prefHeight="200.0" prefWidth="213.0" style="-fx-border-color: black; -fx-background-radius: 10; -fx-border-radius: 10;">
+                        <Pane layoutX="220.0" layoutY="10.0" prefHeight="145.0" prefWidth="213.0" styleClass="dashboard-panes" stylesheets="@../CSS/styles2.css">
                            <HBox.margin>
                               <Insets left="10.0" top="10.0" />
                            </HBox.margin>
+                           <children>
+                              <JFXTextField alignment="CENTER" editable="false" focusColor="#405aa800" focusTraversable="false" prefHeight="40.0" prefWidth="178.0" styleClass="dashboard-label" stylesheets="@../CSS/styles2.css" text="Today" unFocusColor="#4d4d4d00">
+                                 <cursor>
+                                    <Cursor fx:constant="DEFAULT" />
+                                 </cursor>
+                              </JFXTextField>
+                              <JFXTextField alignment="CENTER" editable="false" focusColor="#405aa800" focusTraversable="false" layoutY="27.0" prefHeight="40.0" prefWidth="178.0" styleClass="dashboard-label" stylesheets="@../CSS/styles2.css" text="Payments" unFocusColor="#4d4d4d00">
+                                 <cursor>
+                                    <Cursor fx:constant="DEFAULT" />
+                                 </cursor>
+                              </JFXTextField>
+                              <Label fx:id="lblCatchesPayments" alignment="CENTER" layoutY="68.0" prefHeight="50.0" prefWidth="178.0" styleClass="dashboard-values" stylesheets="@../CSS/styles2.css" text="256000.00" textFill="WHITE" />
+                           </children>
                         </Pane>
-                        <Pane layoutX="420.0" layoutY="10.0" prefHeight="200.0" prefWidth="213.0" style="-fx-border-color: black; -fx-background-radius: 10; -fx-border-radius: 10;">
+                        <Pane layoutX="420.0" layoutY="10.0" prefHeight="145.0" prefWidth="213.0" styleClass="dashboard-panes" stylesheets="@../CSS/styles2.css">
                            <HBox.margin>
                               <Insets left="10.0" right="10.0" top="10.0" />
                            </HBox.margin>
+                           <children>
+                              <JFXTextField alignment="CENTER" editable="false" focusColor="#405aa800" focusTraversable="false" layoutX="1.0" prefHeight="40.0" prefWidth="178.0" styleClass="dashboard-label" stylesheets="@../CSS/styles2.css" text="Registered" unFocusColor="#4d4d4d00">
+                                 <cursor>
+                                    <Cursor fx:constant="DEFAULT" />
+                                 </cursor>
+                              </JFXTextField>
+                              <JFXTextField alignment="CENTER" editable="false" focusColor="#405aa800" focusTraversable="false" layoutX="1.0" layoutY="27.0" prefHeight="40.0" prefWidth="178.0" styleClass="dashboard-label" stylesheets="@../CSS/styles2.css" text="Crews" unFocusColor="#4d4d4d00">
+                                 <cursor>
+                                    <Cursor fx:constant="DEFAULT" />
+                                 </cursor>
+                              </JFXTextField>
+                              <Label fx:id="lblRegisteredCrewsCount" alignment="CENTER" layoutX="1.0" layoutY="68.0" prefHeight="50.0" prefWidth="178.0" styleClass="dashboard-values" stylesheets="@../CSS/styles2.css" text="63" textFill="WHITE" />
+                           </children>
                         </Pane>
                      </children>
                   </HBox>
                   <HBox prefHeight="326.0" prefWidth="1083.0">
                      <children>
-                        <Pane prefHeight="316.0" prefWidth="371.0" style="-fx-border-color: black; -fx-background-radius: 10; -fx-border-radius: 10;">
+                        <Pane fx:id="paneRadialChart" minWidth="314.0" prefHeight="316.0" prefWidth="314.0" styleClass="dashboard-panes" stylesheets="@../CSS/styles2.css">
                            <HBox.margin>
                               <Insets left="10.0" right="10.0" top="10.0" />
                            </HBox.margin>
                         </Pane>
-                        <Pane layoutX="20.0" layoutY="20.0" prefHeight="316.0" prefWidth="507.0" style="-fx-border-color: black; -fx-background-radius: 10; -fx-border-radius: 10;">
+                        <Pane fx:id="paneChart" layoutX="20.0" layoutY="20.0" prefHeight="316.0" prefWidth="417.0" styleClass="dashboard-panes" stylesheets="@../CSS/styles2.css">
                            <HBox.margin>
                               <Insets right="10.0" top="10.0" />
                            </HBox.margin>
+                           <children>
+                              <BarChart fx:id="barChart" prefHeight="314.0" prefWidth="417.0" stylesheets="@../CSS/barchart-style.css">
+                                <xAxis>
+                                  <CategoryAxis label="Days" side="BOTTOM" tickLabelFill="WHITE" fx:id="x" />
+                                </xAxis>
+                                <yAxis>
+                                  <NumberAxis fx:id="y" label="Weight(kg)" side="LEFT" tickLabelFill="WHITE" />
+                                </yAxis>
+                              </BarChart>
+                           </children>
                         </Pane>
                      </children>
                   </HBox>
-                  <HBox prefHeight="156.0" prefWidth="899.0">
+                  <Pane prefHeight="170.0" prefWidth="743.0" styleClass="dashboard-panes" stylesheets="@../CSS/styles2.css">
+                     <VBox.margin>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                     </VBox.margin>
                      <children>
-                        <Pane prefHeight="132.0" prefWidth="879.0" style="-fx-border-color: black; -fx-background-radius: 10; -fx-border-radius: 10;">
-                           <HBox.margin>
-                              <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-                           </HBox.margin>
-                        </Pane>
+                        <HBox prefHeight="168.0" prefWidth="743.0">
+                           <children>
+                              <Pane prefHeight="168.0" prefWidth="151.0">
+                                 <HBox.margin>
+                                    <Insets left="10.0" />
+                                 </HBox.margin>
+                                 <children>
+                                    <ImageView fx:id="imgWeather1" fitHeight="77.0" fitWidth="94.0" pickOnBounds="true" preserveRatio="true" />
+                                 </children>
+                              </Pane>
+                              <Pane layoutX="10.0" layoutY="10.0" prefHeight="168.0" prefWidth="151.0">
+                                 <HBox.margin>
+                                    <Insets left="10.0" />
+                                 </HBox.margin>
+                                 <children>
+                                    <ImageView fx:id="imgWeather2" fitHeight="77.0" fitWidth="94.0" pickOnBounds="true" preserveRatio="true" />
+                                 </children>
+                              </Pane>
+                              <Pane layoutX="161.0" layoutY="10.0" prefHeight="168.0" prefWidth="151.0">
+                                 <HBox.margin>
+                                    <Insets left="10.0" />
+                                 </HBox.margin>
+                                 <children>
+                                    <ImageView fx:id="imgWeather3" fitHeight="77.0" fitWidth="94.0" layoutX="1.0" pickOnBounds="true" preserveRatio="true" />
+                                 </children>
+                              </Pane>
+                              <Pane layoutX="312.0" layoutY="10.0" prefHeight="168.0" prefWidth="151.0">
+                                 <HBox.margin>
+                                    <Insets left="10.0" />
+                                 </HBox.margin>
+                                 <children>
+                                    <ImageView fx:id="imgWeather4" fitHeight="77.0" fitWidth="94.0" layoutX="1.0" pickOnBounds="true" preserveRatio="true" />
+                                 </children>
+                              </Pane>
+                              <Pane layoutX="463.0" layoutY="10.0" prefHeight="168.0" prefWidth="151.0">
+                                 <HBox.margin>
+                                    <Insets left="10.0" />
+                                 </HBox.margin>
+                                 <children>
+                                    <ImageView fx:id="imgWeather5" fitHeight="77.0" fitWidth="94.0" layoutX="1.0" layoutY="3.0" pickOnBounds="true" preserveRatio="true" />
+                                 </children>
+                              </Pane>
+                              <Pane layoutX="604.0" layoutY="10.0" prefHeight="168.0" prefWidth="151.0">
+                                 <HBox.margin>
+                                    <Insets left="10.0" />
+                                 </HBox.margin>
+                                 <children>
+                                    <ImageView fx:id="imgWeather6" fitHeight="77.0" fitWidth="94.0" layoutX="1.0" pickOnBounds="true" preserveRatio="true" />
+                                 </children>
+                              </Pane>
+                              <Pane layoutX="630.0" layoutY="10.0" prefHeight="168.0" prefWidth="151.0">
+                                 <HBox.margin>
+                                    <Insets left="10.0" right="10.0" />
+                                 </HBox.margin>
+                                 <children>
+                                    <ImageView fx:id="imgWeather7" fitHeight="77.0" fitWidth="94.0" layoutX="1.0" pickOnBounds="true" preserveRatio="true" />
+                                 </children>
+                              </Pane>
+                           </children>
+                        </HBox>
                      </children>
-                  </HBox>
+                  </Pane>
                </children>
             </VBox>
-            <TableView editable="true" prefHeight="616.0" prefWidth="310.0" stylesheets="@../CSS/table_style.css" GridPane.columnIndex="1">
+            <TableView fx:id="tableFishPrices" editable="true" prefHeight="616.0" prefWidth="310.0" stylesheets="@../CSS/table_style.css" GridPane.columnIndex="1">
                <columns>
-                  <TableColumn prefWidth="156.0" text="Fish" />
-                  <TableColumn prefWidth="53.0" text="Unit" />
-                  <TableColumn minWidth="0.0" prefWidth="101.0" text="Unit Price" />
+                  <TableColumn fx:id="colFishType" prefWidth="156.0" text="Fish" />
+                  <TableColumn fx:id="colUnitWeight" prefWidth="53.0" text="Unit(kg)" />
+                  <TableColumn fx:id="colUnitPrice" minWidth="0.0" prefWidth="101.0" text="Unit Price" />
                </columns>
                <GridPane.margin>
                   <Insets bottom="10.0" right="10.0" top="10.0" />

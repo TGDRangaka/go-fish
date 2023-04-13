@@ -1,0 +1,53 @@
+/* Set the bar colors */
+.default-color0.chart-bar {
+    -fx-bar-fill: #ffffff;
+}
+.default-color1.chart-bar {
+    -fx-bar-fill: #4CAF50;
+}
+.default-color2.chart-bar {
+    -fx-bar-fill: #FFC107;
+}
+.default-color3.chart-bar {
+    -fx-bar-fill: #E91E63;
+}
+.default-color4.chart-bar {
+    -fx-bar-fill: #9C27B0;
+}
+
+/* Set the axis label colors */
+.chart-legend {
+    -fx-text-fill: #ffdddd;
+}
+.chart-title {
+    -fx-text-fill: #8dbdff;
+}
+.chart-y-axis .axis-label,
+.chart-x-axis .axis-label {
+    -fx-text-fill: #c8f3ff;
+}
+
+/* Remove the grid lines */
+.chart-vertical-grid-lines {
+    -fx-stroke: transparent;
+}
+.chart-horizontal-grid-lines {
+    -fx-stroke: transparent;
+}
+
+/* Set the chart background color */
+.chart-content {
+    -fx-background-color: transparent;
+}
+.chart-plot-background {
+    -fx-background-color: transparent;
+}
+/* Set the bar chart to be slightly rounded */
+.chart-bar {
+    -fx-background-radius: 5px;
+}
+
+/* Set the hover effect on the bars */
+.chart-bar:hover {
+    -fx-bar-fill: #3F51B5;
+}

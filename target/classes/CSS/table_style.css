@@ -12,9 +12,6 @@
 .table-view .corner {
     -fx-background-color: transparent;
 }
-.table-cell {
-    -fx-alignment: CENTER;
-}
 
 .table-update-btn {
     -fx-background-color: #b4ffb4;
@@ -48,6 +45,8 @@
 }
 
 .table-view .table-cell{
+    -fx-alignment: CENTER;
+    /*-fx-text-fill: #0e0e0e;*/
     -fx-border-color: transparent;
     -fx-padding: 2 0 2 10px;
 }
@@ -55,13 +54,13 @@
     -fx-font-size: 12px;
 }
 .table-row-cell:hover {
-    -fx-background-color: #93f9b911;
-    -fx-text-background-color: #0070cc;
+    -fx-background-color: #0da257;
+    -fx-text-fill: #26ff16;
     -fx-font-size: 14px;
 }
 .table-row-cell:selected {
-    -fx-background-color: rgba(11, 51, 255, 0.07);
-    -fx-text-background-color: #ee8800;
+    -fx-background-color: #c7d8f7;
+    -fx-text-fill: #ffae41;
 }
 .table-row-cell:odd{
     -fx-background-color: rgba(136, 124, 220, 0.06);

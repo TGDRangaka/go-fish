@@ -115,4 +115,55 @@ public class CatchModel {
         }
         return false;
     }
+
+    public static Integer getCatchCount(LocalDate now) throws SQLException {
+        String sql = "SELECT COUNT(*) FROM catch WHERE catchDate = ?";
+
+        ResultSet rs = CrudUtil.execute(sql, now);
+        if(rs.next()){
+            return rs.getInt(1);
+        }
+        return 0;
+    }
+
+    public static Double getCatchWeight(LocalDate now) throws SQLException {
+        String sql = "SELECT SUM(weightOfCatch) FROM catch WHERE catchDate = ?";
+
+        ResultSet rs = CrudUtil.execute(sql, now);
+        if(rs.next()){
+            return rs.getDouble(1);
+        }
+        return 0.0;
+    }
+
+    public static Double getCatchPayments(LocalDate now) throws SQLException {
+        String sql = "SELECT SUM(paymentAmount) FROM catch WHERE catchDate = ?";
+
+        ResultSet rs = CrudUtil.execute(sql, now);
+        if(rs.next()){
+            return rs.getDouble(1);
+        }
+        return 0.0;
+    }
+
+    public static List<String> getTopFiveFishDate(LocalDate now) throws SQLException {
+        String sql = "SELECT (SUM(catchdetail.weight))as sum, fish.fishType " +
+                "FROM catchdetail " +
+                "INNER JOIN fish " +
+                "ON catchdetail.fishId = fish.fishId " +
+                "INNER JOIN catch " +
+                "ON catchdetail.catchId = catch.catchId " +
+                "WHERE catch.catchDate = ? " +
+                "GROUP BY catchdetail.fishId " +
+                "ORDER BY sum DESC " +
+                "LIMIT 5";
+
+        ResultSet rs = CrudUtil.execute(sql, now);
+        List<String> data = new ArrayList<>();
+        while(rs.next()){
+            data.add(String.valueOf(rs.getInt(1)));
+            data.add(rs.getString(2));
+        }
+        return data;
+    }
 }
