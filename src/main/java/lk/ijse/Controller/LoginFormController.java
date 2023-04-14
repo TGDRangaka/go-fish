@@ -11,6 +11,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 import lk.ijse.Model.AdminModel;
+import lombok.SneakyThrows;
 
 import java.io.IOException;
 import java.net.URL;
@@ -33,10 +34,26 @@ public class LoginFormController implements Initializable {
     @FXML
     private JFXPasswordField txtPassword;
 
+    private Stage mainStage;
+
+    @SneakyThrows
     @FXML
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         loadFieldsOnActions();
+
+        loadMainWindow();
+    }
+
+    private void loadMainWindow() throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/view/main_window_form.fxml"));
+        Scene scene = new Scene(fxmlLoader.load());
+        Stage stage = new Stage();
+        stage.setTitle("Go Fish");
+        stage.centerOnScreen();
+        stage.setResizable(false);
+        stage.setScene(scene);
+        mainStage = stage;
     }
 
     private void loadFieldsOnActions() {
@@ -74,21 +91,14 @@ public class LoginFormController implements Initializable {
             boolean isUserVerified = AdminModel.userVerify(username, password);
 
             if(isUserVerified){
-                new Alert(Alert.AlertType.CONFIRMATION, "User Verified!").show();
                 Stage stage = (Stage) txtUserName.getScene().getWindow();
                 stage.close();
 
-                FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/view/main_window_form.fxml"));
-                Scene scene = new Scene(fxmlLoader.load());
-                stage = new Stage();
-                stage.setTitle("Go Fish");
-                stage.centerOnScreen();
-                stage.setScene(scene);
-                stage.show();
+                mainStage.show();
             }else {
                 new Alert(Alert.AlertType.WARNING, "User name or password is wrong!!").show();
             }
-        } catch (SQLException | IOException e) {
+        } catch (SQLException e) {
             e.printStackTrace();
             new Alert(Alert.AlertType.ERROR, "Oops... Something went wrong!!!").show();
         }

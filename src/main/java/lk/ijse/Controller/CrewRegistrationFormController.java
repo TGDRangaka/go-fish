@@ -277,6 +277,46 @@ public class CrewRegistrationFormController implements Initializable {
     private JFXTextField txtContactNo;
 
     @FXML
+    private Label lblCrewmanName;
+
+    @FXML
+    private Label lblAddress;
+
+    @FXML
+    private Label lblCrewmanBOD;
+
+    @FXML
+    private Label lblCrewmanNIC;
+
+    @FXML
+    private Label lblEmail;
+
+    @FXML
+    private Label lblCrewmanContactNo;
+    @FXML
+    private Label lblBoatRegNo;
+
+    @FXML
+    private Label lblBoatModel;
+
+    @FXML
+    private Label lblBoatType;
+
+    @FXML
+    private Label lblSatellitePhoneNo;
+    @FXML
+    private Label lblOwnerName;
+
+    @FXML
+    private Label lblOwnerNIC;
+
+    @FXML
+    private Label lblOwnerAddress;
+
+    @FXML
+    private Label lblOwnerContactNo;
+
+    @FXML
     private Button btnWeekdays;
 
     @FXML
@@ -344,49 +384,153 @@ public class CrewRegistrationFormController implements Initializable {
         txtCrewmanName.setOnAction((e) -> {
             txtCrewmanNIC.requestFocus();
         });
+        txtCrewmanName.setOnKeyReleased((e) -> {
+            if(!txtCrewmanName.getText().matches("[A-Z][a-z]*(?:\\s[A-Z][a-z]*)*(?:\\s[A-Z][a-z]*\\.?)*$")){
+                lblCrewmanName.setText("Invalid Input!");
+            }else{
+                lblCrewmanName.setText(null);
+            }
+        });
+
         txtCrewmanNIC.setOnAction((e) -> {
             txtCrewmanAddress.requestFocus();
         });
+        txtCrewmanNIC.setOnKeyReleased((e) -> {
+            if(!(txtCrewmanNIC.getText().matches("^\\d{12}$") || txtCrewmanNIC.getText().matches("^\\d{9}[VX]$"))){
+                lblCrewmanNIC.setText("Invalid Input!");
+            }else {
+                lblCrewmanNIC.setText(null);
+            }
+        });
+
         txtCrewmanAddress.setOnAction((e) -> {
             txtCrewmanBOD.requestFocus();
         });
+        txtCrewmanAddress.setOnKeyReleased((e) -> {
+            if(!(txtCrewmanAddress.getText().length() > 3)){
+                lblAddress.setText("Invalid Input!");
+            }else {
+                lblAddress.setText(null);
+            }
+        });
+
         txtCrewmanBOD.setOnAction((e) -> {
             txtCrewmanEmail.requestFocus();
+            String s = String.valueOf(txtCrewmanBOD.getValue());
+            System.out.println(s);
+            if(!String.valueOf(txtCrewmanBOD.getValue()).matches("^\\d{4}-\\d{2}-\\d{2}$")){
+                lblCrewmanBOD.setText("Invalid Input!");
+            }else {
+                lblCrewmanBOD.setText(null);
+            }
         });
+        txtCrewmanBOD.setOnKeyReleased((e) -> {
+            String s = String.valueOf(txtCrewmanBOD.getValue());
+            if(!String.valueOf(txtCrewmanBOD.getValue()).matches("^\\d{4}-\\d{2}-\\d{2}$")){
+                lblCrewmanBOD.setText("Invalid Input!");
+            }else {
+                lblCrewmanBOD.setText(null);
+            }
+        });
+
         txtCrewmanEmail.setOnAction((e) -> {
             txtContactNo.requestFocus();
         });
+        txtCrewmanEmail.setOnKeyReleased((e) -> {
+            if(!txtCrewmanEmail.getText().matches("^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$")){
+                lblEmail.setText("Invalid Input!");
+            }else {
+                lblEmail.setText(null);
+            }
+        });
+
         txtContactNo.setOnAction((e) -> {
             btnAddCrewman.fire();
             txtCrewmanName.requestFocus();
         });
-
+        txtContactNo.setOnKeyReleased((e) -> {
+            if(!txtContactNo.getText().matches("^(?:\\+94|0)[1-9]\\d{8}$")){
+                lblCrewmanContactNo.setText("Invalid Input!");
+            }else {
+                lblCrewmanContactNo.setText(null);
+            }
+        });
+/////////////////////////////////////////////////////////////
         txtBoatRegistrationNo.setOnAction((e) -> {
             txtBoatModel.requestFocus();
         });
+        txtBoatRegistrationNo.setOnKeyReleased((e) -> {
+            if(!(txtBoatRegistrationNo.getText().matches("^[A-Z]{2}-\\d{4}-[A-Z]{2}$") || txtBoatRegistrationNo.getText().matches("^[A-Z]{3}\\s\\d{4}$"))){
+                lblBoatRegNo.setText("Invalid Input!");
+            }else {
+                lblBoatRegNo.setText(null);
+            }
+        });
+
         txtBoatModel.setOnAction((e) -> {
             cbBoatType.requestFocus();
         });
+
         cbBoatType.setOnAction((e) -> {
             txtBoatSattelitePhoneNo.requestFocus();
         });
+
         txtBoatSattelitePhoneNo.setOnAction((e) -> {
             btnAddBoat.fire();
             txtBoatRegistrationNo.requestFocus();
         });
+        txtBoatSattelitePhoneNo.setOnKeyReleased((e) -> {
+            if(!(txtBoatSattelitePhoneNo.getText().matches("^\\+?[0-9]{7,15}$") || txtBoatSattelitePhoneNo.getText() == null)){
+                lblSatellitePhoneNo.setText("Invalid Input!");
+            }else {
+                lblSatellitePhoneNo.setText(null);
+            }
+        });
 
+/////////////////////////////////////////////////////////////
         txtOwnerName.setOnAction((e) -> {
             txtOwnerNIC.requestFocus();
         });
+        txtOwnerName.setOnKeyReleased((e) -> {
+            if(!txtOwnerName.getText().matches("[A-Z][a-z]*(?:\\s[A-Z][a-z]*)*(?:\\s[A-Z][a-z]*\\.?)*$")){
+                lblOwnerName.setText("Invalid Input!");
+            }else {
+                lblOwnerName.setText(null);
+            }
+        });
+
         txtOwnerNIC.setOnAction((e) -> {
             txtOwnerAddress.requestFocus();
         });
+        txtOwnerNIC.setOnKeyReleased((e) -> {
+            if(!(txtOwnerNIC.getText().matches("^\\d{12}$") || txtOwnerNIC.getText().matches("^\\d{9}[VX]$"))){
+                lblOwnerNIC.setText("Invalid Input!");
+            }else {
+                lblOwnerNIC.setText(null);
+            }
+        });
+
         txtOwnerAddress.setOnAction((e) -> {
             txtOwnerContactNo.requestFocus();
         });
+        txtOwnerAddress.setOnKeyReleased((e) -> {
+            if(!(txtOwnerAddress.getText().length() > 3)){
+                lblOwnerAddress.setText("Invalid Input!");
+            }else {
+                lblOwnerAddress.setText(null);
+            }
+        });
+
         txtOwnerContactNo.setOnAction((e) -> {
             btnAddOwner.fire();
             txtOwnerName.requestFocus();
+        });
+        txtOwnerContactNo.setOnKeyReleased((e) -> {
+            if(!txtOwnerContactNo.getText().matches("^(?:\\+94|0)[1-9]\\d{8}$")){
+                lblOwnerContactNo.setText("Invalid Input!");
+            }else {
+                lblOwnerContactNo.setText(null);
+            }
         });
     }
 
@@ -499,6 +643,7 @@ public class CrewRegistrationFormController implements Initializable {
     private void loadCBBoatsTypes() {
         ObservableList<String> boatTypes = FXCollections.observableArrayList("Commercial fishing vessel","Artisanal fishing vessel", "Recreational fishing vessel");
         cbBoatType.setItems(boatTypes);
+        cbBoatType.setValue("Commercial fishing vessel");
     }
 
     private void setCellValueFactory() {
@@ -566,19 +711,36 @@ public class CrewRegistrationFormController implements Initializable {
 
 
         if(prase == 2) {
-            btnBack.setDisable(false);
-            loadCbCrewmembers();
+            if(crewmenList.size() > 3 && crewmenList.size() < 13 && cbCrewLeader.getValue() != null) {
+                btnBack.setDisable(false);
+                loadCbCrewmembers();
 
-            paneVisible(2);
-        }else if(prase == 3){
-            loadCrewDetails();
-            loadBoatsDetails();
-
-            if(CrewManageFormController.isBtnUpdatePressed){
-                btnNext.setText("Update");
-            }else {
-                btnNext.setText("Register");
+                paneVisible(2);
+            }else if(crewmenList.size() < 4){
+                new Alert(Alert.AlertType.WARNING, "The crewmen count is must be higher than 3 !").show();
+                prase--;
+            }else if(crewmenList.size() > 12){
+                new Alert(Alert.AlertType.WARNING, "The crewmen count is must be lower than 13 !").show();
+                prase--;
+            }else if(cbCrewLeader.getValue() == null){
+                new Alert(Alert.AlertType.WARNING, "Please select a leader for this crew !").show();
+                prase--;
             }
+        }else if(prase == 3){
+            if(boatList.size() > 0 && boatList.size() < 5 && ownersList.size() > 0 && ownersList.size() < 5){
+                loadCrewDetails();
+                loadBoatsDetails();
+
+                if(CrewManageFormController.isBtnUpdatePressed){
+                    btnNext.setText("Update");
+                }else {
+                    btnNext.setText("Register");
+                }
+            }else {
+                new Alert(Alert.AlertType.WARNING, "Boats and Owners count must at least need to be 1").show();
+                prase--;
+            }
+
 
             paneVisible(3);
         }
@@ -889,6 +1051,15 @@ public class CrewRegistrationFormController implements Initializable {
 
     @FXML
     void btnAddCrewmanOnAction(ActionEvent event) throws SQLException {
+        if(!(lblCrewmanName.getText() == null &&
+        lblCrewmanNIC.getText() == null &&
+        lblAddress.getText() == null &&
+        lblCrewmanBOD.getText() == null &&
+        lblEmail.getText() == null &&
+        lblCrewmanContactNo.getText() == null)){
+            return;
+        }
+
         newCrewmanId = getNewId(newCrewmanId);
         System.out.println(newCrewmanId);
         String name = txtCrewmanName.getText();

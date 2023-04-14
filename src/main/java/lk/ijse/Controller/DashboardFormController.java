@@ -98,7 +98,8 @@ public class DashboardFormController implements Initializable {
         loadLabels();
         loadBarChart();
         loadPriceTable();
-        loadWeather();
+//        loadWeather();
+
     }
 
     private void loadCellValueFactory() {
@@ -117,9 +118,8 @@ public class DashboardFormController implements Initializable {
     }
 
     private void loadBarChart() throws SQLException {
-        Random r = new Random();
         XYChart.Series<String, Double> series4 = new XYChart.Series();
-        series4.setName("Last Week Catches");
+        series4.setName("Past Days Catches Weights");
 
         LocalDate today = LocalDate.now();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMM/dd");
@@ -158,11 +158,12 @@ public class DashboardFormController implements Initializable {
         List<String> data = CatchModel.getTopFiveFishDate(LocalDate.now());
         List<ChartData> chartDataList= new ArrayList<>();
         List<Color> colorList = new ArrayList<>();
-        colorList.add(Tile.RED);
-        colorList.add(Tile.ORANGE);
-        colorList.add(Tile.YELLOW);
-        colorList.add(Tile.GREEN);
-        colorList.add(Tile.BLUE);
+
+        colorList.add(Color.valueOf("#38C190"));
+        colorList.add(Color.valueOf("#00A995"));
+        colorList.add(Color.valueOf("#009192"));
+        colorList.add(Color.valueOf("#007886"));
+        colorList.add(Color.valueOf("#235F72"));
         for(int i = 0, j = 0; i < data.size(); i++,j++){
             Double weight = Double.valueOf(data.get(i));
             String fishType = data.get(++i);

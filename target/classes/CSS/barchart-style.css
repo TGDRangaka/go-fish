@@ -1,18 +1,9 @@
 /* Set the bar colors */
 .default-color0.chart-bar {
-    -fx-bar-fill: #ffffff;
+    -fx-bar-fill: #38ef7d;
 }
 .default-color1.chart-bar {
-    -fx-bar-fill: #4CAF50;
-}
-.default-color2.chart-bar {
-    -fx-bar-fill: #FFC107;
-}
-.default-color3.chart-bar {
-    -fx-bar-fill: #E91E63;
-}
-.default-color4.chart-bar {
-    -fx-bar-fill: #9C27B0;
+    -fx-bar-fill: #38ef7d;
 }
 
 /* Set the axis label colors */
@@ -20,19 +11,19 @@
     -fx-text-fill: #ffdddd;
 }
 .chart-title {
-    -fx-text-fill: #8dbdff;
+    -fx-text-fill: #000000;
 }
 .chart-y-axis .axis-label,
 .chart-x-axis .axis-label {
     -fx-text-fill: #c8f3ff;
 }
 
-/* Remove the grid lines */
+
 .chart-vertical-grid-lines {
-    -fx-stroke: transparent;
+    -fx-stroke: rgba(255, 255, 255, 0.2);
 }
 .chart-horizontal-grid-lines {
-    -fx-stroke: transparent;
+    -fx-stroke: rgba(255, 255, 255, 0.19);
 }
 
 /* Set the chart background color */
@@ -44,7 +35,7 @@
 }
 /* Set the bar chart to be slightly rounded */
 .chart-bar {
-    -fx-background-radius: 5px;
+    -fx-background-radius: 15px 15px 0 0;
 }
 
 /* Set the hover effect on the bars */

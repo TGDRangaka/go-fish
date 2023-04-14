@@ -11,7 +11,6 @@
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.ProgressBar?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -152,7 +151,9 @@
                            </columnConstraints>
                            <rowConstraints>
                               <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="8.0" vgrow="SOMETIMES" />
                               <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="8.0" vgrow="SOMETIMES" />
                            </rowConstraints>
                            <children>
                               <Label text="Boat Registration No.:">
@@ -161,7 +162,7 @@
                                  </font>
                               </Label>
                               <JFXTextField fx:id="txtBoatRegistrationNo" prefHeight="28.0" prefWidth="331.0" GridPane.columnIndex="1" />
-                              <Label text="Type:" GridPane.rowIndex="1">
+                              <Label text="Type:" GridPane.rowIndex="2">
                                  <font>
                                     <Font size="18.0" />
                                  </font>
@@ -175,7 +176,7 @@
                                     <Insets left="20.0" />
                                  </GridPane.margin>
                               </Label>
-                              <Label text="Satellite Phone No.:" GridPane.columnIndex="2" GridPane.rowIndex="1">
+                              <Label text="Satellite Phone No.:" GridPane.columnIndex="2" GridPane.rowIndex="2">
                                  <font>
                                     <Font size="18.0" />
                                  </font>
@@ -183,8 +184,10 @@
                                     <Insets left="20.0" />
                                  </GridPane.margin>
                               </Label>
-                              <JFXTextField fx:id="txtBoatSattelitePhoneNo" layoutX="593.0" layoutY="18.0" prefHeight="28.0" prefWidth="240.0" GridPane.columnIndex="3" GridPane.rowIndex="1" />
-                              <JFXComboBox fx:id="cbBoatType" prefHeight="32.0" prefWidth="216.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                              <JFXTextField fx:id="txtBoatSattelitePhoneNo" layoutX="593.0" layoutY="18.0" prefHeight="28.0" prefWidth="240.0" GridPane.columnIndex="3" GridPane.rowIndex="2" />
+                              <JFXComboBox fx:id="cbBoatType" prefHeight="32.0" prefWidth="216.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                              <Label fx:id="lblBoatRegNo" textFill="#ff2121" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                              <Label fx:id="lblSatellitePhoneNo" layoutX="184.0" layoutY="78.0" textFill="#ff2121" GridPane.columnIndex="3" GridPane.rowIndex="3" />
                            </children>
                         </GridPane>
                         <JFXButton fx:id="btnAddBoat" layoutX="926.0" layoutY="64.0" onAction="#btnAddBoatOnAction" prefHeight="37.0" prefWidth="144.0" style="-fx-background-color: linear-gradient(to right, #f2994a, #f2c94c); -fx-background-radius: 10;" text="Add">
@@ -242,7 +245,9 @@
                                  </columnConstraints>
                                  <rowConstraints>
                                     <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                    <RowConstraints minHeight="10.0" prefHeight="8.0" vgrow="SOMETIMES" />
                                     <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                    <RowConstraints minHeight="10.0" prefHeight="8.0" vgrow="SOMETIMES" />
                                  </rowConstraints>
                                  <children>
                                     <Label text="Owner Name:">
@@ -251,12 +256,12 @@
                                        </font>
                                     </Label>
                                     <JFXTextField fx:id="txtOwnerName" prefHeight="28.0" prefWidth="331.0" GridPane.columnIndex="1" />
-                                    <Label text="Address:" GridPane.rowIndex="1">
+                                    <Label text="Address:" GridPane.rowIndex="2">
                                        <font>
                                           <Font size="18.0" />
                                        </font>
                                     </Label>
-                                    <JFXTextField fx:id="txtOwnerAddress" prefHeight="28.0" prefWidth="331.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                    <JFXTextField fx:id="txtOwnerAddress" prefHeight="28.0" prefWidth="331.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                                     <JFXTextField fx:id="txtOwnerNIC" prefHeight="28.0" prefWidth="240.0" GridPane.columnIndex="3" />
                                     <Label text="NIC:" GridPane.columnIndex="2">
                                        <font>
@@ -266,7 +271,7 @@
                                           <Insets left="20.0" />
                                        </GridPane.margin>
                                     </Label>
-                                    <Label text="Contact No.:" GridPane.columnIndex="2" GridPane.rowIndex="1">
+                                    <Label text="Contact No.:" GridPane.columnIndex="2" GridPane.rowIndex="2">
                                        <font>
                                           <Font size="18.0" />
                                        </font>
@@ -274,7 +279,11 @@
                                           <Insets left="20.0" />
                                        </GridPane.margin>
                                     </Label>
-                                    <JFXTextField fx:id="txtOwnerContactNo" layoutX="520.0" layoutY="19.0" prefHeight="28.0" prefWidth="240.0" GridPane.columnIndex="3" GridPane.rowIndex="1" />
+                                    <JFXTextField fx:id="txtOwnerContactNo" layoutX="520.0" layoutY="19.0" prefHeight="28.0" prefWidth="240.0" GridPane.columnIndex="3" GridPane.rowIndex="2" />
+                                    <Label fx:id="lblOwnerName" textFill="#ff2121" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                    <Label fx:id="lblOwnerNIC" layoutX="135.0" layoutY="48.0" textFill="#ff2121" GridPane.columnIndex="3" GridPane.rowIndex="1" />
+                                    <Label fx:id="lblOwnerAddress" layoutX="595.0" layoutY="48.0" textFill="#ff2121" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                                    <Label fx:id="lblOwnerContactNo" layoutX="135.0" layoutY="82.0" textFill="#ff2121" GridPane.columnIndex="3" GridPane.rowIndex="3" />
                                  </children>
                               </GridPane>
                               <JFXButton fx:id="btnAddOwner" layoutX="919.0" layoutY="63.0" onAction="#btnAddOwnerOnAction" prefHeight="37.0" prefWidth="144.0" style="-fx-background-color: linear-gradient(to right, #f2994a, #f2c94c); -fx-background-radius: 10;" text="Add">
@@ -399,9 +408,12 @@
                               <ColumnConstraints hgrow="SOMETIMES" maxWidth="238.33331298828125" minWidth="10.0" prefWidth="226.33331298828125" />
                            </columnConstraints>
                            <rowConstraints>
-                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints maxHeight="40.0" minHeight="10.0" prefHeight="41.0" vgrow="SOMETIMES" />
+                              <RowConstraints maxHeight="33.0" minHeight="6.0" prefHeight="8.0" vgrow="SOMETIMES" />
+                              <RowConstraints maxHeight="50.0" minHeight="10.0" prefHeight="41.0" vgrow="SOMETIMES" />
+                              <RowConstraints maxHeight="50.0" minHeight="10.0" prefHeight="8.0" vgrow="SOMETIMES" />
+                              <RowConstraints maxHeight="40.0" minHeight="10.0" prefHeight="41.0" vgrow="SOMETIMES" />
+                              <RowConstraints maxHeight="40.0" minHeight="10.0" prefHeight="8.0" vgrow="SOMETIMES" />
                            </rowConstraints>
                            <children>
                               <Label text="Crewman Name">
@@ -410,21 +422,21 @@
                                  </font>
                               </Label>
                               <JFXTextField fx:id="txtCrewmanName" prefHeight="28.0" prefWidth="331.0" style="-fx-background-color: transparent;" GridPane.columnIndex="1" />
-                              <Label text="Address" GridPane.rowIndex="1">
+                              <Label text="Address" GridPane.rowIndex="2">
                                  <font>
                                     <Font size="18.0" />
                                  </font>
                               </Label>
-                              <JFXTextField fx:id="txtCrewmanAddress" prefHeight="28.0" prefWidth="331.0" style="-fx-background-color: transparent;" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                              <Label text="Email" GridPane.rowIndex="2">
+                              <JFXTextField fx:id="txtCrewmanAddress" prefHeight="28.0" prefWidth="331.0" style="-fx-background-color: transparent;" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                              <Label text="Email" GridPane.rowIndex="4">
                                  <font>
                                     <Font size="18.0" />
                                  </font>
                               </Label>
-                              <JFXTextField fx:id="txtCrewmanEmail" prefHeight="28.0" prefWidth="332.0" style="-fx-background-color: transparent;" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                              <JFXTextField fx:id="txtCrewmanEmail" prefHeight="28.0" prefWidth="332.0" style="-fx-background-color: transparent;" GridPane.columnIndex="1" GridPane.rowIndex="4" />
                               <JFXTextField fx:id="txtCrewmanNIC" prefHeight="28.0" prefWidth="240.0" style="-fx-background-color: transparent;" GridPane.columnIndex="3" />
-                              <DatePicker fx:id="txtCrewmanBOD" prefHeight="27.0" prefWidth="242.0" style="-fx-background-color: transparent;" GridPane.columnIndex="3" GridPane.rowIndex="1" />
-                              <JFXTextField fx:id="txtContactNo" prefHeight="28.0" prefWidth="241.0" style="-fx-background-color: transparent;" GridPane.columnIndex="3" GridPane.rowIndex="2" />
+                              <DatePicker fx:id="txtCrewmanBOD" prefHeight="27.0" prefWidth="242.0" style="-fx-background-color: transparent;" GridPane.columnIndex="3" GridPane.rowIndex="2" />
+                              <JFXTextField fx:id="txtContactNo" prefHeight="28.0" prefWidth="241.0" style="-fx-background-color: transparent;" GridPane.columnIndex="3" GridPane.rowIndex="4" />
                               <Label text="NIC" GridPane.columnIndex="2">
                                  <font>
                                     <Font size="18.0" />
@@ -433,7 +445,7 @@
                                     <Insets left="20.0" />
                                  </GridPane.margin>
                               </Label>
-                              <Label text="BOD" GridPane.columnIndex="2" GridPane.rowIndex="1">
+                              <Label text="BOD" GridPane.columnIndex="2" GridPane.rowIndex="2">
                                  <font>
                                     <Font size="18.0" />
                                  </font>
@@ -441,7 +453,7 @@
                                     <Insets left="20.0" />
                                  </GridPane.margin>
                               </Label>
-                              <Label text="Contact No." GridPane.columnIndex="2" GridPane.rowIndex="2">
+                              <Label text="Contact No." GridPane.columnIndex="2" GridPane.rowIndex="4">
                                  <font>
                                     <Font size="18.0" />
                                  </font>
@@ -449,6 +461,12 @@
                                     <Insets left="20.0" />
                                  </GridPane.margin>
                               </Label>
+                              <Label fx:id="lblCrewmanName" textFill="#ff3434" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                              <Label fx:id="lblAddress" layoutX="158.0" layoutY="48.0" textFill="#ff3434" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                              <Label fx:id="lblCrewmanBOD" layoutX="158.0" layoutY="46.0" textFill="#ff3434" GridPane.columnIndex="3" GridPane.rowIndex="3" />
+                              <Label fx:id="lblCrewmanNIC" layoutX="663.0" layoutY="98.0" textFill="#ff3434" GridPane.columnIndex="3" GridPane.rowIndex="1" />
+                              <Label fx:id="lblEmail" layoutX="158.0" layoutY="98.0" textFill="#ff3434" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                              <Label fx:id="lblCrewmanContactNo" layoutX="158.0" layoutY="138.0" textFill="#ff3434" GridPane.columnIndex="3" GridPane.rowIndex="5" />
                            </children>
                         </GridPane>
                         <Button fx:id="btnWeekdays" layoutX="746.0" layoutY="541.0" mnemonicParsing="false" onAction="#btnWeekdaysOnAction" style="-fx-background-color: transparent; -fx-border-color: white; -fx-border-radius: 10;" text="weekdays" />
@@ -471,15 +489,11 @@
                      </children>
                   </Pane>
                </children></AnchorPane>
-            <HBox alignment="CENTER_LEFT" prefHeight="61.0" prefWidth="1084.0">
+            <HBox alignment="CENTER" prefHeight="61.0" prefWidth="1084.0">
                <children>
-                  <ProgressBar fx:id="progressBar" prefHeight="18.0" prefWidth="516.0" progress="1.0" stylesheets="@../CSS/styles.css">
-                     <HBox.margin>
-                        <Insets left="20.0" />
-                     </HBox.margin></ProgressBar>
                   <JFXButton fx:id="btnBack" disable="true" onAction="#btnBackOnAction" prefHeight="50.0" prefWidth="119.0" style="-fx-background-color: linear-gradient(to right, #f2994a, #f2c94c); -fx-background-radius: 10 0 10 0; -fx-border-color: black; -fx-border-radius: 10 0 10 0;" text="Back" textFill="WHITE">
                      <HBox.margin>
-                        <Insets left="260.0" />
+                        <Insets />
                      </HBox.margin>
                      <cursor>
                         <Cursor fx:constant="HAND" />

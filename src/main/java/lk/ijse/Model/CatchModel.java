@@ -166,4 +166,63 @@ public class CatchModel {
         }
         return data;
     }
+
+    public static List<String> getDailyCatchWeight(LocalDate from, LocalDate to) throws SQLException {
+        String sql = "SELECT (SUM(weightOfCatch))AS sum, catchDate " +
+                "FROM catch " +
+                "WHERE (catchDate > ?) & (catchDate <= ?) " +
+                "GROUP BY catchDate " +
+                "ORDER BY catchDate";
+
+        ResultSet rs = CrudUtil.execute(sql, from, to);
+        List<String> data = new ArrayList<>();
+
+        while(rs.next()){
+            data.add(String.valueOf(rs.getDouble(1)));
+            data.add(String.valueOf(rs.getDate(2)));
+        }
+
+        return data;
+    }
+
+    public static List<String> getDailyCatchCounts(LocalDate from, LocalDate to) throws SQLException {
+        String sql = "SELECT (COUNT(catchId))AS count, catchDate FROM catch " +
+                "WHERE (catchDate > ?) & (catchDate <= ?) " +
+                "GROUP BY catchDate " +
+                "ORDER BY catchDate";
+
+        ResultSet rs = CrudUtil.execute(sql, from, to);
+        List<String> data = new ArrayList<>();
+
+        while(rs.next()){
+            data.add(String.valueOf(rs.getInt(1)));
+            data.add(String.valueOf(rs.getDate(2)));
+        }
+
+        return data;
+    }
+
+    public static Double getCatchWeight(LocalDate fromDate, LocalDate toDate) throws SQLException {
+        String sql = "SELECT (SUM(weightOfCatch))AS sum " +
+                "FROM catch " +
+                "WHERE (catchDate > ?) & (catchDate <= ?)";
+
+        ResultSet rs = CrudUtil.execute(sql, fromDate, toDate);
+        if(rs.next()){
+            return rs.getDouble(1);
+        }
+        return 0.0;
+    }
+
+    public static Integer getCatchCount(LocalDate fromDate, LocalDate toDate) throws SQLException {
+        String sql = "SELECT (COUNT(*))AS sum " +
+                "FROM catch " +
+                "WHERE (catchDate > ?) & (catchDate <= ?)";
+
+        ResultSet rs = CrudUtil.execute(sql, fromDate, toDate);
+        if(rs.next()){
+            return rs.getInt(1);
+        }
+        return 0;
+    }
 }

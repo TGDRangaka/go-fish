@@ -8,18 +8,18 @@
 }
 
 .fish-text {
-    -fx-text-fill: #86c4ff;
+    -fx-text-fill: #ffffff;
 }
 
 .fish-pane {
-    -fx-background-color: #6f8498;
+    -fx-background-color: linear-gradient(to bottom, #38C190, #00A995);
     -fx-background-radius: 10px;
     -fx-border-color: white;
     -fx-border-radius: 10px;
 }
 
 .mainmenu-vbox {
-    -fx-background-color: linear-gradient(to top, #88C2EA, #C7E2F2);
+    -fx-background-color: linear-gradient(to bottom, #38C190, #00A995);
     -fx-background-radius: 15px;
     -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.4), 10, 0, 2, 2);
 }
@@ -50,3 +50,30 @@
     -fx-font-size: 25px;
     -fx-font-weight: bold;
 }
+
+.login-pane {
+    -fx-background-color: rgba(61, 120, 200, 0.8);
+    -fx-background-radius: 15px;
+}
+.introduction {
+     -fx-font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    -fx-font-size: 18px;
+    -fx-text-align: center;
+     -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 10, 0, 0, 5);
+ }
+
+
+.welcome-label {
+    -fx-font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    -fx-font-size: 35px;
+    -fx-text-fill: #333333;
+    -fx-font-weight: bold;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.2), 10, 0, 0, 5);
+}
+
+.payment-button {
+    -fx-background-color: linear-gradient(to right, #15d5c7, #38ef7d);
+    -fx-background-radius: 10px;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.2), 10, 0, 0, 5);
+}
+

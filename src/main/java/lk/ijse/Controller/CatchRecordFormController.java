@@ -95,6 +95,9 @@ public class CatchRecordFormController implements Initializable {
     private Label lblTotalWeight;
 
     @FXML
+    private Label lblCaughtWeight;
+
+    @FXML
     private JFXComboBox<String> cbCrewId;
 
     private ObservableList<CatchDetailTM> catchDetais = FXCollections.observableArrayList();
@@ -110,6 +113,17 @@ public class CatchRecordFormController implements Initializable {
             loadFishTypeComboBox();
         }
         loadCellValueFactory();
+        validation();
+    }
+
+    private void validation() {
+        txtCaughtWeight.setOnKeyReleased((e) -> {
+            if(!txtCaughtWeight.getText().matches("^\\d+(\\.\\d+)?$")){
+                lblCaughtWeight.setText("Invalid value!");
+            }else{
+                lblCaughtWeight.setText(null);
+            }
+        });
     }
 
     private void loadDetails(CatchTM selectedCatch) throws SQLException {
@@ -195,6 +209,9 @@ public class CatchRecordFormController implements Initializable {
 
     @FXML
     void btnAddOnAction(ActionEvent event) {
+        if(lblCaughtWeight.getText() != null){
+            return;
+        }
         String fishId = lblFishId.getText();
         String fishType = cbFishType.getValue();
         Double unitPrice = Double.valueOf(lblUnitPrice.getText());
@@ -257,6 +274,13 @@ public class CatchRecordFormController implements Initializable {
 
             if(isCatchSaved){
                 new Alert(Alert.AlertType.CONFIRMATION, "Catch Recorded Succesfully!").show();
+
+                clearFields();
+                catchDetais.clear();
+                tableCatchDetail.refresh();
+                cbCrewId.setValue(null);
+                lblTotalWeight.setText(null);
+                lblNetTotal.setText(null);
             }else {
                 new Alert(Alert.AlertType.WARNING, "Catch Not Recorded!!").show();
             }

@@ -41,6 +41,14 @@ public class FishManageFormController implements Initializable {
 
     @FXML
     private TableColumn<?, ?> colAction;
+    @FXML
+    private Label lblFishType;
+
+    @FXML
+    private Label lblUnitWeight;
+
+    @FXML
+    private Label lblUnitPrice;
 
     @FXML
     private Label lblFishId;
@@ -75,13 +83,34 @@ public class FishManageFormController implements Initializable {
         txtFishType.setOnAction((e) -> {
             txtUnitWeight.requestFocus();
         });
+        txtFishType.setOnKeyReleased((e) -> {
+            if(!txtFishType.getText().matches("^[A-Za-z\\s'-]+$")){
+                lblFishType.setText("Invalid Input!");
+            }else{
+                lblFishType.setText(null);
+            }
+        });
 
         txtUnitWeight.setOnAction((e) -> {
             txtUnitPrice.requestFocus();
         });
+        txtUnitWeight.setOnKeyReleased((e) -> {
+            if(!txtUnitWeight.getText().matches("^\\d+(\\.\\d+)?$")){
+                lblUnitWeight.setText("Invalid Input!");
+            }else{
+                lblUnitWeight.setText(null);
+            }
+        });
 
         txtUnitPrice.setOnAction((e) -> {
             btnAdd.fire();
+        });
+        txtUnitPrice.setOnKeyReleased((e) -> {
+            if(!txtUnitPrice.getText().matches("^\\d+(\\.\\d+)?$")){
+                lblUnitPrice.setText("Invalid Input!");
+            }else{
+                lblUnitPrice.setText(null);
+            }
         });
     }
 
@@ -146,6 +175,9 @@ public class FishManageFormController implements Initializable {
 
     @FXML
     void btnAddOnAction(ActionEvent event) throws SQLException {
+        if(lblFishType.getText() != null && lblUnitWeight.getText() != null && lblUnitPrice.getText() != null){
+            return;
+        }
         String fishId = lblFishId.getText();
         String fishType = txtFishType.getText();
         Double unitWeight = Double.valueOf(txtUnitWeight.getText());

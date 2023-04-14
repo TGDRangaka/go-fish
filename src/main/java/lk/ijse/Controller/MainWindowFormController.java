@@ -7,6 +7,9 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonBar;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
@@ -24,6 +27,7 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Optional;
 import java.util.ResourceBundle;
 
 public class MainWindowFormController implements Initializable {
@@ -42,14 +46,8 @@ public class MainWindowFormController implements Initializable {
         Node node = FXMLLoader.load(getClass().getResource("/view/dashboard_form.fxml"));
         root.getChildren().setAll(node);
 
-//        btnCrewManage.fire();
-//        btnCatchManageOnAction(new ActionEvent());
-//        btnFishManageOnAction(new ActionEvent());
-//        btnViewAnalysticOnAction(new ActionEvent());
-//        btnSendMailOnAction(new ActionEvent());
-//        btnDashboardOnAction(new ActionEvent());
-
         String[] ar = {
+                "dashboard_form.fxml",
                 "crew_registration_form.fxml",
                 "crew_manage_form.fxml",
                 "catch_manage_form.fxml",
@@ -101,26 +99,28 @@ public class MainWindowFormController implements Initializable {
 
 
     @FXML
-    void btnViewAnalysticOnAction(ActionEvent event) throws SQLException {
+    void btnViewAnalysticOnAction(ActionEvent event) throws SQLException, IOException {
         lblTitle.setText("View Analystics");
+        Node node = FXMLLoader.load(getClass().getResource("/view/view_analystic_form.fxml"));
+        root.getChildren().setAll(node);
 
-        Connection con = DBConnection.getInstance().getConnection();
-        try {
-
-            InputStream input = new FileInputStream(new File("F:/Github/go-fish/src/main/resources/reports/test.jrxml"));
-            JasperDesign jasperDesign = JRXmlLoader.load(input);
-            JasperReport jasperReport = JasperCompileManager.compileReport(jasperDesign);
-
-            Map<String, Object> d = new HashMap();
-            d.put("adminId", "A002");
-            d.put("id", "test test test");
-            JasperPrint fillReport = JasperFillManager.fillReport(jasperReport, d, con);
-            JasperViewer.viewReport(fillReport, false);
-
-
-        } catch (JRException | FileNotFoundException e) {
-            e.printStackTrace();
-        }
+//        Connection con = DBConnection.getInstance().getConnection();
+//        try {
+//
+//            InputStream input = new FileInputStream(new File("F:/Github/go-fish/src/main/resources/reports/test.jrxml"));
+//            JasperDesign jasperDesign = JRXmlLoader.load(input);
+//            JasperReport jasperReport = JasperCompileManager.compileReport(jasperDesign);
+//
+//            Map<String, Object> d = new HashMap();
+//            d.put("adminId", "A002");
+//            d.put("id", "test test test");
+//            JasperPrint fillReport = JasperFillManager.fillReport(jasperReport, d, con);
+//            JasperViewer.viewReport(fillReport, false);
+//
+//
+//        } catch (JRException | FileNotFoundException e) {
+//            e.printStackTrace();
+//        }
 
     }
 
@@ -133,11 +133,25 @@ public class MainWindowFormController implements Initializable {
 
 
     @FXML
-    void btnLogOutOnAction(ActionEvent event) {
-        lblTitle.setText("asdf");
+    void btnLogOutOnAction(ActionEvent event) throws IOException {
+        ButtonType yes = new ButtonType("Yes", ButtonBar.ButtonData.OK_DONE);
+        ButtonType no = new ButtonType("No", ButtonBar.ButtonData.CANCEL_CLOSE);
+        Optional<ButtonType> result = new Alert(Alert.AlertType.CONFIRMATION, "Are you sure want to Log Out?", yes, no).showAndWait();
 
-    }
-    public void setLblTitle(String title){
-        lblTitle.setText(title);
+        if(result.orElse(no) == yes) {
+            Stage mainStage = (Stage) btnCrewManage.getScene().getWindow();
+            mainStage.close();
+
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/view/login_form.fxml"));
+            Scene scene = new Scene(fxmlLoader.load());
+
+            Stage stage = new Stage();
+            stage.setTitle("Login");
+            stage.centerOnScreen();
+            stage.setResizable(false);
+            stage.setScene(scene);
+            stage.show();
+        }
+
     }
 }
