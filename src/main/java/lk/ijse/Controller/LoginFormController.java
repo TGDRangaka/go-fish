@@ -34,6 +34,8 @@ public class LoginFormController implements Initializable {
     @FXML
     private JFXPasswordField txtPassword;
 
+    public static String user = "";
+
     private Stage mainStage;
 
     @SneakyThrows
@@ -42,7 +44,6 @@ public class LoginFormController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         loadFieldsOnActions();
 
-        loadMainWindow();
     }
 
     private void loadMainWindow() throws IOException {
@@ -91,14 +92,15 @@ public class LoginFormController implements Initializable {
             boolean isUserVerified = AdminModel.userVerify(username, password);
 
             if(isUserVerified){
+                user = AdminModel.getName(username, password);
                 Stage stage = (Stage) txtUserName.getScene().getWindow();
                 stage.close();
-
+                loadMainWindow();
                 mainStage.show();
             }else {
                 new Alert(Alert.AlertType.WARNING, "User name or password is wrong!!").show();
             }
-        } catch (SQLException e) {
+        } catch (SQLException | IOException e) {
             e.printStackTrace();
             new Alert(Alert.AlertType.ERROR, "Oops... Something went wrong!!!").show();
         }

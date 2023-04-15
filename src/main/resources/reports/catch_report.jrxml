@@ -1,0 +1,472 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.20.1.final using JasperReports Library version 6.20.1-7584acb244139816654f64e2fd57a00d3e31921e  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Blank_A4" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="cad6aadc-9a0f-41f2-8146-f43407034844">
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="go_fish"/>
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<property name="com.jaspersoft.studio.data.sql.SQLQueryDesigner.sash.w1" value="479"/>
+	<property name="com.jaspersoft.studio.data.sql.SQLQueryDesigner.sash.w2" value="521"/>
+	<property name="com.jaspersoft.studio.property.dataset.dialog.DatasetDialog.sash.w1" value="490"/>
+	<property name="com.jaspersoft.studio.property.dataset.dialog.DatasetDialog.sash.w2" value="496"/>
+	<parameter name="crewId" class="java.lang.String"/>
+	<parameter name="catchId" class="java.lang.String"/>
+	<parameter name="catchDate" class="java.lang.String"/>
+	<parameter name="tripStartedTime" class="java.lang.String"/>
+	<parameter name="tripEndedTime" class="java.lang.String"/>
+	<parameter name="totalWeight" class="java.lang.String"/>
+	<parameter name="totalPayment" class="java.lang.String"/>
+	<parameter name="paymentTime" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[select catchdetail.fishId, fish.fishType,  fish.unitWeight, fish.unitPrice ,catchdetail.weight, catchdetail.total
+from catchdetail
+inner join fish
+on catchdetail.fishId = fish.fishId
+where catchdetail.catchId =   $P{catchId} ]]>
+	</queryString>
+	<field name="fishId" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="fishId"/>
+		<property name="com.jaspersoft.studio.field.label" value="fishId"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="catchdetail"/>
+	</field>
+	<field name="fishType" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="fishType"/>
+		<property name="com.jaspersoft.studio.field.label" value="fishType"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="fish"/>
+	</field>
+	<field name="unitWeight" class="java.math.BigDecimal">
+		<property name="com.jaspersoft.studio.field.name" value="unitWeight"/>
+		<property name="com.jaspersoft.studio.field.label" value="unitWeight"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="fish"/>
+	</field>
+	<field name="unitPrice" class="java.math.BigDecimal">
+		<property name="com.jaspersoft.studio.field.name" value="unitPrice"/>
+		<property name="com.jaspersoft.studio.field.label" value="unitPrice"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="fish"/>
+	</field>
+	<field name="weight" class="java.math.BigDecimal">
+		<property name="com.jaspersoft.studio.field.name" value="weight"/>
+		<property name="com.jaspersoft.studio.field.label" value="weight"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="catchdetail"/>
+	</field>
+	<field name="total" class="java.math.BigDecimal">
+		<property name="com.jaspersoft.studio.field.name" value="total"/>
+		<property name="com.jaspersoft.studio.field.label" value="total"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="catchdetail"/>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="259" splitType="Stretch">
+			<staticText>
+				<reportElement x="123" y="1" width="306" height="50" forecolor="#404040" uuid="ed13d840-4cdb-41b8-a559-66052a61c0b7"/>
+				<textElement textAlignment="Center">
+					<font fontName="Calibri" size="30" isBold="true" isItalic="false" isUnderline="true" isStrikeThrough="false"/>
+				</textElement>
+				<text><![CDATA[Catch Payment Report]]></text>
+			</staticText>
+			<line>
+				<reportElement x="-2" y="0" width="557" height="1" uuid="e9c3f092-54f6-48e1-9d6b-68702406eaff">
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				</reportElement>
+			</line>
+			<staticText>
+				<reportElement x="441" y="60" width="114" height="30" forecolor="#2B2B2B" uuid="d6ecd285-3538-49d9-9bd8-7c6ccf5f121d"/>
+				<textElement textAlignment="Right">
+					<font fontName="Arial" size="16" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Fishing House]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="441" y="82" width="114" height="30" forecolor="#2B2B2B" uuid="38d2cd5a-ea6c-4a97-9c2e-7fdf56985bed"/>
+				<textElement textAlignment="Right">
+					<font fontName="Arial" size="16"/>
+				</textElement>
+				<text><![CDATA[No.22]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="441" y="99" width="114" height="30" forecolor="#2B2B2B" uuid="78321709-add2-46e4-add7-421ff1a9204a"/>
+				<textElement textAlignment="Right">
+					<font fontName="Arial" size="16"/>
+				</textElement>
+				<text><![CDATA[Harbour Road]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="441" y="116" width="114" height="30" forecolor="#2B2B2B" uuid="4e09252b-2519-4269-9b65-0b9a77ec06ac"/>
+				<textElement textAlignment="Right">
+					<font fontName="Arial" size="16"/>
+				</textElement>
+				<text><![CDATA[Mirissa]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="441" y="138" width="114" height="30" forecolor="#2B2B2B" uuid="88ef4499-5b18-4ed2-b61b-00fc9e546796"/>
+				<textElement textAlignment="Right">
+					<font fontName="Arial" size="16"/>
+				</textElement>
+				<text><![CDATA[Sri Lanka]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="381" y="170" width="174" height="30" forecolor="#2B2B2B" uuid="b92b71a1-ca06-4a82-b270-e96361a828d2"/>
+				<textElement textAlignment="Right">
+					<font fontName="Arial" size="16" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Phone : 0382244482]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="281" y="194" width="274" height="30" forecolor="#2B2B2B" uuid="c854c1fa-178a-443f-8b2b-9278aab58ab7"/>
+				<textElement textAlignment="Right">
+					<font fontName="Arial" size="16" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Fax : fishinghouse1993@gmail.com]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="203" splitType="Stretch">
+			<staticText>
+				<reportElement x="-2" y="30" width="133" height="30" uuid="4e5d1270-b869-4081-b898-237981618db0"/>
+				<box leftPadding="5">
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[CrewID]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="-2" y="60" width="132" height="30" uuid="42ac1df3-c323-4e1d-a295-44149e1e3968"/>
+				<box leftPadding="5">
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[CatchID]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="-2" y="90" width="132" height="30" uuid="a7ce1b26-458b-4ad4-9249-21f90d1fe79a"/>
+				<box leftPadding="5">
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[CatchDate]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="-2" y="120" width="132" height="30" uuid="0330b39c-c8de-4f82-a38a-373e8188f2b4"/>
+				<box leftPadding="5">
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Trip Started Time]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="-2" y="150" width="132" height="30" uuid="7cd55367-b4c1-4ffc-9443-5dc8a56c431a"/>
+				<box leftPadding="5">
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Trip Ended Time]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="131" y="30" width="424" height="30" uuid="a059569f-af9d-4efd-b884-878de5063fcc"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{crewId}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="130" y="60" width="425" height="30" uuid="a749de55-8eb4-4ed1-bfe6-f41da360fd39"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{catchId}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="130" y="90" width="425" height="30" uuid="3e9c0d8c-a490-49a7-9b1c-20e912d99a78"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{catchDate}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="130" y="120" width="425" height="30" uuid="151d9934-9ab6-4fec-a24f-e23963e5d7f9"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{tripStartedTime}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="130" y="150" width="425" height="30" uuid="65d39cc1-59e0-4e89-b33c-eec68d0b1a59"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{tripEndedTime}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="287" y="0" width="133" height="30" uuid="9e26dbb9-7d4d-439d-afb2-b4c05a664ede"/>
+				<box leftPadding="5">
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Payment Due Date]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="420" y="0" width="135" height="30" uuid="1cdecfc7-bc88-4e5f-869e-9279ad369d75"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{paymentTime}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="30" splitType="Stretch">
+			<staticText>
+				<reportElement mode="Opaque" x="-2" y="0" width="52" height="30" backcolor="#E3E3E3" uuid="129d79f4-8965-4eed-acc2-38ae96a7ef4d">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="52c797d2-eb7d-4b69-95bf-f360a61b1fc4"/>
+				</reportElement>
+				<box leftPadding="3">
+					<pen lineWidth="1.0"/>
+				</box>
+				<text><![CDATA[Fish ID]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="50" y="0" width="165" height="30" backcolor="#E3E3E3" uuid="ad8b0ee9-4b1e-4fdc-9eda-5fee79cddca9">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="2c5d65d2-18c5-460f-92fe-19ffb7ab09c2"/>
+				</reportElement>
+				<box leftPadding="3">
+					<pen lineWidth="1.0"/>
+				</box>
+				<text><![CDATA[Fish Type]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="215" y="0" width="80" height="30" backcolor="#E3E3E3" uuid="397e124c-163b-4248-aeb4-1a3b78cbe965">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="c60bf677-7c4e-437e-9f40-5767e96d97dd"/>
+				</reportElement>
+				<box leftPadding="3">
+					<pen lineWidth="1.0"/>
+				</box>
+				<text><![CDATA[Unit Weight(Kg)]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="295" y="0" width="100" height="30" backcolor="#E3E3E3" uuid="1986739b-940a-4946-9eda-1b8e08b7f6dc">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="17baa167-83ce-45ac-90d3-4b1763aaf032"/>
+				</reportElement>
+				<box leftPadding="3">
+					<pen lineWidth="1.0"/>
+				</box>
+				<text><![CDATA[Unit Price(LKR)]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="395" y="0" width="60" height="30" backcolor="#E3E3E3" uuid="977edb79-0597-4e89-bb48-5abb3dbd26c7">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="57a84220-d8d0-434a-8a73-5acd4203fbf5"/>
+				</reportElement>
+				<box leftPadding="3">
+					<pen lineWidth="1.0"/>
+				</box>
+				<text><![CDATA[Weight(Kg)]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="455" y="0" width="100" height="30" backcolor="#E3E3E3" uuid="74f31667-fd2b-4bca-a073-e74e981d2781">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="a918653b-0733-4238-92a3-87877f2ea25f"/>
+				</reportElement>
+				<box leftPadding="3">
+					<pen lineWidth="1.0"/>
+				</box>
+				<text><![CDATA[Total(LKR)]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="30" splitType="Stretch">
+			<textField>
+				<reportElement x="-2" y="0" width="52" height="30" uuid="e850e9aa-fa3e-4ba2-b19f-b97308e67f16">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="52c797d2-eb7d-4b69-95bf-f360a61b1fc4"/>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				</reportElement>
+				<box leftPadding="3">
+					<pen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+				</box>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{fishId}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="50" y="0" width="165" height="30" uuid="376693a1-20aa-4f9d-81c8-8e5f174ca751">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="2c5d65d2-18c5-460f-92fe-19ffb7ab09c2"/>
+				</reportElement>
+				<box leftPadding="3">
+					<pen lineWidth="1.0"/>
+				</box>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{fishType}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="215" y="0" width="80" height="30" uuid="5c5a584f-429c-45a0-8f98-6347d8ea3abf">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="c60bf677-7c4e-437e-9f40-5767e96d97dd"/>
+				</reportElement>
+				<box leftPadding="3">
+					<pen lineWidth="1.0"/>
+				</box>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{unitWeight}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="295" y="0" width="100" height="30" uuid="faaa88d1-16c6-485b-9a59-aaf96e4b632c">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="17baa167-83ce-45ac-90d3-4b1763aaf032"/>
+				</reportElement>
+				<box leftPadding="3">
+					<pen lineWidth="1.0"/>
+				</box>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{unitPrice}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="395" y="0" width="60" height="30" uuid="156060c4-3a73-4a7d-b350-fb105dfdf4d9">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="57a84220-d8d0-434a-8a73-5acd4203fbf5"/>
+				</reportElement>
+				<box leftPadding="3">
+					<pen lineWidth="1.0"/>
+				</box>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{weight}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="455" y="0" width="100" height="30" uuid="976afea1-0050-476c-a759-bcbdc7daf0a5">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="a918653b-0733-4238-92a3-87877f2ea25f"/>
+				</reportElement>
+				<box leftPadding="3">
+					<pen lineWidth="1.0"/>
+				</box>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{total}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="30" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="114" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="199" height="30" uuid="ab4c6ee7-fba3-4c4b-ba0b-40460dd53717"/>
+				<box leftPadding="5">
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="16" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Total Weight of Catch :]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="30" width="199" height="30" uuid="3359d24d-91c6-4b2b-9622-5bf37b7ca9d6"/>
+				<box leftPadding="5">
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="16" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Total Payment of Catch :]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="200" y="0" width="353" height="30" uuid="95fa8d55-e18e-4792-89c4-29bef51ecbb5"/>
+				<box leftPadding="3">
+					<pen lineWidth="0.0"/>
+					<topPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font size="16"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{totalWeight}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="200" y="30" width="353" height="30" uuid="ebcad502-1577-4e20-a6fa-60b31c021994"/>
+				<box leftPadding="3">
+					<pen lineWidth="0.0"/>
+					<topPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font size="16"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{totalPayment}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch">
+			<textField>
+				<reportElement x="395" y="0" width="59" height="30" uuid="b8558275-a747-4743-9723-f01e5f55ca44"/>
+				<box leftPadding="3">
+					<pen lineWidth="1.0"/>
+				</box>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$P{totalWeight}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="455" y="0" width="100" height="30" uuid="1b14df9c-6dc0-4525-9f09-6f6a0d136e77"/>
+				<box leftPadding="3">
+					<pen lineWidth="1.0"/>
+				</box>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$P{totalPayment}]]></textFieldExpression>
+			</textField>
+		</band>
+	</summary>
+</jasperReport>

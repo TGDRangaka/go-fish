@@ -1,6 +1,7 @@
 
 .button {
-    -fx-background-color: #dcece5; /* Set button background color */
+    -fx-background-color: #e0e0e0; /* Set button background color */
+    /*-fx-background-color: #00BFFF;*/
     -fx-background-radius: 20px;
     -fx-text-fill: black; /* Set button text color */
     -fx-font-family: "Segoe UI Semibold";

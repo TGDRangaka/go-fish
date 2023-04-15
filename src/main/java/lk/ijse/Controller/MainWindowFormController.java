@@ -1,6 +1,7 @@
 package lk.ijse.Controller;
 
 import com.jfoenix.controls.JFXButton;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -25,17 +26,22 @@ import java.net.URL;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Optional;
-import java.util.ResourceBundle;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
+import java.util.*;
 
 public class MainWindowFormController implements Initializable {
+    @FXML
+    private Label lblUserName;
     @FXML
     private AnchorPane root;
 
     @FXML
     private Label lblTitle;
+    @FXML
+    private Label lblTime;
 
     @FXML
     private JFXButton btnCrewManage;
@@ -52,8 +58,9 @@ public class MainWindowFormController implements Initializable {
                 "crew_manage_form.fxml",
                 "catch_manage_form.fxml",
                 "catch_record_form.fxml",
-                "fish_manage_form.fxml"
-//                "send_mails_form.fxml"
+                "fish_manage_form.fxml",
+                "view_analystic_form.fxml",
+                "send_mails_form.fxml"
         };
 
         for(String s : ar) {
@@ -66,7 +73,28 @@ public class MainWindowFormController implements Initializable {
             stage.close();
         }
 
+        lblUserName.setText(LoginFormController.user);
+        setTime();
 
+
+    }
+
+    private void setTime() {
+        new Thread() {
+            @Override
+            public void run() {
+                Timer timer = new Timer();
+                timer.schedule(new TimerTask() {
+                    @Override
+                    public void run() {
+                        LocalDateTime currentTime = LocalDateTime.now();
+                        Platform.runLater(() -> {
+                            lblTime.setText(currentTime.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")));
+                        });
+                    }
+                }, 0, 1000);
+            }
+        }.start();
     }
 
     @FXML

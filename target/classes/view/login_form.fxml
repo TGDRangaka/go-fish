@@ -46,7 +46,7 @@
                         </ImageView>
                      </graphic>
                   </JFXButton>
-                  <ImageView fx:id="imgEyeOpen" fitHeight="25.0" fitWidth="30.0" layoutX="240.0" layoutY="267.0" visible="false">
+                  <ImageView fx:id="imgEyeOpen" fitHeight="25.0" fitWidth="30.0" layoutX="240.0" layoutY="267.0" opacity="0.7" visible="false">
                      <image>
                         <Image url="@../img/view.png" />
                      </image>
@@ -54,7 +54,7 @@
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </ImageView>
-                  <ImageView fx:id="imgEyeClose" fitHeight="25.0" fitWidth="30.0" layoutX="240.0" layoutY="267.0">
+                  <ImageView fx:id="imgEyeClose" fitHeight="25.0" fitWidth="30.0" layoutX="240.0" layoutY="267.0" opacity="0.7">
                      <image>
                         <Image url="@../img/close.png" />
                      </image>

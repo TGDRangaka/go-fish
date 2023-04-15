@@ -225,4 +225,24 @@ public class CatchModel {
         }
         return 0;
     }
+
+    public static Catch getCatch(String catchId) throws SQLException {
+        String sql = "SELECT * FROM catch WHERE catchId = ?";
+
+        ResultSet rs = CrudUtil.execute(sql, catchId);
+        if(rs.next()){
+            return new Catch(
+                    rs.getString(1),
+                    rs.getDouble(2),
+                    LocalDate.parse(rs.getString(3)),
+                    rs.getDouble(4),
+                    LocalTime.parse(rs.getString(5)),
+                    LocalTime.parse(rs.getString(6)),
+                    LocalTime.parse(rs.getString(7)),
+                    rs.getString(8),
+                    rs.getString(9)
+            );
+        }
+        return null;
+    }
 }

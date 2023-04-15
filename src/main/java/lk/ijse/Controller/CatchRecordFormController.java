@@ -1,6 +1,7 @@
 package lk.ijse.Controller;
 
 import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.JFXCheckBox;
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXTextField;
 import javafx.collections.FXCollections;
@@ -10,6 +11,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import lk.ijse.DB.DBConnection;
 import lk.ijse.Model.CatchDetailModel;
 import lk.ijse.Model.CatchModel;
 import lk.ijse.Model.CrewModel;
@@ -20,14 +22,21 @@ import lk.ijse.dto.Fish;
 import lk.ijse.dto.tm.CatchDetailTM;
 import lk.ijse.dto.tm.CatchTM;
 import lombok.SneakyThrows;
+import net.sf.jasperreports.engine.*;
+import net.sf.jasperreports.engine.design.JasperDesign;
+import net.sf.jasperreports.engine.xml.JRXmlLoader;
+import net.sf.jasperreports.view.JasperViewer;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.InputStream;
 import java.net.URL;
+import java.sql.Connection;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.time.LocalTime;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.ResourceBundle;
+import java.util.*;
 
 import static lk.ijse.util.CrudUtil.getNewId;
 
@@ -96,6 +105,9 @@ public class CatchRecordFormController implements Initializable {
 
     @FXML
     private Label lblCaughtWeight;
+
+    @FXML
+    private JFXCheckBox cboxGetReport;
 
     @FXML
     private JFXComboBox<String> cbCrewId;
@@ -275,6 +287,9 @@ public class CatchRecordFormController implements Initializable {
             if(isCatchSaved){
                 new Alert(Alert.AlertType.CONFIRMATION, "Catch Recorded Succesfully!").show();
 
+                if(cboxGetReport.isSelected()){
+                    getReport();
+                }
                 clearFields();
                 catchDetais.clear();
                 tableCatchDetail.refresh();
@@ -325,6 +340,35 @@ public class CatchRecordFormController implements Initializable {
         lblUnitWeight.setText(String.format("%1.2f",fish.getUnitWeight()));
 
         txtCaughtWeight.requestFocus();
+    }
+
+
+    private void getReport() {
+        try {
+            Connection con = DBConnection.getInstance().getConnection();
+
+            InputStream input = new FileInputStream(new File("F:/Github/go-fish/src/main/resources/reports/catch_report.jrxml"));
+            JasperDesign jasperDesign = JRXmlLoader.load(input);
+            JasperReport jasperReport = JasperCompileManager.compileReport(jasperDesign);
+
+            Catch c = CatchModel.getCatch(lblCatchId.getText());
+            Map<String, Object> data = new HashMap();
+            data.put("crewId",c.getCrewId());
+            data.put("catchId", c.getId());
+            data.put("catchDate", String.valueOf(c.getCatchDate()));
+            data.put("tripStartedTime", String.valueOf(c.getTripStartedTime()));
+            data.put("tripEndedTime", String.valueOf(c.getTripEndedTime()));
+            data.put("totalWeight", c.getTotalWeight() + "kg");
+            data.put("totalPayment", "Rs." + c.getPaymentAmount());
+            data.put("paymentTime", String.valueOf(c.getPaymentTime()));
+
+            JasperPrint fillReport = JasperFillManager.fillReport(jasperReport, data, con);
+            JasperViewer.viewReport(fillReport, false);
+
+
+        } catch (JRException | FileNotFoundException | SQLException e) {
+            e.printStackTrace();
+        }
     }
 
     void clearFields(){

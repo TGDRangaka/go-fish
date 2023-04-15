@@ -20,6 +20,7 @@
 
 .mainmenu-vbox {
     -fx-background-color: linear-gradient(to bottom, #38C190, #00A995);
+    /*-fx-background-color: linear-gradient(to bottom, #e8e8e8, #a6a6a6);*/
     -fx-background-radius: 15px;
     -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.4), 10, 0, 2, 2);
 }
@@ -38,7 +39,7 @@
 }
 
 .dashboard-label {
-    -fx-text-fill: #8eaeff;
+    -fx-text-fill: #bafdff;
     -fx-font-family: "Segoe UI";
     -fx-font-size: 25px;
     -fx-font-weight: bold;
@@ -73,6 +74,12 @@
 
 .payment-button {
     -fx-background-color: linear-gradient(to right, #15d5c7, #38ef7d);
+    -fx-background-radius: 10px;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.2), 10, 0, 0, 5);
+}
+
+.get-report-button {
+    -fx-background-color: linear-gradient(to right, #38ef7d, #15d5c7);
     -fx-background-radius: 10px;
     -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.2), 10, 0, 0, 5);
 }

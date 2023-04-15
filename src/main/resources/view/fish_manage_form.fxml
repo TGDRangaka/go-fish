@@ -89,7 +89,7 @@
             <Font size="16.0" />
          </font>
       </JFXTextField>
-      <JFXTextField fx:id="txtUnitPrice" layoutX="804.0" layoutY="412.0" prefHeight="30.0" prefWidth="231.0" styleClass="fish-text" stylesheets="@../CSS/styles2.css">
+      <JFXTextField fx:id="txtUnitPrice" layoutX="832.0" layoutY="412.0" prefHeight="37.0" prefWidth="203.0" styleClass="fish-text" stylesheets="@../CSS/styles2.css">
          <font>
             <Font size="16.0" />
          </font>
@@ -97,6 +97,16 @@
       <Label layoutX="278.0" layoutY="14.0" text="Market Fish Price" underline="true">
          <font>
             <Font name="System Bold" size="25.0" />
+         </font>
+      </Label>
+      <Label layoutX="1011.0" layoutY="293.0" text="kg" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="20.0" />
+         </font>
+      </Label>
+      <Label layoutX="804.0" layoutY="416.0" text="Rs." textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="20.0" />
          </font>
       </Label>
    </children>

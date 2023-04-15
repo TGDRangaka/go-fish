@@ -11,7 +11,7 @@ public class AdminModel {
     public static boolean userVerify(String username, String password) throws SQLException {
         String sql = "SELECT * FROM admin WHERE userName = ? AND password = ?";
 
-        ResultSet rs = (ResultSet) CrudUtil.execute(sql, username, password);
+        ResultSet rs = CrudUtil.execute(sql, username, password);
 
         if(rs.next()){
             adminId = rs.getString(1);
@@ -19,5 +19,13 @@ public class AdminModel {
         }
 
         return false;
+    }
+
+    public static String getName(String username, String password) throws SQLException {
+        String sql = "SELECT * FROM admin WHERE userName = ? AND password = ?";
+
+        ResultSet rs = CrudUtil.execute(sql, username, password);
+        rs.next();
+        return rs.getString(2);
     }
 }
