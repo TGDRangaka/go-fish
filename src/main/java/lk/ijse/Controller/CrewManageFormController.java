@@ -1,5 +1,6 @@
 package lk.ijse.Controller;
 
+import com.jfoenix.controls.JFXTextField;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.css.PseudoClass;
@@ -54,6 +55,9 @@ public class CrewManageFormController implements Initializable {
 
     @FXML
     private TableColumn<?, ?> colAction2;
+
+    @FXML
+    private JFXTextField txtSearch;
 
     @FXML
     private Label lblCrewCount;
@@ -211,11 +215,33 @@ public class CrewManageFormController implements Initializable {
         colAvailableDays.setCellValueFactory(new PropertyValueFactory<>("availableDays"));
         colAction1.setCellValueFactory(new PropertyValueFactory<>("update"));
         colAction2.setCellValueFactory(new PropertyValueFactory<>("delete"));
+
+        txtSearch.setOnAction((e) -> {
+            btnSearchOnAction(new ActionEvent());
+        });
     }
 
     public void btnRegisterCrewOnAction(ActionEvent actionEvent)throws IOException {
         Node node = FXMLLoader.load(getClass().getResource("/view/crew_registration_form.fxml"));
         root.getChildren().setAll(node);
+    }
+
+    @FXML
+    void btnSearchOnAction(ActionEvent event) {
+        String search = txtSearch.getText();
+        if(search.length() == 0){
+            tableCrew.setItems(crews);
+            return;
+        }
+        ObservableList<CrewTM> temp = FXCollections.observableArrayList();
+
+        for(CrewTM crew : crews){
+            if(crew.getCrewId().equals(search)){
+                temp.add(crew);
+            }
+        }
+
+        tableCrew.setItems(temp);
     }
 
 }

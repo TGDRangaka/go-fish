@@ -29,15 +29,15 @@
                   <Font name="System Bold" size="20.0" />
                </font>
             </JFXButton>
-            <Label layoutX="86.0" layoutY="6.0" text="Add A New Fish" textFill="WHITE" underline="true">
+            <Label layoutX="62.0" layoutY="-3.0" text="Add A New Fish" textFill="WHITE" underline="true">
                <font>
-                  <Font name="System Bold" size="20.0" />
+                  <Font name="System Bold" size="30.0" />
                </font>
             </Label>
             <Label fx:id="lblFishType" layoutX="58.0" layoutY="217.0" prefHeight="17.0" prefWidth="231.0" text=" " textFill="#ff5050" />
-            <Label fx:id="lblUnitWeight" layoutX="58.0" layoutY="310.0" prefHeight="17.0" prefWidth="231.0" text=" " textFill="#ff5050" />
+            <Label fx:id="lblUnitWeight" layoutX="58.0" layoutY="327.0" prefHeight="17.0" prefWidth="231.0" text=" " textFill="#ff5050" />
             <Label fx:id="lblUnitPrice" layoutX="58.0" layoutY="434.0" prefHeight="17.0" prefWidth="231.0" text=" " textFill="#ff5050" />
-            <ImageView layoutX="22.0" layoutY="282.0">
+            <ImageView layoutX="22.0" layoutY="297.0">
                <image>
                   <Image url="@../img/weight-32.png" />
                </image>
@@ -52,6 +52,21 @@
                   <Image url="@../img/fish-8-24.png" />
                </image>
             </ImageView>
+            <Label layoutX="58.0" layoutY="259.0" text="Unit Weight" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="20.0" />
+               </font>
+            </Label>
+            <JFXTextField fx:id="txtUnitWeight" layoutX="58.0" layoutY="290.0" prefHeight="30.0" prefWidth="231.0" styleClass="fish-text" stylesheets="@../CSS/styles2.css">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </JFXTextField>
+            <Label layoutX="265.0" layoutY="293.0" text="kg" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="20.0" />
+               </font>
+            </Label>
          </children>
       </Pane>
       <Label layoutX="804.0" layoutY="70.0" text="Fish ID:" textFill="WHITE">
@@ -64,27 +79,17 @@
             <Font name="System Bold" size="20.0" />
          </font>
       </Label>
-      <Label layoutX="804.0" layoutY="259.0" text="Unit Weight" textFill="WHITE">
-         <font>
-            <Font name="System Bold" size="20.0" />
-         </font>
-      </Label>
       <Label layoutX="804.0" layoutY="382.0" text="Unit Price" textFill="WHITE">
          <font>
             <Font name="System Bold" size="20.0" />
          </font>
       </Label>
-      <Label fx:id="lblFishId" layoutX="804.0" layoutY="100.0" prefHeight="30.0" prefWidth="99.0" textFill="#a3ffa5">
+      <Label fx:id="lblFishId" layoutX="804.0" layoutY="100.0" prefHeight="30.0" prefWidth="99.0" textFill="#4d4d4d">
          <font>
             <Font name="System Bold" size="20.0" />
          </font>
       </Label>
       <JFXTextField fx:id="txtFishType" layoutX="804.0" layoutY="195.0" prefHeight="30.0" prefWidth="231.0" styleClass="fish-text" stylesheets="@../CSS/styles2.css">
-         <font>
-            <Font size="16.0" />
-         </font>
-      </JFXTextField>
-      <JFXTextField fx:id="txtUnitWeight" layoutX="804.0" layoutY="289.0" prefHeight="30.0" prefWidth="231.0" styleClass="fish-text" stylesheets="@../CSS/styles2.css">
          <font>
             <Font size="16.0" />
          </font>
@@ -97,11 +102,6 @@
       <Label layoutX="278.0" layoutY="14.0" text="Market Fish Price" underline="true">
          <font>
             <Font name="System Bold" size="25.0" />
-         </font>
-      </Label>
-      <Label layoutX="1011.0" layoutY="293.0" text="kg" textFill="WHITE">
-         <font>
-            <Font name="System Bold" size="20.0" />
          </font>
       </Label>
       <Label layoutX="804.0" layoutY="416.0" text="Rs." textFill="WHITE">

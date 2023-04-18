@@ -366,7 +366,13 @@ public class CatchRecordFormController implements Initializable {
     void btnScanQROnAction(ActionEvent event) {
         webcam.open();
 
-        isThreadRunning = !isThreadRunning;
+        if(isThreadRunning){
+            isThreadRunning = false;
+            webcam.close();
+            return;
+        }
+
+        isThreadRunning = true;
         scanQR();
         try {
             new Thread(){
@@ -376,7 +382,7 @@ public class CatchRecordFormController implements Initializable {
                             imageCam.setImage(SwingFXUtils.toFXImage(webcam.getImage(), null));
 //                        imageCam.setImage(SwingFXUtils.toFXImage(webcam.getImage(), null));
                         try {
-                            Thread.sleep(20);
+                            Thread.sleep(40);
                         } catch (InterruptedException ex) {
                             ex.printStackTrace();
                         }
@@ -417,6 +423,8 @@ public class CatchRecordFormController implements Initializable {
                     if(result != null){
                         String text = result.getText();
                         System.out.println(text);
+                        webcam.close();
+                        isThreadRunning = false;
 
                         Platform.runLater(() -> {
                             try {
@@ -427,8 +435,7 @@ public class CatchRecordFormController implements Initializable {
                         });
 
 
-                        webcam.close();
-                        isThreadRunning = !isThreadRunning;
+
                     }
                 }
                 System.out.println("scan treads stoped");

@@ -1,5 +1,6 @@
 package lk.ijse.Controller;
 
+import com.jfoenix.controls.JFXTextField;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -45,6 +46,9 @@ public class SendMailsFormController implements Initializable {
 
     @FXML
     private TableColumn<?, ?> colAction;
+
+    @FXML
+    private JFXTextField txtSearch;
 
     private ObservableList<MailRecordsTM> mailRecords = FXCollections.observableArrayList();
 
@@ -106,6 +110,10 @@ public class SendMailsFormController implements Initializable {
         colTo.setCellValueFactory(new PropertyValueFactory<>("to"));
         colSentTime.setCellValueFactory(new PropertyValueFactory<>("dateTime"));
         colAction.setCellValueFactory(new PropertyValueFactory<>("action"));
+
+        txtSearch.setOnAction((e) -> {
+            btnSearchOnAction(new ActionEvent());
+        });
     }
 
     @FXML
@@ -114,4 +122,21 @@ public class SendMailsFormController implements Initializable {
         root.getChildren().setAll(node);
     }
 
+    @FXML
+    void btnSearchOnAction(ActionEvent event) {
+        String search = txtSearch.getText();
+        if(search.length() == 0){
+            tableMailRecords.setItems(mailRecords);
+        }
+
+        ObservableList<MailRecordsTM> temp = FXCollections.observableArrayList();
+
+        for(MailRecordsTM mailRec : mailRecords){
+            if(mailRec.getMailId().equals(search) || mailRec.getTo().contains(search)){
+                temp.add(mailRec);
+            }
+        }
+
+        tableMailRecords.setItems(temp);
+    }
 }

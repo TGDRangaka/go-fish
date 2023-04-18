@@ -1,5 +1,6 @@
 package lk.ijse.Controller;
 
+import com.jfoenix.controls.JFXTextField;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -23,6 +24,7 @@ import java.sql.SQLException;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.List;
+import java.util.Locale;
 import java.util.ResourceBundle;
 
 public class CatchManageFormController implements Initializable {
@@ -59,6 +61,9 @@ public class CatchManageFormController implements Initializable {
 
     @FXML
     private TableColumn<?, ?> colAction;
+
+    @FXML
+    private JFXTextField txtSearch;
 
     private ObservableList<CatchTM> catchList = FXCollections.observableArrayList();
 
@@ -124,6 +129,10 @@ public class CatchManageFormController implements Initializable {
         colTripStartedTime.setCellValueFactory(new PropertyValueFactory<>("tripStartedTime"));
         colTripEndedTime.setCellValueFactory(new PropertyValueFactory<>("tripEndedTime"));
         colAction.setCellValueFactory(new PropertyValueFactory<>("action"));
+
+        txtSearch.setOnAction((e) -> {
+            btnSearchOnAction(new ActionEvent());
+        });
     }
 
     @FXML
@@ -132,4 +141,24 @@ public class CatchManageFormController implements Initializable {
         root.getChildren().setAll(node);
     }
 
+    @FXML
+    void btnSearchOnAction(ActionEvent event) {
+        String search = txtSearch.getText();
+        if(search.length() == 0){
+            tableCatches.setItems(catchList);
+            return;
+        }
+
+        ObservableList<CatchTM> temp = FXCollections.observableArrayList();
+
+        for(CatchTM catchTM : catchList){
+            String date = String.valueOf(catchTM.getCatchDate());
+            System.out.println(date + "---" + search);
+            if(catchTM.getId().equals(search) || catchTM.getCrewId().equals(search) || date.equals(search)){
+                temp.add(catchTM);
+            }
+        }
+
+        tableCatches.setItems(temp);
+    }
 }

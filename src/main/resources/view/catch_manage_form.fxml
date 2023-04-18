@@ -35,12 +35,12 @@
             <Font name="System Bold" size="20.0" />
          </font>
       </JFXButton>
-      <JFXTextField alignment="CENTER" focusColor="#405aa800" layoutX="301.0" layoutY="29.0" prefHeight="51.0" prefWidth="497.0" promptText="Search" style="-fx-background-color: transparent; -fx-background-radius: 30; -fx-border-color: linear-gradient(to right, #ff00cc, #333399); -fx-border-radius: 30;" unFocusColor="#4d4d4d00">
+      <JFXTextField fx:id="txtSearch" alignment="CENTER" focusColor="#405aa800" layoutX="278.0" layoutY="29.0" prefHeight="51.0" prefWidth="497.0" promptText="Search" style="-fx-background-color: transparent; -fx-background-radius: 30; -fx-border-color: white; -fx-border-radius: 30;" unFocusColor="#4d4d4d00">
          <font>
             <Font size="20.0" />
          </font>
       </JFXTextField>
-      <JFXButton contentDisplay="GRAPHIC_ONLY" layoutX="746.0" layoutY="30.0" prefHeight="50.0" prefWidth="52.0" style="-fx-background-radius: 50%;">
+      <JFXButton contentDisplay="GRAPHIC_ONLY" layoutX="723.0" layoutY="30.0" onAction="#btnSearchOnAction" prefHeight="50.0" prefWidth="52.0" style="-fx-background-radius: 50%;">
          <graphic>
             <ImageView fitHeight="38.0" fitWidth="35.0">
                <image>

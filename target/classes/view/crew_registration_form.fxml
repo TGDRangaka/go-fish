@@ -156,21 +156,21 @@
                               <RowConstraints minHeight="10.0" prefHeight="8.0" vgrow="SOMETIMES" />
                            </rowConstraints>
                            <children>
-                              <Label text="Boat Registration No.:">
+                              <Label text="Boat Reg. No.:">
                                  <font>
-                                    <Font size="18.0" />
+                                    <Font name="System Bold" size="18.0" />
                                  </font>
                               </Label>
                               <JFXTextField fx:id="txtBoatRegistrationNo" prefHeight="28.0" prefWidth="331.0" GridPane.columnIndex="1" />
                               <Label text="Type:" GridPane.rowIndex="2">
                                  <font>
-                                    <Font size="18.0" />
+                                    <Font name="System Bold" size="18.0" />
                                  </font>
                               </Label>
                               <JFXTextField fx:id="txtBoatModel" prefHeight="28.0" prefWidth="240.0" GridPane.columnIndex="3" />
                               <Label text="Model:" GridPane.columnIndex="2">
                                  <font>
-                                    <Font size="18.0" />
+                                    <Font name="System Bold" size="18.0" />
                                  </font>
                                  <GridPane.margin>
                                     <Insets left="20.0" />
@@ -178,7 +178,7 @@
                               </Label>
                               <Label text="Satellite Phone No.:" GridPane.columnIndex="2" GridPane.rowIndex="2">
                                  <font>
-                                    <Font size="18.0" />
+                                    <Font name="System Bold" size="18.0" />
                                  </font>
                                  <GridPane.margin>
                                     <Insets left="20.0" />
@@ -210,7 +210,7 @@
                         </TableView>
                         <Label layoutX="14.0" layoutY="292.0" text="Select Boat:">
                            <font>
-                              <Font size="18.0" />
+                              <Font name="System Bold" size="18.0" />
                            </font>
                         </Label>
                         <JFXComboBox fx:id="cbSelectBoat" layoutX="138.0" layoutY="287.0" onMouseClicked="#cbSelectBoatOnMouseClicked" prefHeight="32.0" prefWidth="216.0" />
@@ -252,20 +252,20 @@
                                  <children>
                                     <Label text="Owner Name:">
                                        <font>
-                                          <Font size="18.0" />
+                                          <Font name="System Bold" size="18.0" />
                                        </font>
                                     </Label>
                                     <JFXTextField fx:id="txtOwnerName" prefHeight="28.0" prefWidth="331.0" GridPane.columnIndex="1" />
                                     <Label text="Address:" GridPane.rowIndex="2">
                                        <font>
-                                          <Font size="18.0" />
+                                          <Font name="System Bold" size="18.0" />
                                        </font>
                                     </Label>
                                     <JFXTextField fx:id="txtOwnerAddress" prefHeight="28.0" prefWidth="331.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                                     <JFXTextField fx:id="txtOwnerNIC" prefHeight="28.0" prefWidth="240.0" GridPane.columnIndex="3" />
                                     <Label text="NIC:" GridPane.columnIndex="2">
                                        <font>
-                                          <Font size="18.0" />
+                                          <Font name="System Bold" size="18.0" />
                                        </font>
                                        <GridPane.margin>
                                           <Insets left="20.0" />
@@ -273,7 +273,7 @@
                                     </Label>
                                     <Label text="Contact No.:" GridPane.columnIndex="2" GridPane.rowIndex="2">
                                        <font>
-                                          <Font size="18.0" />
+                                          <Font name="System Bold" size="18.0" />
                                        </font>
                                        <GridPane.margin>
                                           <Insets left="20.0" />
@@ -299,7 +299,7 @@
                         <JFXComboBox fx:id="cbCrewMembers" layoutX="599.0" layoutY="287.0" onAction="#cbCrewMembersOnAction" prefHeight="32.0" prefWidth="239.0" />
                         <Label layoutX="431.0" layoutY="290.0" text="Choose Form Crew:">
                            <font>
-                              <Font size="18.0" />
+                              <Font name="System Bold" size="18.0" />
                            </font>
                         </Label>
                         <JFXButton layoutX="836.0" layoutY="335.0" onAction="#btnOwnerClearOnAction" prefHeight="25.0" prefWidth="67.0" styleClass="clear" stylesheets="@../CSS/styles2.css" text="Clear">
@@ -307,6 +307,11 @@
                               <Cursor fx:constant="HAND" />
                            </cursor>
                         </JFXButton>
+                        <Label layoutX="390.0" layoutY="-5.0" text="Enter Boats Details Here:" textFill="#363636" underline="true">
+                           <font>
+                              <Font name="System Bold" size="20.0" />
+                           </font>
+                        </Label>
                      </children>
                   </Pane>
                   <Pane fx:id="paneCrewDetails" prefHeight="573.0" prefWidth="1084.0">
@@ -333,7 +338,7 @@
                         </JFXButton>
                         <Label layoutX="224.0" layoutY="484.0" prefHeight="27.0" prefWidth="67.0" text="Leader">
                            <font>
-                              <Font size="18.0" />
+                              <Font name="System Bold" size="18.0" />
                            </font>
                         </Label>
                         <ComboBox fx:id="cbCrewLeader" layoutX="294.0" layoutY="479.0" onMouseClicked="#cbCrewLeaderOnMouseClicked" prefHeight="37.0" prefWidth="208.0" promptText="Select the leader">
@@ -343,7 +348,7 @@
                         </ComboBox>
                         <Label layoutX="18.0" layoutY="484.0" prefHeight="27.0" prefWidth="132.0" text="Crewmen Count">
                            <font>
-                              <Font size="18.0" />
+                              <Font name="System Bold" size="18.0" />
                            </font>
                         </Label>
                         <Label layoutX="20.0" text="Crew ID -">
@@ -351,14 +356,14 @@
                               <Font name="System Bold" size="18.0" />
                            </font>
                         </Label>
-                        <Label layoutX="549.0" layoutY="475.0" prefHeight="27.0" prefWidth="137.0" text="Available Times :">
+                        <Label layoutX="549.0" layoutY="475.0" prefHeight="27.0" prefWidth="148.0" text="Available Times :">
                            <font>
-                              <Font size="18.0" />
+                              <Font name="System Bold" size="18.0" />
                            </font>
                         </Label>
                         <Label layoutX="549.0" layoutY="513.0" prefHeight="27.0" prefWidth="137.0" text="Available Days :">
                            <font>
-                              <Font size="18.0" />
+                              <Font name="System Bold" size="18.0" />
                            </font>
                         </Label>
                         <HBox layoutX="695.0" layoutY="514.0" prefHeight="26.0" prefWidth="381.0">
@@ -418,19 +423,19 @@
                            <children>
                               <Label text="Crewman Name">
                                  <font>
-                                    <Font size="18.0" />
+                                    <Font name="System Bold" size="18.0" />
                                  </font>
                               </Label>
                               <JFXTextField fx:id="txtCrewmanName" prefHeight="28.0" prefWidth="331.0" style="-fx-background-color: transparent;" GridPane.columnIndex="1" />
                               <Label text="Address" GridPane.rowIndex="2">
                                  <font>
-                                    <Font size="18.0" />
+                                    <Font name="System Bold" size="18.0" />
                                  </font>
                               </Label>
                               <JFXTextField fx:id="txtCrewmanAddress" prefHeight="28.0" prefWidth="331.0" style="-fx-background-color: transparent;" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                               <Label text="Email" GridPane.rowIndex="4">
                                  <font>
-                                    <Font size="18.0" />
+                                    <Font name="System Bold" size="18.0" />
                                  </font>
                               </Label>
                               <JFXTextField fx:id="txtCrewmanEmail" prefHeight="28.0" prefWidth="332.0" style="-fx-background-color: transparent;" GridPane.columnIndex="1" GridPane.rowIndex="4" />
@@ -439,7 +444,7 @@
                               <JFXTextField fx:id="txtContactNo" prefHeight="28.0" prefWidth="241.0" style="-fx-background-color: transparent;" GridPane.columnIndex="3" GridPane.rowIndex="4" />
                               <Label text="NIC" GridPane.columnIndex="2">
                                  <font>
-                                    <Font size="18.0" />
+                                    <Font name="System Bold" size="18.0" />
                                  </font>
                                  <GridPane.margin>
                                     <Insets left="20.0" />
@@ -447,7 +452,7 @@
                               </Label>
                               <Label text="BOD" GridPane.columnIndex="2" GridPane.rowIndex="2">
                                  <font>
-                                    <Font size="18.0" />
+                                    <Font name="System Bold" size="18.0" />
                                  </font>
                                  <GridPane.margin>
                                     <Insets left="20.0" />
@@ -455,7 +460,7 @@
                               </Label>
                               <Label text="Contact No." GridPane.columnIndex="2" GridPane.rowIndex="4">
                                  <font>
-                                    <Font size="18.0" />
+                                    <Font name="System Bold" size="18.0" />
                                  </font>
                                  <GridPane.margin>
                                     <Insets left="20.0" />
@@ -486,6 +491,11 @@
                         <JFXCheckBox fx:id="cboxMorning" layoutX="702.0" layoutY="481.0" text="Morning" />
                         <JFXCheckBox fx:id="cboxEvening" layoutX="810.0" layoutY="480.0" styleClass="box" text="Evening" />
                         <JFXCheckBox fx:id="cboxNight" layoutX="920.0" layoutY="481.0" text="Night" />
+                        <Label layoutX="408.0" layoutY="2.0" text="Enter Crewmen Details Here:" textFill="#2c2c2c" underline="true">
+                           <font>
+                              <Font name="System Bold" size="20.0" />
+                           </font>
+                        </Label>
                      </children>
                   </Pane>
                </children></AnchorPane>

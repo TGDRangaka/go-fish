@@ -3,6 +3,7 @@
 <?import com.jfoenix.controls.JFXButton?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.effect.ColorAdjust?>
 <?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -16,7 +17,7 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="700.0" prefWidth="1366.0" style="-fx-background-color: linear-gradient(to right, #54ABFE, #6F94F0);" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.Controller.MainWindowFormController">
+<AnchorPane prefHeight="700.0" prefWidth="1366.0" styleClass="mainmenu" stylesheets="@../CSS/styles2.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.Controller.MainWindowFormController">
    <children>
       <VBox alignment="TOP_CENTER" layoutX="-1.0" prefHeight="669.0" prefWidth="271.0" styleClass="mainmenu-vbox" stylesheets="@../CSS/styles2.css" AnchorPane.bottomAnchor="12.0" AnchorPane.leftAnchor="7.0" AnchorPane.topAnchor="10.0">
          <children>
@@ -24,12 +25,12 @@
                <children>
                   <Pane prefHeight="82.0" prefWidth="296.0">
                      <children>
-                        <Label alignment="CENTER" layoutX="113.0" layoutY="-3.0" prefHeight="35.0" prefWidth="74.0" text="Admin" textFill="WHITE" underline="true">
+                        <Label alignment="CENTER" layoutX="113.0" layoutY="-3.0" prefHeight="35.0" prefWidth="74.0" text="Admin" textFill="#2c2c2c" underline="true">
                            <font>
                               <Font name="System Bold" size="20.0" />
                            </font>
                         </Label>
-                        <Label fx:id="lblUserName" alignment="CENTER" layoutX="1.0" layoutY="35.0" prefHeight="17.0" prefWidth="271.0" textFill="WHITE">
+                        <Label fx:id="lblUserName" alignment="CENTER" layoutX="1.0" layoutY="35.0" prefHeight="17.0" prefWidth="271.0" textFill="#2c2c2c">
                            <font>
                               <Font size="22.0" />
                            </font>
@@ -39,6 +40,9 @@
                            <image>
                               <Image url="@../img/user.png" />
                            </image>
+                           <effect>
+                              <ColorAdjust brightness="-0.64" contrast="-1.0" hue="-0.07" saturation="-1.0" />
+                           </effect>
                         </ImageView>
                      </children>
                   </Pane>
@@ -191,7 +195,7 @@
                         </Label>
                         <Label fx:id="lblTime" alignment="CENTER_RIGHT" layoutX="909.0" layoutY="21.0" prefHeight="47.0" prefWidth="359.0" text="YYYY/MM/DD--HH:MM" textFill="#3e4756">
                            <font>
-                              <Font size="17.0" />
+                              <Font name="System Bold" size="17.0" />
                            </font>
                            <padding>
                               <Insets right="20.0" />
