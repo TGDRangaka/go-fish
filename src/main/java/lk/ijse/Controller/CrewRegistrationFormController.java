@@ -736,13 +736,13 @@ public class CrewRegistrationFormController implements Initializable {
                 }else {
                     btnNext.setText("Register");
                 }
+                paneVisible(3);
             }else {
                 new Alert(Alert.AlertType.WARNING, "Boats and Owners count must at least need to be 1").show();
                 prase--;
             }
 
 
-            paneVisible(3);
         }
     }
 

@@ -18,6 +18,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
 <AnchorPane prefHeight="640.0" prefWidth="1083.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.Controller.DashboardFormController">
    <children>
@@ -157,7 +158,21 @@
                         <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                      </VBox.margin>
                      <children>
-                        <HBox prefHeight="168.0" prefWidth="743.0" />
+                        <ImageView fitHeight="112.0" fitWidth="112.0" layoutX="14.0" layoutY="14.0">
+                           <image>
+                              <Image url="@../img/cloudy.png" />
+                           </image>
+                        </ImageView>
+                        <Label layoutX="143.0" layoutY="14.0" text="Cloudy" textFill="WHITE">
+                           <font>
+                              <Font name="System Bold" size="30.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="32.0" layoutY="126.0" text="Apr/16" textFill="#141414">
+                           <font>
+                              <Font size="25.0" />
+                           </font>
+                        </Label>
                      </children>
                   </Pane>
                </children>

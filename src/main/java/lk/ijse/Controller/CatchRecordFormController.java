@@ -1,16 +1,25 @@
 package lk.ijse.Controller;
 
+import com.github.sarxos.webcam.Webcam;
+import com.github.sarxos.webcam.WebcamResolution;
+import com.google.zxing.*;
+import com.google.zxing.client.j2se.BufferedImageLuminanceSource;
+import com.google.zxing.common.HybridBinarizer;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXCheckBox;
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXTextField;
+import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.embed.swing.SwingFXUtils;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.Pane;
 import lk.ijse.DB.DBConnection;
 import lk.ijse.Model.CatchDetailModel;
 import lk.ijse.Model.CatchModel;
@@ -27,6 +36,7 @@ import net.sf.jasperreports.engine.design.JasperDesign;
 import net.sf.jasperreports.engine.xml.JRXmlLoader;
 import net.sf.jasperreports.view.JasperViewer;
 
+import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -36,6 +46,7 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import java.util.*;
 
 import static lk.ijse.util.CrudUtil.getNewId;
@@ -112,6 +123,11 @@ public class CatchRecordFormController implements Initializable {
     @FXML
     private JFXComboBox<String> cbCrewId;
 
+    @FXML
+    private ImageView imageCam;
+    private Webcam webcam = null;
+    private boolean isThreadRunning = false;
+
     private ObservableList<CatchDetailTM> catchDetais = FXCollections.observableArrayList();
 
     @SneakyThrows
@@ -126,6 +142,10 @@ public class CatchRecordFormController implements Initializable {
         }
         loadCellValueFactory();
         validation();
+
+
+        webcam = Webcam.getDefault();
+        webcam.setViewSize(WebcamResolution.VGA.getSize());
     }
 
     private void validation() {
@@ -342,6 +362,101 @@ public class CatchRecordFormController implements Initializable {
         txtCaughtWeight.requestFocus();
     }
 
+    @FXML
+    void btnScanQROnAction(ActionEvent event) {
+        webcam.open();
+
+        isThreadRunning = !isThreadRunning;
+        scanQR();
+        try {
+            new Thread(){
+                @Override
+                public void run() {
+                    while (isThreadRunning) {
+                            imageCam.setImage(SwingFXUtils.toFXImage(webcam.getImage(), null));
+//                        imageCam.setImage(SwingFXUtils.toFXImage(webcam.getImage(), null));
+                        try {
+                            Thread.sleep(20);
+                        } catch (InterruptedException ex) {
+                            ex.printStackTrace();
+                        }
+                    }
+                    System.out.println("btn treads stoped");
+                }
+            }.start();
+        } catch (Exception ex){
+            System.out.println(ex);
+        }
+
+    }
+
+    private void scanQR() {
+        new Thread(){
+            @Override
+            public void run() {
+                while (isThreadRunning) {
+
+                    Result result = null;
+                    BufferedImage image = null;
+
+                    if (webcam.isOpen()) {
+                        if ((image = webcam.getImage()) == null) {
+                            continue;
+                        }
+                    }
+
+                    LuminanceSource source = new BufferedImageLuminanceSource(image);
+                    BinaryBitmap bitmap = new BinaryBitmap(new HybridBinarizer(source));
+
+                    try {
+                        result = new MultiFormatReader().decode(bitmap);
+                    } catch (NotFoundException e) {
+                        e.printStackTrace();
+                    }
+
+                    if(result != null){
+                        String text = result.getText();
+                        System.out.println(text);
+
+                        Platform.runLater(() -> {
+                            try {
+                                setResult(text);
+                            } catch (SQLException e) {
+                                e.printStackTrace();
+                            }
+                        });
+
+
+                        webcam.close();
+                        isThreadRunning = !isThreadRunning;
+                    }
+                }
+                System.out.println("scan treads stoped");
+            }
+        }.start();
+    }
+
+    private void setResult(String text) throws SQLException {
+        lblCaughtWeight.setText(null);
+
+        String[] data = text.split("%");
+        String[] catchData = data[0].split(",");
+        String[] catchDetails = data[1].split(",");
+
+        lblCatchDate.setText(catchData[0]);
+        cbCrewId.setValue(catchData[1]);
+
+        for(String catchDetail : catchDetails){
+            String[] split = catchDetail.split(":");
+
+            cbFishType.setValue(split[0]);
+            cbFishTypeOnAction(new ActionEvent());
+
+            txtCaughtWeight.setText(split[1]);
+            btnAdd.fire();
+            System.out.println("fire");
+        }
+    }
 
     private void getReport() {
         try {
