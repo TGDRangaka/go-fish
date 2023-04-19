@@ -103,12 +103,12 @@
                               </Label>
                            </children>
                         </Pane>
-                        <Label layoutX="571.0" layoutY="345.0" text="Available Times :">
+                        <Label layoutX="573.0" layoutY="369.0" text="Available Times :">
                            <font>
                               <Font name="System Bold" size="20.0" />
                            </font>
                         </Label>
-                        <Label layoutX="571.0" layoutY="385.0" text="Available Days :">
+                        <Label layoutX="574.0" layoutY="437.0" text="Available Days :">
                            <font>
                               <Font name="System Bold" size="20.0" />
                            </font>
@@ -118,22 +118,17 @@
                               <Font name="System Bold" size="20.0" />
                            </font>
                         </Label>
-                        <JFXCheckBox fx:id="cboxSendMails" layoutX="571.0" layoutY="479.0" text="Send emails to crewmembers about registration.">
-                           <font>
-                              <Font size="15.0" />
-                           </font>
-                        </JFXCheckBox>
                         <Label fx:id="lblCrewLeaderReg" layoutX="746.0" layoutY="308.0" prefHeight="30.0" prefWidth="256.0" text="Dilshan Rangaka" textFill="#013f80">
                            <font>
                               <Font name="System Bold" size="20.0" />
                            </font>
                         </Label>
-                        <Label fx:id="lblAvailableTimesReg" layoutX="746.0" layoutY="348.0" prefHeight="30.0" prefWidth="372.0" text="Morning, Evening" textFill="#013f80">
+                        <Label fx:id="lblAvailableTimesReg" layoutX="748.0" layoutY="372.0" prefHeight="30.0" prefWidth="328.0" text="Morning, Evening" textFill="#013f80">
                            <font>
                               <Font size="20.0" />
                            </font>
                         </Label>
-                        <JFXTextArea fx:id="txtAvailableDaysReg" focusColor="#405aa800" layoutX="745.0" layoutY="382.0" prefHeight="80.0" prefWidth="344.0" styleClass="reg-text" stylesheets="@../CSS/styles2.css" text="Monday, Tuesday, Wednesday&#10;" unFocusColor="#4d4d4d00">
+                        <JFXTextArea fx:id="txtAvailableDaysReg" focusColor="#405aa800" layoutX="748.0" layoutY="434.0" prefHeight="80.0" prefWidth="328.0" styleClass="reg-text" stylesheets="@../CSS/styles2.css" text="Monday, Tuesday, Wednesday&#10;" unFocusColor="#4d4d4d00">
                            <font>
                               <Font size="20.0" />
                            </font>
@@ -346,7 +341,7 @@
                               <Cursor fx:constant="OPEN_HAND" />
                            </cursor>
                         </ComboBox>
-                        <Label layoutX="18.0" layoutY="484.0" prefHeight="27.0" prefWidth="132.0" text="Crewmen Count">
+                        <Label layoutX="18.0" layoutY="484.0" prefHeight="27.0" prefWidth="148.0" text="Crewmen Count">
                            <font>
                               <Font name="System Bold" size="18.0" />
                            </font>
@@ -483,7 +478,7 @@
                            </font>
                         </Label>
                         <JFXButton layoutX="913.0" layoutY="44.0" onAction="#btnClearCrewmanOnAction" styleClass="clear" stylesheets="@../CSS/styles2.css" text="Clear" />
-                        <Label fx:id="lblCrewmenCount" alignment="CENTER" layoutX="50.0" layoutY="511.0" prefHeight="46.0" prefWidth="64.0" textFill="#00a42c">
+                        <Label fx:id="lblCrewmenCount" alignment="CENTER" layoutX="50.0" layoutY="511.0" prefHeight="46.0" prefWidth="64.0" textFill="WHITE">
                            <font>
                               <Font name="System Bold" size="24.0" />
                            </font>

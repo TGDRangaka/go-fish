@@ -10,6 +10,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 public class CrewmanModel {
@@ -116,5 +117,18 @@ public class CrewmanModel {
         }
 
         return emailList;
+    }
+
+    public static Collection<String> getEmail(String crewmanId) throws SQLException {
+        String sql = "SELECT name,email FROM crewman WHERE crewmanId = ?";
+
+        ResultSet rs = CrudUtil.execute(sql, crewmanId);
+        Collection<String> data = new ArrayList<>();
+        if(rs.next()){
+            data.add(rs.getString(1));
+            data.add(rs.getString(2));
+        }
+
+        return data;
     }
 }

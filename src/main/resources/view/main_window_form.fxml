@@ -48,129 +48,142 @@
                   </Pane>
                </children>
             </HBox>
-            <JFXButton contentDisplay="RIGHT" focusTraversable="false" onAction="#btnDashboardOnAction" prefHeight="60.0" prefWidth="250.0" stylesheets="@../CSS/styles.css" text="Dashboard      ">
-               <font>
-                  <Font size="19.0" />
-               </font>
-               <VBox.margin>
-                  <Insets top="20.0" />
-               </VBox.margin>
-               <effect>
-                  <DropShadow height="35.83" offsetY="-10.0" radius="15.932499999999997" spread="0.02" width="29.9" />
-               </effect>
-               <graphic>
-                  <ImageView fitHeight="40.0" fitWidth="40.0">
-                     <image>
-                        <Image url="@../img/dashboard.png" />
-                     </image>
-                  </ImageView>
-               </graphic>
-            </JFXButton>
-            <JFXButton fx:id="btnCrewManage" contentDisplay="RIGHT" focusTraversable="false" onAction="#btnCrewManageOnAction" prefHeight="60.0" prefWidth="250.0" stylesheets="@../CSS/styles.css" text="Crew Manage  ">
-               <font>
-                  <Font size="19.0" />
-               </font>
-               <VBox.margin>
-                  <Insets top="20.0" />
-               </VBox.margin>
-               <effect>
-                  <DropShadow height="35.83" offsetY="-10.0" radius="15.932499999999997" spread="0.02" width="29.9" />
-               </effect>
-               <graphic>
-                  <ImageView fitHeight="40.0" fitWidth="40.0">
-                     <image>
-                        <Image url="@../img/developers.png" />
-                     </image>
-                  </ImageView>
-               </graphic>
-            </JFXButton>
-            <JFXButton contentDisplay="RIGHT" focusTraversable="false" onAction="#btnCatchManageOnAction" prefHeight="60.0" prefWidth="250.0" stylesheets="@../CSS/styles.css" text="Catch Manage ">
-               <font>
-                  <Font size="19.0" />
-               </font>
-               <VBox.margin>
-                  <Insets top="20.0" />
-               </VBox.margin>
-               <effect>
-                  <DropShadow height="35.83" offsetY="-10.0" radius="15.932499999999997" spread="0.02" width="29.9" />
-               </effect>
-               <graphic>
-                  <ImageView fitHeight="40.0" fitWidth="40.0">
-                     <image>
-                        <Image url="@../img/catch.png" />
-                     </image>
-                  </ImageView>
-               </graphic>
-            </JFXButton>
-            <JFXButton contentDisplay="RIGHT" focusTraversable="false" onAction="#btnFishManageOnAction" prefHeight="60.0" prefWidth="250.0" stylesheets="@../CSS/styles.css" text="Fish Manage    ">
-               <font>
-                  <Font size="19.0" />
-               </font>
-               <VBox.margin>
-                  <Insets top="20.0" />
-               </VBox.margin>
-               <effect>
-                  <DropShadow height="35.83" offsetY="-10.0" radius="15.932499999999997" spread="0.02" width="29.9" />
-               </effect>
-               <graphic>
-                  <ImageView fitHeight="40.0" fitWidth="40.0">
-                     <image>
-                        <Image url="@../img/dead-fish.png" />
-                     </image>
-                  </ImageView>
-               </graphic>
-            </JFXButton>
-            <JFXButton contentDisplay="RIGHT" focusTraversable="false" onAction="#btnViewAnalysticOnAction" prefHeight="60.0" prefWidth="250.0" stylesheets="@../CSS/styles.css" text="View Analytics ">
-               <font>
-                  <Font size="19.0" />
-               </font>
-               <VBox.margin>
-                  <Insets top="20.0" />
-               </VBox.margin>
-               <graphic>
-                  <ImageView fitHeight="40.0" fitWidth="40.0">
-                     <image>
-                        <Image url="@../img/analysis.png" />
-                     </image>
-                  </ImageView>
-               </graphic>
-            </JFXButton>
-            <JFXButton contentDisplay="RIGHT" focusTraversable="false" onAction="#btnSendMailOnAction" prefHeight="60.0" prefWidth="250.0" stylesheets="@../CSS/styles.css" text="Send Mails       ">
-               <font>
-                  <Font size="19.0" />
-               </font>
-               <VBox.margin>
-                  <Insets top="20.0" />
-               </VBox.margin>
-               <effect>
-                  <DropShadow height="35.83" offsetY="-10.0" radius="15.932499999999997" spread="0.02" width="29.9" />
-               </effect>
-               <graphic>
-                  <ImageView fitHeight="40.0" fitWidth="40.0">
-                     <image>
-                        <Image url="@../img/sending.png" />
-                     </image>
-                  </ImageView>
-               </graphic>
-            </JFXButton>
-            <JFXButton contentDisplay="RIGHT" focusTraversable="false" onAction="#btnLogOutOnAction" prefHeight="60.0" prefWidth="250.0" stylesheets="@../CSS/styles.css" text="Log Out           ">
-               <font>
-                  <Font size="19.0" />
-               </font>
-               <VBox.margin>
-                  <Insets bottom="10.0" top="33.0" />
-               </VBox.margin>
-               <effect>
-                  <DropShadow height="35.83" offsetY="-10.0" radius="15.932499999999997" spread="0.02" width="29.9" />
-               </effect>
-               <graphic>
-                  <ImageView fitHeight="40.0" fitWidth="40.0">
-                     <image>
-                        <Image url="@../img/logout.png" />
-                     </image>
-                  </ImageView>
-               </graphic>
-            </JFXButton>
+            <Pane prefHeight="80.0" prefWidth="271.0">
+               <children>
+                  <Line fx:id="lineDashboard" endX="-160.5" endY="-1.52587890625E-5" layoutX="341.0" layoutY="40.0" startX="-100.0" stroke="GOLD" strokeLineCap="ROUND" strokeWidth="60.0" />
+                  <JFXButton contentDisplay="RIGHT" focusTraversable="false" layoutX="11.0" layoutY="10.0" onAction="#btnDashboardOnAction" prefHeight="60.0" prefWidth="250.0" stylesheets="@../CSS/styles.css" text="Dashboard      ">
+                     <font>
+                        <Font size="19.0" />
+                     </font>
+                     <effect>
+                        <DropShadow height="35.83" offsetY="-10.0" radius="15.932499999999997" spread="0.02" width="29.9" />
+                     </effect>
+                     <graphic>
+                        <ImageView fitHeight="40.0" fitWidth="40.0">
+                           <image>
+                              <Image url="@../img/dashboard.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </JFXButton>
+               </children>
+            </Pane>
+            <Pane prefHeight="80.0" prefWidth="271.0">
+               <children>
+                  <Line fx:id="lineCrewManage" endX="-160.5" endY="-1.52587890625E-5" layoutX="341.0" layoutY="40.0" startX="-100.0" stroke="GOLD" strokeLineCap="ROUND" strokeWidth="60.0" visible="false" />
+                  <JFXButton fx:id="btnCrewManage" contentDisplay="RIGHT" focusTraversable="false" layoutX="11.0" layoutY="10.0" onAction="#btnCrewManageOnAction" prefHeight="60.0" prefWidth="250.0" stylesheets="@../CSS/styles.css" text="Crew Manage  ">
+                     <font>
+                        <Font size="19.0" />
+                     </font>
+                     <effect>
+                        <DropShadow height="35.83" offsetY="-10.0" radius="15.932499999999997" spread="0.02" width="29.9" />
+                     </effect>
+                     <graphic>
+                        <ImageView fitHeight="40.0" fitWidth="40.0">
+                           <image>
+                              <Image url="@../img/developers.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </JFXButton>
+               </children>
+            </Pane>
+            <Pane prefHeight="80.0" prefWidth="271.0">
+               <children>
+                  <Line fx:id="lineCatchManage" endX="-160.5" endY="-1.52587890625E-5" layoutX="341.0" layoutY="40.0" startX="-100.0" stroke="GOLD" strokeLineCap="ROUND" strokeWidth="60.0" visible="false" />
+                  <JFXButton contentDisplay="RIGHT" focusTraversable="false" layoutX="11.0" layoutY="10.0" onAction="#btnCatchManageOnAction" prefHeight="60.0" prefWidth="250.0" stylesheets="@../CSS/styles.css" text="Catch Manage ">
+                     <font>
+                        <Font size="19.0" />
+                     </font>
+                     <effect>
+                        <DropShadow height="35.83" offsetY="-10.0" radius="15.932499999999997" spread="0.02" width="29.9" />
+                     </effect>
+                     <graphic>
+                        <ImageView fitHeight="40.0" fitWidth="40.0">
+                           <image>
+                              <Image url="@../img/catch.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </JFXButton>
+               </children>
+            </Pane>
+            <Pane prefHeight="80.0" prefWidth="271.0">
+               <children>
+                  <Line fx:id="lineFishManage" endX="-160.5" endY="-1.52587890625E-5" layoutX="341.0" layoutY="40.0" startX="-100.0" stroke="GOLD" strokeLineCap="ROUND" strokeWidth="60.0" visible="false" />
+                  <JFXButton contentDisplay="RIGHT" focusTraversable="false" layoutX="11.0" layoutY="10.0" onAction="#btnFishManageOnAction" prefHeight="60.0" prefWidth="250.0" stylesheets="@../CSS/styles.css" text="Fish Manage    ">
+                     <font>
+                        <Font size="19.0" />
+                     </font>
+                     <effect>
+                        <DropShadow height="35.83" offsetY="-10.0" radius="15.932499999999997" spread="0.02" width="29.9" />
+                     </effect>
+                     <graphic>
+                        <ImageView fitHeight="40.0" fitWidth="40.0">
+                           <image>
+                              <Image url="@../img/dead-fish.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </JFXButton>
+               </children>
+            </Pane>
+            <Pane prefHeight="80.0" prefWidth="271.0">
+               <children>
+                  <Line fx:id="lineViewAnalystics" endX="-160.5" endY="-1.52587890625E-5" layoutX="341.0" layoutY="40.0" startX="-100.0" stroke="GOLD" strokeLineCap="ROUND" strokeWidth="60.0" visible="false" />
+                  <JFXButton contentDisplay="RIGHT" focusTraversable="false" layoutX="11.0" layoutY="10.0" onAction="#btnViewAnalysticOnAction" prefHeight="60.0" prefWidth="250.0" stylesheets="@../CSS/styles.css" text="View Analytics ">
+                     <font>
+                        <Font size="19.0" />
+                     </font>
+                     <graphic>
+                        <ImageView fitHeight="40.0" fitWidth="40.0">
+                           <image>
+                              <Image url="@../img/analysis.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </JFXButton>
+               </children>
+            </Pane>
+            <Pane prefHeight="80.0" prefWidth="271.0">
+               <children>
+                  <Line fx:id="lineSendMails" endX="-160.5" endY="-1.52587890625E-5" layoutX="341.0" layoutY="40.0" startX="-100.0" stroke="GOLD" strokeLineCap="ROUND" strokeWidth="60.0" visible="false" />
+                  <JFXButton contentDisplay="RIGHT" focusTraversable="false" layoutX="11.0" layoutY="10.0" onAction="#btnSendMailOnAction" prefHeight="60.0" prefWidth="250.0" stylesheets="@../CSS/styles.css" text="Send Mails       ">
+                     <font>
+                        <Font size="19.0" />
+                     </font>
+                     <effect>
+                        <DropShadow height="35.83" offsetY="-10.0" radius="15.932499999999997" spread="0.02" width="29.9" />
+                     </effect>
+                     <graphic>
+                        <ImageView fitHeight="40.0" fitWidth="40.0">
+                           <image>
+                              <Image url="@../img/sending.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </JFXButton>
+               </children>
+            </Pane>
+            <Pane prefHeight="117.0" prefWidth="271.0">
+               <children>
+                  <JFXButton contentDisplay="RIGHT" focusTraversable="false" layoutX="11.0" layoutY="43.0" onAction="#btnLogOutOnAction" prefHeight="60.0" prefWidth="250.0" stylesheets="@../CSS/styles.css" text="Log Out           ">
+                     <font>
+                        <Font size="19.0" />
+                     </font>
+                     <effect>
+                        <DropShadow height="35.83" offsetY="-10.0" radius="15.932499999999997" spread="0.02" width="29.9" />
+                     </effect>
+                     <graphic>
+                        <ImageView fitHeight="40.0" fitWidth="40.0">
+                           <image>
+                              <Image url="@../img/logout.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </JFXButton>
+               </children>
+            </Pane>
          </children>
       </VBox>
       <GridPane layoutX="287.0" prefHeight="700.0" prefWidth="1079.0">
@@ -183,9 +196,9 @@
          <children>
             <VBox prefHeight="200.0" prefWidth="100.0">
                <children>
-                  <HBox alignment="CENTER_RIGHT" prefHeight="37.0" prefWidth="1067.0" style="-fx-border-color: gold; -fx-border-width: 0 0 4 0;">
+                  <HBox alignment="CENTER_LEFT" prefHeight="37.0" prefWidth="1067.0" style="-fx-border-color: white; -fx-border-width: 0 0 4 0;">
                      <children>
-                        <Label fx:id="lblTitle" prefHeight="47.0" prefWidth="886.0" text="Dashboard" textFill="#3e4756">
+                        <Label fx:id="lblTitle" prefHeight="58.0" prefWidth="716.0" text="Dashboard" textFill="#3e4756">
                            <font>
                               <Font name="Segoe UI Semibold" size="40.0" />
                            </font>
@@ -193,12 +206,36 @@
                               <Insets left="10.0" />
                            </padding>
                         </Label>
-                        <Label fx:id="lblTime" alignment="CENTER_RIGHT" layoutX="909.0" layoutY="21.0" prefHeight="47.0" prefWidth="359.0" text="YYYY/MM/DD--HH:MM" textFill="#3e4756">
+                        <ImageView fitHeight="40.0" fitWidth="40.0">
+                           <image>
+                              <Image url="@../img/calendar-7-24.png" />
+                           </image>
+                           <effect>
+                              <ColorAdjust brightness="-0.86" />
+                           </effect>
+                        </ImageView>
+                        <Label fx:id="lblDate" layoutX="813.0" layoutY="16.0" prefHeight="47.0" prefWidth="170.0" text="YYYY/MMM/DD" textFill="#3e4756">
                            <font>
-                              <Font name="System Bold" size="17.0" />
+                              <Font size="20.0" />
                            </font>
                            <padding>
-                              <Insets right="20.0" />
+                              <Insets left="10.0" />
+                           </padding>
+                        </Label>
+                        <ImageView fitHeight="40.0" fitWidth="40.0">
+                           <image>
+                              <Image url="@../img/time-8-24.png" />
+                           </image>
+                           <effect>
+                              <ColorAdjust brightness="-0.86" />
+                           </effect>
+                        </ImageView>
+                        <Label fx:id="lblTime" layoutX="909.0" layoutY="21.0" prefHeight="47.0" prefWidth="120.0" text="HH:MM:SS" textFill="#3e4756">
+                           <font>
+                              <Font size="20.0" />
+                           </font>
+                           <padding>
+                              <Insets left="10.0" />
                            </padding>
                         </Label>
                      </children>

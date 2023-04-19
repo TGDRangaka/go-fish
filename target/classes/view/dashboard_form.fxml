@@ -262,7 +262,7 @@
                   </Pane>
                </children>
             </VBox>
-            <TableView fx:id="tableFishPrices" editable="true" prefHeight="616.0" prefWidth="310.0" stylesheets="@../CSS/test.css" GridPane.columnIndex="1">
+            <TableView fx:id="tableFishPrices" editable="true" prefHeight="616.0" prefWidth="310.0" stylesheets="@../CSS/table_style.css" GridPane.columnIndex="1">
                <columns>
                   <TableColumn fx:id="colFishType" prefWidth="156.0" text="Fish" />
                   <TableColumn fx:id="colUnitWeight" prefWidth="53.0" text="Unit(kg)" />

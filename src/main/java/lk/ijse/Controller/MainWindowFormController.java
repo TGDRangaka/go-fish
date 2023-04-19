@@ -13,6 +13,7 @@ import javafx.scene.control.ButtonBar;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.shape.Line;
 import javafx.stage.Stage;
 import lk.ijse.DB.DBConnection;
 import lombok.SneakyThrows;
@@ -40,11 +41,35 @@ public class MainWindowFormController implements Initializable {
 
     @FXML
     private Label lblTitle;
+
+    @FXML
+    private Label lblDate;
+
     @FXML
     private Label lblTime;
 
     @FXML
     private JFXButton btnCrewManage;
+
+    @FXML
+    private Line lineDashboard;
+
+    @FXML
+    private Line lineCrewManage;
+
+    @FXML
+    private Line lineCatchManage;
+
+    @FXML
+    private Line lineFishManage;
+
+    @FXML
+    private Line lineViewAnalystics;
+
+    @FXML
+    private Line lineSendMails;
+
+    private Line[] lines = new Line[6];
 
     @SneakyThrows
     @Override
@@ -52,6 +77,15 @@ public class MainWindowFormController implements Initializable {
         Node node = FXMLLoader.load(getClass().getResource("/view/dashboard_form.fxml"));
         root.getChildren().setAll(node);
 
+        loadWindows();
+
+        lblUserName.setText(LoginFormController.user);
+        setTime();
+
+        lines = new Line[]{lineDashboard, lineCrewManage, lineCatchManage, lineFishManage, lineViewAnalystics, lineSendMails};
+    }
+
+    private void loadWindows() throws IOException {
         String[] ar = {
                 "dashboard_form.fxml",
                 "crew_registration_form.fxml",
@@ -72,11 +106,6 @@ public class MainWindowFormController implements Initializable {
             stage.centerOnScreen();
             stage.close();
         }
-
-        lblUserName.setText(LoginFormController.user);
-        setTime();
-
-
     }
 
     private void setTime() {
@@ -87,9 +116,11 @@ public class MainWindowFormController implements Initializable {
                 timer.schedule(new TimerTask() {
                     @Override
                     public void run() {
-                        LocalDateTime currentTime = LocalDateTime.now();
+                        LocalDate currentDate = LocalDate.now();
+                        LocalTime currentTime = LocalTime.now();
                         Platform.runLater(() -> {
-                            lblTime.setText(currentTime.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")));
+                            lblTime.setText(currentTime.format(DateTimeFormatter.ofPattern("HH:mm:ss")));
+                            lblDate.setText(currentDate.format(DateTimeFormatter.ofPattern("yyyy-MMM-dd")));
                         });
                     }
                 }, 0, 1000);
@@ -99,6 +130,7 @@ public class MainWindowFormController implements Initializable {
 
     @FXML
     void btnDashboardOnAction(ActionEvent event) throws IOException {
+        showSelectedBtn(0);
         lblTitle.setText("Dashboard");
         Node node = FXMLLoader.load(getClass().getResource("/view/dashboard_form.fxml"));
         root.getChildren().setAll(node);
@@ -106,6 +138,7 @@ public class MainWindowFormController implements Initializable {
 
     @FXML
     void btnCrewManageOnAction(ActionEvent event) throws IOException {
+        showSelectedBtn(1);
         lblTitle.setText("Crew Manage");
        Node node = FXMLLoader.load(getClass().getResource("/view/crew_manage_form.fxml"));
        root.getChildren().setAll(node);
@@ -113,6 +146,7 @@ public class MainWindowFormController implements Initializable {
 
     @FXML
     void btnCatchManageOnAction(ActionEvent event) throws IOException {
+        showSelectedBtn(2);
         lblTitle.setText("Catch Manage");
         Node node = FXMLLoader.load(getClass().getResource("/view/catch_manage_form.fxml"));
         root.getChildren().setAll(node);
@@ -120,6 +154,7 @@ public class MainWindowFormController implements Initializable {
 
     @FXML
     void btnFishManageOnAction(ActionEvent event) throws IOException {
+        showSelectedBtn(3);
         lblTitle.setText("Fish Manage");
         Node node = FXMLLoader.load(getClass().getResource("/view/fish_manage_form.fxml"));
         root.getChildren().setAll(node);
@@ -128,6 +163,7 @@ public class MainWindowFormController implements Initializable {
 
     @FXML
     void btnViewAnalysticOnAction(ActionEvent event) throws SQLException, IOException {
+        showSelectedBtn(4);
         lblTitle.setText("View Analystics");
         Node node = FXMLLoader.load(getClass().getResource("/view/view_analystic_form.fxml"));
         root.getChildren().setAll(node);
@@ -154,6 +190,7 @@ public class MainWindowFormController implements Initializable {
 
     @FXML
     void btnSendMailOnAction(ActionEvent event) throws IOException {
+        showSelectedBtn(5);
         lblTitle.setText("Send Mails");
         Node node = FXMLLoader.load(getClass().getResource("/view/send_mails_form.fxml"));
         root.getChildren().setAll(node);
@@ -181,5 +218,16 @@ public class MainWindowFormController implements Initializable {
             stage.show();
         }
 
+    }
+
+    private void showSelectedBtn(int btn){
+        for(int i = 0; i < lines.length; i++){
+            if(btn == i){
+                lines[i].setVisible(true);
+            }else{
+                lines[i].setVisible(false);
+            }
+
+        }
     }
 }

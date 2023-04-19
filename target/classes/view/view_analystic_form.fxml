@@ -23,18 +23,18 @@
                      <children>
                         <BarChart fx:id="barchartCatchWeight" layoutY="40.0" prefHeight="327.0" prefWidth="1083.0" stylesheets="@../CSS/barchart-style.css">
                           <xAxis>
-                            <CategoryAxis label="Days" fx:id="xAxisCatchWeight" />
+                            <CategoryAxis label="Days" tickLabelFill="WHITE" fx:id="xAxisCatchWeight" />
                           </xAxis>
                           <yAxis>
-                            <NumberAxis fx:id="yAxisCatchWeight" label="Weight(kg)" side="LEFT" />
+                            <NumberAxis fx:id="yAxisCatchWeight" label="Weight(kg)" side="LEFT" tickLabelFill="WHITE" />
                           </yAxis>
                         </BarChart>
                         <BarChart fx:id="barchartCatchCount" layoutY="372.0" prefHeight="239.0" prefWidth="1083.0" stylesheets="@../CSS/barchart-style.css">
                            <xAxis>
-                              <CategoryAxis label="Days" side="BOTTOM" fx:id="xAxisCatchCount" />
+                              <CategoryAxis label="Days" side="BOTTOM" tickLabelFill="WHITE" fx:id="xAxisCatchCount" />
                            </xAxis>
                            <yAxis>
-                              <NumberAxis fx:id="yAxisCatchCount" label="Count" side="LEFT" />
+                              <NumberAxis fx:id="yAxisCatchCount" label="Count" side="LEFT" tickLabelFill="WHITE" />
                            </yAxis>
                         </BarChart>
                         <FlowPane alignment="CENTER" layoutY="1.0" prefHeight="43.0" prefWidth="1085.0">

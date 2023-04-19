@@ -59,7 +59,7 @@
             <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
          </columnResizePolicy>
       </TableView>
-      <Label layoutX="25.0" layoutY="202.0" text="Fish Type :" textFill="#008a63">
+      <Label layoutX="25.0" layoutY="202.0" text="Fish Type :">
          <font>
             <Font name="System Bold" size="20.0" />
          </font>
@@ -97,27 +97,27 @@
             </ImageView>
          </graphic>
       </JFXButton>
-      <Label fx:id="lblCatchId" layoutX="151.0" layoutY="15.0" prefHeight="30.0" prefWidth="136.0" textFill="#12688a">
+      <Label fx:id="lblCatchId" layoutX="151.0" layoutY="15.0" prefHeight="30.0" prefWidth="136.0" textFill="WHITE">
          <font>
             <Font name="System Bold" size="20.0" />
          </font>
       </Label>
-      <Label fx:id="lblCatchDate" layoutX="157.0" layoutY="59.0" prefHeight="30.0" prefWidth="154.0" textFill="#12688a">
+      <Label fx:id="lblCatchDate" layoutX="157.0" layoutY="59.0" prefHeight="30.0" prefWidth="154.0" textFill="WHITE">
          <font>
             <Font name="System Bold" size="20.0" />
          </font>
       </Label>
-      <Label fx:id="lblFishId" alignment="CENTER" layoutX="306.0" layoutY="255.0" prefHeight="30.0" prefWidth="75.0" textFill="#12688a">
+      <Label fx:id="lblFishId" alignment="CENTER" layoutX="306.0" layoutY="255.0" prefHeight="30.0" prefWidth="75.0" textFill="WHITE">
          <font>
             <Font name="System Bold" size="20.0" />
          </font>
       </Label>
-      <Label fx:id="lblUnitWeight" alignment="CENTER_RIGHT" layoutX="427.0" layoutY="255.0" prefHeight="30.0" prefWidth="75.0" textFill="#12688a">
+      <Label fx:id="lblUnitWeight" alignment="CENTER_RIGHT" layoutX="427.0" layoutY="255.0" prefHeight="30.0" prefWidth="75.0" textFill="WHITE">
          <font>
             <Font name="System Bold" size="20.0" />
          </font>
       </Label>
-      <Label fx:id="lblUnitPrice" layoutX="668.0" layoutY="255.0" prefHeight="30.0" prefWidth="109.0" textFill="#12688a">
+      <Label fx:id="lblUnitPrice" layoutX="668.0" layoutY="255.0" prefHeight="30.0" prefWidth="109.0" textFill="WHITE">
          <font>
             <Font name="System Bold" size="20.0" />
          </font>
@@ -132,12 +132,12 @@
             <Font name="System Bold" size="20.0" />
          </font>
       </Label>
-      <Label fx:id="lblNetTotal" layoutX="96.0" layoutY="581.0" prefHeight="36.0" prefWidth="182.0" text="00.00" textFill="#ff3a3a">
+      <Label fx:id="lblNetTotal" layoutX="96.0" layoutY="581.0" prefHeight="36.0" prefWidth="182.0" text="00.00" textFill="WHITE">
          <font>
             <Font name="System Bold" size="25.0" />
          </font>
       </Label>
-      <Label fx:id="lblTotalWeight" alignment="CENTER_RIGHT" layoutX="247.0" layoutY="579.0" prefHeight="36.0" prefWidth="162.0" text="0" textFill="#ff3a3a">
+      <Label fx:id="lblTotalWeight" alignment="CENTER_RIGHT" layoutX="247.0" layoutY="579.0" prefHeight="36.0" prefWidth="162.0" text="0" textFill="WHITE">
          <font>
             <Font name="System Bold" size="25.0" />
          </font>
@@ -154,22 +154,22 @@
          </font>
       </Label>
       <Line endX="325.66668701171875" layoutX="741.0" layoutY="158.0" startX="-122.0" startY="-1.0" strokeWidth="3.0" />
-      <Label layoutX="505.0" layoutY="254.0" text="kg" textFill="#12688a">
+      <Label layoutX="505.0" layoutY="254.0" text="kg" textFill="WHITE">
          <font>
             <Font size="20.0" />
          </font>
       </Label>
-      <Label layoutX="414.0" layoutY="583.0" text="kg" textFill="#ff3a3a">
+      <Label layoutX="414.0" layoutY="583.0" text="kg" textFill="WHITE">
          <font>
             <Font name="System Bold" size="20.0" />
          </font>
       </Label>
-      <Label layoutX="68.0" layoutY="584.0" text="Rs:" textFill="#ff3a3a">
+      <Label layoutX="68.0" layoutY="584.0" text="Rs:" textFill="WHITE">
          <font>
             <Font size="20.0" />
          </font>
       </Label>
-      <Label layoutX="638.0" layoutY="255.0" text="Rs:" textFill="#12688a">
+      <Label layoutX="638.0" layoutY="255.0" text="Rs:" textFill="WHITE">
          <font>
             <Font size="20.0" />
          </font>

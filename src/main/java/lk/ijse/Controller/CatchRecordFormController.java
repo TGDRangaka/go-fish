@@ -145,7 +145,7 @@ public class CatchRecordFormController implements Initializable {
 
 
         webcam = Webcam.getDefault();
-        webcam.setViewSize(WebcamResolution.VGA.getSize());
+        webcam.setViewSize(new java.awt.Dimension(320,240));
     }
 
     private void validation() {
@@ -382,7 +382,7 @@ public class CatchRecordFormController implements Initializable {
                             imageCam.setImage(SwingFXUtils.toFXImage(webcam.getImage(), null));
 //                        imageCam.setImage(SwingFXUtils.toFXImage(webcam.getImage(), null));
                         try {
-                            Thread.sleep(40);
+                            Thread.sleep(20);
                         } catch (InterruptedException ex) {
                             ex.printStackTrace();
                         }

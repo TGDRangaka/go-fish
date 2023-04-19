@@ -16,7 +16,6 @@ import lk.ijse.Model.CrewmanModel;
 import lk.ijse.Model.MailModel;
 import lk.ijse.dto.Crew;
 import lk.ijse.dto.Mail;
-import lk.ijse.dto.tm.MailRecordsTM;
 import lk.ijse.dto.tm.SelectCrewTM;
 import lk.ijse.util.CrudUtil;
 import lk.ijse.util.SendMail;
@@ -26,7 +25,6 @@ import java.net.URL;
 import java.sql.SQLException;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.ResourceBundle;
 
@@ -59,7 +57,6 @@ public class MailFormController implements Initializable {
     @FXML
     private TableColumn<?, ?> colBoats;
 
-
     @FXML
     private JFXCheckBox cboxSelectAll;
 
@@ -72,7 +69,7 @@ public class MailFormController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         loadCellValueFactory();
-        loadSelectTable();
+        loadCrewSelectTable();
         loadIdLabel();
     }
 
@@ -80,7 +77,7 @@ public class MailFormController implements Initializable {
         lblCrewId.setText(CrudUtil.getNewId(MailModel.getLastId()));
     }
 
-    private void loadSelectTable() throws SQLException {
+    private void loadCrewSelectTable() throws SQLException {
         List<Crew> crewList = CrewModel.getAllCrew();
 
         for(Crew crew : crewList){
@@ -99,8 +96,8 @@ public class MailFormController implements Initializable {
     @FXML
     void btnSendOnAction(ActionEvent event) {
         List<String> idList = new ArrayList<>();
-        for(SelectCrewTM crew : selectCrewTMS){
-            if(crew.getCbox().isSelected()){
+        for (SelectCrewTM crew : selectCrewTMS) {
+            if (crew.getCbox().isSelected()) {
                 idList.add(crew.getCrewId());
             }
         }
