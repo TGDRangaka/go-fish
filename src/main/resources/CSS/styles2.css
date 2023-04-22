@@ -1,0 +1,95 @@
+.clear {
+    -fx-border-color: white;
+    -fx-border-radius: 10px;
+}
+
+.reg-text {
+    -fx-text-fill: #013f80;
+}
+
+.fish-text {
+    -fx-text-fill: #ffffff;
+}
+
+.fish-pane {
+    -fx-background-color: linear-gradient(to bottom, #38C190, #00A995);
+    -fx-background-radius: 10px;
+    -fx-border-color: white;
+    -fx-border-radius: 10px;
+}
+
+.mainmenu-vbox {
+    -fx-background-color: linear-gradient(to bottom, #00b4db, #0083b0);
+    /*-fx-background-color: linear-gradient(to bottom, #bdc3c7, #2c3e50);*/
+    /*-fx-background-color: linear-gradient(to bottom, #e8e8e8, #a6a6a6);*/
+    -fx-background-radius: 15px;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.4), 10, 0, 2, 2);
+}
+
+.mainmenu {
+    -fx-background-color:  linear-gradient(to right, #457fca, #5691c8);
+}
+
+.dashboard-panes {
+    /*-fx-background-color: rgba(59, 125, 210, 0.8);*/
+    -fx-background-color: transparent;
+    -fx-background-radius: 10px;
+    -fx-border-color: white;
+    -fx-border-radius: 10px;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.4), 5, 0.0, 4, 4);
+}
+
+.create-acc:hover {
+    -fx-text-fill: white;
+    -fx-cursor: hand;
+}
+
+.dashboard-label {
+    -fx-text-fill: #bafdff;
+    -fx-font-family: "Segoe UI";
+    -fx-font-size: 25px;
+    -fx-font-weight: bold;
+}
+
+.dashboard-values {
+    -fx-text-fill: #ffffff;
+    -fx-font-family: "Segoe UI";
+    -fx-font-size: 25px;
+    -fx-font-weight: bold;
+}
+
+.login-pane {
+    -fx-background-color: rgba(61, 120, 200, 0.8);
+    -fx-background-radius: 15px;
+}
+.introduction {
+     -fx-font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    -fx-font-size: 18px;
+    -fx-text-align: center;
+     -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 10, 0, 0, 5);
+ }
+
+
+.welcome-label {
+    -fx-font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    -fx-font-size: 35px;
+    -fx-text-fill: #333333;
+    -fx-font-weight: bold;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.2), 10, 0, 0, 5);
+}
+
+.payment-button {
+    -fx-background-color: linear-gradient(to right, #15d5c7, #38ef7d);
+    -fx-background-radius: 10px;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.2), 10, 0, 0, 5);
+}
+
+.get-report-button {
+    -fx-background-color: linear-gradient(to right, #38ef7d, #15d5c7);
+    -fx-background-radius: 10px;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.2), 10, 0, 0, 5);
+}
+
+.scroll-pane {
+    -fx-background-color: transparent;
+}

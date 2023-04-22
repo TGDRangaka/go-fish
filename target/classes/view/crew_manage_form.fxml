@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="root" prefHeight="640.0" prefWidth="1083.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.Controller.CrewManageFormController">
+   <children>
+      <TableView fx:id="tableCrew" focusTraversable="false" layoutX="24.0" layoutY="90.0" prefHeight="524.0" prefWidth="1043.0" stylesheets="@../CSS/table_style.css" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0">
+        <columns>
+          <TableColumn fx:id="colCrewId" prefWidth="61.0" text="Crew ID" />
+          <TableColumn fx:id="colLeaderName" prefWidth="205.0" text="Leader Name" />
+            <TableColumn fx:id="colCrewmenCount" prefWidth="102.0" text="Crewmen Count" />
+            <TableColumn fx:id="colBoatsCount" prefWidth="94.0" text="Boats Count" />
+            <TableColumn fx:id="colAvailableTimes" prefWidth="135.0" text="Available Times" />
+            <TableColumn fx:id="colAvailableDays" prefWidth="242.3333740234375" text="Available Days" />
+            <TableColumn fx:id="colAction1" prefWidth="91.0" text="Action 1" />
+            <TableColumn fx:id="colAction2" prefWidth="98.0" text="Action 2" />
+        </columns>
+      </TableView>
+      <Label layoutX="24.0" layoutY="3.0" prefHeight="36.0" prefWidth="224.0" text="Registered Crews" underline="true" AnchorPane.leftAnchor="20.0">
+         <font>
+            <Font name="System Bold" size="25.0" />
+         </font>
+      </Label>
+      <JFXButton contentDisplay="RIGHT" focusTraversable="false" layoutX="816.0" layoutY="12.0" onAction="#btnRegisterCrewOnAction" prefHeight="65.0" prefWidth="253.0" stylesheets="@../CSS/styles.css" text="Register a crew" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="15.0">
+         <font>
+            <Font name="System Bold" size="20.0" />
+         </font>
+         <graphic>
+            <ImageView fitHeight="40.0" fitWidth="40.0">
+               <image>
+                  <Image url="@../img/register.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </JFXButton>
+      <JFXTextField fx:id="txtSearch" alignment="CENTER" focusColor="#405aa800" layoutX="266.0" layoutY="16.0" prefHeight="51.0" prefWidth="497.0" promptText="Search" style="-fx-background-color: transparent; -fx-background-radius: 30; -fx-border-color: white; -fx-border-radius: 30;" unFocusColor="#4d4d4d00">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </JFXTextField>
+      <JFXButton contentDisplay="GRAPHIC_ONLY" layoutX="711.0" layoutY="17.0" onAction="#btnSearchOnAction" prefHeight="50.0" prefWidth="52.0" style="-fx-background-radius: 50%;">
+         <graphic>
+            <ImageView fitHeight="38.0" fitWidth="35.0">
+               <image>
+                  <Image url="@../img/search.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </JFXButton>
+      <Label layoutX="23.0" layoutY="41.0" text="C :">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Label>
+      <Label layoutX="153.0" layoutY="40.0" text="CM :">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Label>
+      <Label layoutX="24.0" layoutY="66.0" text="B :">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Label>
+      <Label layoutX="154.0" layoutY="65.0" text="BO :">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Label>
+      <Label fx:id="lblCrewCount" layoutX="51.0" layoutY="41.0" prefHeight="22.0" prefWidth="76.0" />
+      <Label fx:id="lblBoatsCount" layoutX="51.0" layoutY="66.0" prefHeight="22.0" prefWidth="76.0" />
+      <Label fx:id="lblCrewmenCount" layoutX="190.0" layoutY="41.0" prefHeight="22.0" prefWidth="76.0" />
+      <Label fx:id="lblBoatOwnersCount" layoutX="190.0" layoutY="65.0" prefHeight="22.0" prefWidth="76.0" />
+   </children>
+</AnchorPane>

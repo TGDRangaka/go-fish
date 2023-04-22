@@ -1,0 +1,38 @@
+
+.button {
+    -fx-background-color: #e0e0e0; /* Set button background color */
+    /*-fx-background-color: #00BFFF;*/
+    -fx-background-radius: 20px;
+    -fx-text-fill: black; /* Set button text color */
+    -fx-font-family: "Segoe UI Semibold";
+    -fx-font-size: 20px; /* Set font size */
+    /*-fx-padding: 10px 20px; !* Set padding *!*/
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.5), 10, 0, 0, 0); /* Add drop shadow effect */
+}
+
+.button:hover {
+    /*-fx-background-color: linear-gradient(to left, #fdfc47, #24fe41); !* Change button background color on hover *!*/
+    -fx-background-color: #ffffff;
+    -fx-text-fill: black; /* Change button text color on hover */
+    -fx-font-size: 22px; /* Set font size */
+    -fx-border-color: #ffffff; /* Add border color on hover */
+    -fx-border-radius: 20px; /* Set border radius */
+    -fx-border-width: 2px; /* Add border width on hover */
+    -fx-effect: dropshadow(three-pass-box, #71c7ec, 10, 0, 0, 0); /* Add neon glow effect on hover */
+}
+
+.b {
+    -fx-padding: 10px;
+    -fx-background-color: gold;
+    -fx-background-radius: 10px;
+    /*-fx-background-insets: 10px;*/
+    -fx-vgap: 10px;
+    -fx-border-color: black;
+    -fx-border-radius: 10px;
+}
+
+
+
+
+
+
