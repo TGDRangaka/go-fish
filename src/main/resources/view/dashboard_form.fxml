@@ -126,10 +126,10 @@
                            <children>
                               <BarChart fx:id="barChart" layoutX="-13.0" prefHeight="314.0" prefWidth="430.0" stylesheets="@../CSS/barchart-style.css">
                                 <xAxis>
-                                  <CategoryAxis side="BOTTOM" tickLabelFill="WHITE" fx:id="x" />
+                                  <CategoryAxis side="BOTTOM" style="-fx-tick-label-font-size: 14;" tickLabelFill="WHITE" fx:id="x" />
                                 </xAxis>
                                 <yAxis>
-                                  <NumberAxis fx:id="y" label="Weight(kg)" side="LEFT" tickLabelFill="WHITE" />
+                                  <NumberAxis fx:id="y" label="Weight(kg)" side="LEFT" style="-fx-tick-label-font-size: 14;" tickLabelFill="WHITE" />
                                 </yAxis>
                               </BarChart>
                            </children>

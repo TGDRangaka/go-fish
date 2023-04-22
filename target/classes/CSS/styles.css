@@ -21,6 +21,15 @@
     -fx-effect: dropshadow(three-pass-box, #71c7ec, 10, 0, 0, 0); /* Add neon glow effect on hover */
 }
 
+.b {
+    -fx-padding: 10px;
+    -fx-background-color: gold;
+    -fx-background-radius: 10px;
+    /*-fx-background-insets: 10px;*/
+    -fx-vgap: 10px;
+    -fx-border-color: black;
+    -fx-border-radius: 10px;
+}
 
 
 

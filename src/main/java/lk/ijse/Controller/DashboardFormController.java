@@ -3,6 +3,7 @@ package lk.ijse.Controller;
 import eu.hansolo.tilesfx.Tile;
 import eu.hansolo.tilesfx.TileBuilder;
 import eu.hansolo.tilesfx.chart.ChartData;
+import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -129,18 +130,22 @@ public class DashboardFormController implements Initializable {
     @SneakyThrows
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        loadCellValueFactory();
-        loadRadialChart();
-        loadLabels();
-        loadBarChart();
-        loadPriceTable();
-        try {
-            loadWeather();
-        }catch (Exception ex){
-            System.out.println("weather loading error!");
-        }
-
-
+        new Thread(){
+            public void run() {
+                Platform.runLater(() -> {
+                    try {
+                        loadCellValueFactory();
+                        loadRadialChart();
+                        loadLabels();
+                        loadBarChart();
+                        loadPriceTable();
+                        loadWeather();
+                    }catch (Exception e) {
+                        System.out.println("error!");
+                    }
+                });
+            }
+        }.start();
     }
 
     private void loadWeather() throws IOException, InterruptedException {
@@ -191,7 +196,7 @@ public class DashboardFormController implements Initializable {
         series4.setName("Past Days Catches Weights");
 
         LocalDate today = LocalDate.now();
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMM/dd");
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/dd");
         for (int i = 7; i >= 1; i--) {
             LocalDate date = today.minusDays(i);
             String formattedDate = date.format(formatter);
@@ -200,13 +205,8 @@ public class DashboardFormController implements Initializable {
             series4.getData().add(new XYChart.Data(formattedDate, weight));
 
         }
-
-
+        barChart.setAnimated(false);
         barChart.getData().addAll(series4);
-
-
-
-
     }
 
     private void loadLabels() throws SQLException {

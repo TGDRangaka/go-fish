@@ -1,9 +1,11 @@
 package lk.ijse.Controller;
 
 import com.jfoenix.controls.JFXComboBox;
+import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.chart.BarChart;
 import javafx.scene.chart.CategoryAxis;
@@ -11,9 +13,16 @@ import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.XYChart;
 import javafx.scene.control.DateCell;
 import javafx.scene.control.DatePicker;
+import javafx.scene.control.TextField;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Pane;
+import javafx.scene.layout.VBox;
 import lk.ijse.Model.CatchModel;
+import lk.ijse.Model.CrewModel;
+import lk.ijse.dto.Crew;
 import lombok.SneakyThrows;
 
+import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
 import java.time.LocalDate;
@@ -48,6 +57,11 @@ public class ViewAnalysticFormController implements Initializable {
 
     @FXML
     private NumberAxis yAxisCatchCount;
+
+
+    @FXML
+    private VBox vbox;
+
     @SneakyThrows
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -55,6 +69,22 @@ public class ViewAnalysticFormController implements Initializable {
         modifyComponets();
         loadCatchWeightBarChart();
         loadCatchCountBarChart();
+
+        new Thread(){
+            public void run() {
+                Platform.runLater(() -> {
+                    try {
+                        List<String> crewIds = CrewModel.getCrewIds();
+                        for (String crewId : crewIds){
+                            addNewPane(crewId);
+                        }
+                    } catch (SQLException | IOException e) {
+                        e.printStackTrace();
+                    }
+                });
+            }
+        }.start();
+
     }
 
     private void loadComboBox() {
@@ -179,5 +209,35 @@ public class ViewAnalysticFormController implements Initializable {
 
         barchartCatchCount.getData().clear();
         barchartCatchCount.getData().addAll(series);
+    }
+
+    private void addNewPane(String crewId) throws IOException, SQLException {
+        FXMLLoader fxmlLoader = new FXMLLoader();
+        fxmlLoader.setLocation(getClass().getResource("/view/crew_data_pane_form.fxml"));
+        AnchorPane anchorPane = fxmlLoader.load();
+
+        CrewDataPaneFormController crewPane = fxmlLoader.getController();
+
+        Crew crew = CrewModel.getCrew(crewId);
+        String totalCatchesCount = CatchModel.getCatchCount(crewId);
+        String totalCatchesWeight = CatchModel.getCatchWeight(crewId);
+        String totalCatchesPayments = CatchModel.getCatchPayments(crewId);
+
+        LocalDate date = LocalDate.now().minusDays(20);
+        XYChart.Series<String, Double> series = new XYChart.Series();
+        series.setName("Catch Weight");
+        for (int i = 1; i <= 20; i++) {
+            List<String> data = CatchModel.getCatchweight(crewId, date);
+
+            Double weight = Double.valueOf(data.get(0));
+            LocalDate day = LocalDate.parse(data.get(1));
+            series.getData().add(new XYChart.Data<>(day.format(DateTimeFormatter.ofPattern("MM/dd")), weight));
+
+            date = date.plusDays(1);
+        }
+
+        crewPane.setData(crew, totalCatchesCount, totalCatchesWeight, totalCatchesPayments, series);
+
+        vbox.getChildren().add(anchorPane);
     }
 }

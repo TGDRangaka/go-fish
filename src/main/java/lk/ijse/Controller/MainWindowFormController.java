@@ -77,7 +77,18 @@ public class MainWindowFormController implements Initializable {
         Node node = FXMLLoader.load(getClass().getResource("/view/dashboard_form.fxml"));
         root.getChildren().setAll(node);
 
-        loadWindows();
+        new Thread(){
+            public void run() {
+                Platform.runLater(() -> {
+                    try {
+                        loadWindows();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                });
+            }
+        }.start();
+
 
         lblUserName.setText(LoginFormController.user);
         setTime();
