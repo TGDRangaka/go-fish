@@ -186,6 +186,9 @@ public class CrewManageFormController implements Initializable {
                 if(result.orElse(no) == (yes)) {
                     try {
                         List<String> boatOwnersIdList = BoatOwnerModel.getBoatOwnersId(crewId);
+                        for(String s : boatOwnersIdList){
+                            System.out.println(s + "-----------------");
+                        }
                         List<String> catchIdList = CatchModel.getAllCatchIds(crewId);
                         boolean isCrewDeleted = CrewModel.deleteCrew(crewId, boatOwnersIdList, catchIdList);
 

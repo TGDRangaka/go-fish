@@ -195,7 +195,7 @@ public class CrewModel {
         return null;
     }
 
-    public static boolean updateCrew(Crew crew, List<Crewman> crewmenList, List<Boat> boatsList, List<BoatOwner> boatOwnersList) throws SQLException {
+    public static boolean updateCrew(Crew crew, List<Crewman> crewmenList, List<Boat> boatsList, List<BoatOwner> boatOwnersList, List<String> ownersIdList) throws SQLException {
         Connection con = null;
         try{
             con = DBConnection.getInstance().getConnection();
@@ -203,12 +203,7 @@ public class CrewModel {
 
             System.out.println(crew.getCrewId());
             boolean isBoatsDeleted = BoatModel.delete(crew.getCrewId());
-            List<String> ownerIds = new ArrayList<>();
-            for(BoatOwner boatOwner : boatOwnersList) {
-                ownerIds.add(boatOwner.getOwnerId());
-                System.out.println(boatOwner.getOwnerId());
-            }
-            boolean isBoatOwnersDeleted = BoatOwnerModel.delete(ownerIds);
+            boolean isBoatOwnersDeleted = BoatOwnerModel.delete(ownersIdList);
             boolean isCrewmenDeleted = CrewmanModel.delete(crew.getCrewId());
 
             System.out.println(isBoatsDeleted + " " + isBoatOwnersDeleted + " " + isCrewmenDeleted);
@@ -259,7 +254,7 @@ public class CrewModel {
     }
 
     public static List<String> getCrewIds() throws SQLException {
-        String sql = "SELECT crewId FROM crew";
+        String sql = "SELECT * FROM crew";
 
         ResultSet rs = CrudUtil.execute(sql);
         List<String> crewIds = new ArrayList<>();

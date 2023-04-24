@@ -230,6 +230,10 @@ public class FishManageFormController implements Initializable {
         btnAdd.setText("Add");
         loadNewFishId();
         clearFields();
+
+        lblFishType.setText(" ");
+        lblUnitWeight.setText(" ");
+        lblUnitPrice.setText(" ");
     }
 
     private void clearFields() {

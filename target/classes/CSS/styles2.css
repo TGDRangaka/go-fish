@@ -93,3 +93,11 @@
 .scroll-pane {
     -fx-background-color: transparent;
 }
+
+.crew-details-pane {
+    -fx-background-color: linear-gradient(to right, #0cebeb, #20e3b2, #29ffc6); /* light gray background color */
+    -fx-background-insets: 0;
+    -fx-background-radius: 10px;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.2), 10, 0, 3, 3); /* add a subtle drop shadow effect */
+    -fx-padding: 20px; /* add padding to the pane */
+}

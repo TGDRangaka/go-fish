@@ -124,6 +124,9 @@ public class CatchRecordFormController implements Initializable {
     private JFXComboBox<String> cbCrewId;
 
     @FXML
+    private JFXButton btnScanQR;
+
+    @FXML
     private ImageView imageCam;
     private Webcam webcam = null;
     private boolean isThreadRunning = false;
@@ -171,6 +174,7 @@ public class CatchRecordFormController implements Initializable {
 
         btnPayment.setDisable(true);
         btnAdd.setDisable(true);
+        btnScanQR.setDisable(true);
 
         List<CatchDetail> catchDetails = CatchDetailModel.getCatchDetails(selectedCatch.getId());
         List<Fish> fishList = FishModel.getAllFish();
@@ -223,6 +227,10 @@ public class CatchRecordFormController implements Initializable {
         colCaughtWeight.setCellValueFactory(new PropertyValueFactory<>("caughtWeight"));
         colTotal.setCellValueFactory(new PropertyValueFactory<>("total"));
         colAction.setCellValueFactory(new PropertyValueFactory<>("action"));
+
+        txtCaughtWeight.setOnAction((e) -> {
+            btnAdd.fire();
+        });
     }
 
     private void loadFishTypeComboBox() throws SQLException {
@@ -274,6 +282,7 @@ public class CatchRecordFormController implements Initializable {
 
         calculateTotals(total, caughtWeight);
         clearFields();
+        lblCaughtWeight.setText(" ");
     }
 
     private void calculateTotals(Double total, Double caughtWeight) {
@@ -316,6 +325,9 @@ public class CatchRecordFormController implements Initializable {
                 cbCrewId.setValue(null);
                 lblTotalWeight.setText(null);
                 lblNetTotal.setText(null);
+
+                loadDetails();
+                MainWindowFormController.btnCatch.fire();
             }else {
                 new Alert(Alert.AlertType.WARNING, "Catch Not Recorded!!").show();
             }

@@ -3,7 +3,6 @@ package lk.ijse.Controller;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXCheckBox;
 import com.jfoenix.controls.JFXComboBox;
-import com.jfoenix.controls.JFXRadioButton;
 import com.jfoenix.controls.JFXTextArea;
 import com.jfoenix.controls.JFXTextField;
 import javafx.collections.FXCollections;
@@ -586,17 +585,10 @@ public class CrewRegistrationFormController implements Initializable {
                 BoatOwner boatOwner = boatOwnersList.get(i);
                 if(boat.getOwnerId().equals(boatOwner.getOwnerId())) {
                     Button action = new Button("Remove");
-                    setOwnerRemoveBtnOnAction(action);
 
-                    this.ownersList.add(new BoatOwnerTM(
-                            boat.getOwnerId(),
-                            boat.getBoatId(),
-                            boatOwner.getName(),
-                            boatOwner.getNic(),
-                            boatOwner.getAddress(),
-                            boatOwner.getContactNo(),
-                            action
-                    ));
+                    BoatOwnerTM owner = new BoatOwnerTM(boat.getOwnerId(), boat.getBoatId(), boatOwner.getName(), boatOwner.getNic(), boatOwner.getAddress(), boatOwner.getContactNo(), action);
+                    this.ownersList.add(owner);
+                    setOwnerRemoveBtnOnAction(action, owner);
                 }
             }
         }
@@ -607,16 +599,10 @@ public class CrewRegistrationFormController implements Initializable {
     private void loadBoatsTable(List<Boat> boatsList) {
         for(Boat boat : boatsList){
             Button action = new Button("Remove");
-            setBoatRemoveBtnOnAction(action);
 
-            this.boatList.add(new BoatTM(
-                    boat.getBoatId(),
-                    boat.getRegistrationNo(),
-                    boat.getModel(),
-                    boat.getType(),
-                    boat.getSattelitePhoneNo(),
-                    action
-            ));
+            BoatTM boatTM = new BoatTM(boat.getBoatId(), boat.getRegistrationNo(), boat.getModel(), boat.getType(), boat.getSattelitePhoneNo(), action);
+            this.boatList.add(boatTM);
+            setBoatRemoveBtnOnAction(action, boatTM);
         }
         tableBoats.setItems(this.boatList);
     }
@@ -727,16 +713,19 @@ public class CrewRegistrationFormController implements Initializable {
                 prase--;
             }
         }else if(prase == 3){
-            if(boatList.size() > 0 && boatList.size() < 5 && ownersList.size() > 0 && ownersList.size() < 5){
+            if(boatList.size() > 0 && boatList.size() < 5 && ownersList.size() > 0 && ownersList.size() < 5 && cbSelectBoat.getItems().isEmpty()) {
                 loadCrewDetails();
                 loadBoatsDetails();
 
-                if(CrewManageFormController.isBtnUpdatePressed){
+                if (CrewManageFormController.isBtnUpdatePressed) {
                     btnNext.setText("Update");
-                }else {
+                } else {
                     btnNext.setText("Register");
                 }
                 paneVisible(3);
+            }else if(!cbSelectBoat.getItems().isEmpty()){
+                new Alert(Alert.AlertType.WARNING, "All boats need to have a owner!").show();
+                prase--;
             }else {
                 new Alert(Alert.AlertType.WARNING, "Boats and Owners count must at least need to be 1").show();
                 prase--;
@@ -860,6 +849,7 @@ public class CrewRegistrationFormController implements Initializable {
             List<Crewman> crewmenList = getAllCrewmen();
             List<Boat> boatsList = getAllBoats();
             List<BoatOwner> boatOwnersList = getAllBoatOwners();
+            List<String> ownersIdList = BoatOwnerModel.getBoatOwnersId(crew.getCrewId());
 
             if(btnNext.getText().equals("Register")) {
                 boolean isCrewRegistered = CrewModel.registerCrew(crew, crewmenList, boatsList, boatOwnersList);
@@ -873,7 +863,7 @@ public class CrewRegistrationFormController implements Initializable {
                 System.out.println("registered");
             } else if (btnNext.getText().equals("Update")) {
 
-                boolean isCrewUpdated = CrewModel.updateCrew(crew, crewmenList, boatsList, boatOwnersList);
+                boolean isCrewUpdated = CrewModel.updateCrew(crew, crewmenList, boatsList, boatOwnersList, ownersIdList);
 
                 if (isCrewUpdated) {
                     new Alert(Alert.AlertType.CONFIRMATION, "Crew Updated Succesfully!").show();
@@ -883,6 +873,8 @@ public class CrewRegistrationFormController implements Initializable {
 
                 System.out.println("Update");
             }
+
+            MainWindowFormController.btnCrew.fire();
 
         } catch (SQLException e){
             new Alert(Alert.AlertType.ERROR, "OOps something went wrong!!!").show();
@@ -992,6 +984,10 @@ public class CrewRegistrationFormController implements Initializable {
 
     @FXML
     void btnAddBoatOnAction(ActionEvent event) {
+        if(!(lblBoatRegNo.getText() == null &&
+                lblSatellitePhoneNo.getText() == null)){
+            return;
+        }
         newBoatId = getNewId(newBoatId);
         String registrarionNo = txtBoatRegistrationNo.getText();
         String model = txtBoatModel.getText();
@@ -999,35 +995,40 @@ public class CrewRegistrationFormController implements Initializable {
         String sattelitePhoneNo = txtBoatSattelitePhoneNo.getText();
         Button action = new Button("Remove");
 
-        setBoatRemoveBtnOnAction(action);
-
-
-
+        BoatTM boat = null;
         if(btnAddBoat.getText().equals("Change")){
-            BoatTM boat = new BoatTM(selectedBoatId, registrarionNo, model, type, sattelitePhoneNo, action);
+            boat = new BoatTM(selectedBoatId, registrarionNo, model, type, sattelitePhoneNo, action);
             boatList.remove(boatIndex);
             boatList.add(boatIndex, boat);
             tableBoats.setItems(boatList);
             btnAddBoat.setText("Add");
         }else{
-            BoatTM boat = new BoatTM(newBoatId, registrarionNo, model, type, sattelitePhoneNo, action);
+            boat = new BoatTM(newBoatId, registrarionNo, model, type, sattelitePhoneNo, action);
             boatList.add(boat);
             tableBoats.setItems(boatList);
 
         }
+        setBoatRemoveBtnOnAction(action, boat);
         btnBoatClearOnAction(event);
+
+        lblBoatRegNo.setText(" ");
+        lblSatellitePhoneNo.setText(" ");
     }
 
-    private void setBoatRemoveBtnOnAction(Button action) {
+    private void setBoatRemoveBtnOnAction(Button action, BoatTM boat) {
         action.setOnAction((e) -> {
             ButtonType yes = new ButtonType("Yes", ButtonBar.ButtonData.OK_DONE);
             ButtonType no = new ButtonType("No", ButtonBar.ButtonData.CANCEL_CLOSE);
 
             Optional<ButtonType> result = new Alert(Alert.AlertType.CONFIRMATION, "Are you sure want to remove this boat", yes, no).showAndWait();
             if(result.orElse(no) == yes){
-                int index = tableBoats.getSelectionModel().getSelectedIndex();
-
-                boatList.remove(index);
+                boatList.removeAll(boat);
+                for (BoatOwnerTM owner : ownersList){
+                    if (boat.getId().equals(owner.getBoatId())){
+                        ownersList.removeAll(owner);
+                        break;
+                    }
+                }
                 try {
                     setBoatIds();
                 } catch (SQLException ex) {
@@ -1045,8 +1046,15 @@ public class CrewRegistrationFormController implements Initializable {
         newBoatId = BoatModel.getLastId();
         for(BoatTM boat : boatList){
             newBoatId = getNewId(newBoatId);
+            L1:for(BoatOwnerTM owner : ownersList){
+                if(boat.getId().equals(owner.getBoatId())){
+                    owner.setBoatId(newBoatId);
+                    break L1;
+                }
+            }
             boat.setId(newBoatId);
         }
+        tableOwners.refresh();
     }
 
     @FXML
@@ -1086,6 +1094,13 @@ public class CrewRegistrationFormController implements Initializable {
             lblCrewmenCount.setText(String.valueOf(crewmenList.size()));
         }
         clearCrewmanFields();
+
+        lblCrewmanName.setText(" ");
+        lblCrewmanNIC.setText(" ");
+        lblAddress.setText(" ");
+        lblCrewmanBOD.setText(" ");
+        lblEmail.setText(" ");
+        lblCrewmanContactNo.setText(" ");
     }
 
     private void setCrewmanRemoveBtnOnAction(Button action) {
@@ -1126,41 +1141,55 @@ public class CrewRegistrationFormController implements Initializable {
         if(cbSelectBoat.getValue() == null){
             new Alert(Alert.AlertType.WARNING, "Choose the a boat!!!").show();
         }
+        if(!(lblOwnerName.getText() == null &&
+                lblOwnerAddress.getText() == null &&
+                lblOwnerNIC.getText() == null &&
+                lblOwnerContactNo.getText() == null)){
+            return;
+        }
 
         newBoatOwnerId = getNewId(newBoatOwnerId);
         String boatId = cbSelectBoat.getValue();
+
+        cbSelectBoat.getItems().removeAll(boatId);
+
         String name = txtOwnerName.getText();
         String nic = txtOwnerNIC.getText();
         String address = txtOwnerAddress.getText();
         String contactNo = txtOwnerContactNo.getText();
         Button action = new Button("Remove");
-        setOwnerRemoveBtnOnAction(action);
 
+        BoatOwnerTM owner = null;
         if(btnAddOwner.getText().equals("Change")){
-            BoatOwnerTM owner = new BoatOwnerTM(selectedBoatOwnerId, boatId, name, nic, address, contactNo, action);
+            owner = new BoatOwnerTM(selectedBoatOwnerId, boatId, name, nic, address, contactNo, action);
             ownersList.remove(boatOwnerIndex);
             ownersList.add(boatOwnerIndex, owner);
             tableOwners.setItems(ownersList);
             btnAddOwner.setText("Add");
         }else{
-            BoatOwnerTM owner = new BoatOwnerTM(newBoatOwnerId, boatId, name, nic, address, contactNo, action);
+            owner = new BoatOwnerTM(newBoatOwnerId, boatId, name, nic, address, contactNo, action);
             ownersList.add(owner);
             tableOwners.setItems(ownersList);
 
         }
+        setOwnerRemoveBtnOnAction(action, owner);
         btnOwnerClearOnAction(event);
+
+        lblOwnerName.setText(" ");
+        lblOwnerContactNo.setText(" ");
+        lblOwnerNIC.setText(" ");
+        lblOwnerAddress.setText(" ");
     }
 
-    private void setOwnerRemoveBtnOnAction(Button action) {
+    private void setOwnerRemoveBtnOnAction(Button action, BoatOwnerTM owner) {
         action.setOnAction((e) -> {
             ButtonType yes = new ButtonType("Yes", ButtonBar.ButtonData.OK_DONE);
             ButtonType no = new ButtonType("No", ButtonBar.ButtonData.CANCEL_CLOSE);
 
             Optional<ButtonType> result = new Alert(Alert.AlertType.CONFIRMATION, "Are you sure want to remove this owner", yes, no).showAndWait();
             if(result.orElse(no) == yes){
-                int index = tableOwners.getSelectionModel().getSelectedIndex();
-
-                ownersList.remove(index);
+                ownersList.removeAll(owner);
+                cbSelectBoat.getItems().add(owner.getBoatId());
                 try {
                     setOwnerIds();
                 } catch (SQLException ex) {
@@ -1310,7 +1339,12 @@ public class CrewRegistrationFormController implements Initializable {
     public void cbSelectBoatOnMouseClicked(MouseEvent mouseEvent) {
         ObservableList<String> boatNoList = FXCollections.observableArrayList();
 
-        for(BoatTM boat: boatList){
+        L1:for(BoatTM boat: boatList){
+            for(BoatOwnerTM owner : ownersList){
+                if(boat.getId().equals(owner.getBoatId())){
+                    continue L1;
+                }
+            }
             boatNoList.add(boat.getId());
         }
         cbSelectBoat.setItems(boatNoList);
@@ -1327,5 +1361,10 @@ public class CrewRegistrationFormController implements Initializable {
                 txtOwnerContactNo.setText(crewmanTM.getContactNo());
             }
         }
+
+        lblOwnerName.setText(null);
+        lblOwnerContactNo.setText(null);
+        lblOwnerNIC.setText(null);
+        lblOwnerAddress.setText(null);
     }
 }

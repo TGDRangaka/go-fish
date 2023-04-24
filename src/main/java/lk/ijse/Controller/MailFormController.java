@@ -128,6 +128,7 @@ public class MailFormController implements Initializable {
             if(isMailRecorded){
                 loadIdLabel();
                 clearFields();
+                MainWindowFormController.btnMail.fire();
                 new Alert(Alert.AlertType.CONFIRMATION, "Mails Send Succesfully!").show();
             }else {
                 new Alert(Alert.AlertType.WARNING, "Mails Not Send!").show();
