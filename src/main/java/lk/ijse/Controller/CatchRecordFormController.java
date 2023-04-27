@@ -20,6 +20,7 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
+import javafx.util.Duration;
 import lk.ijse.DB.DBConnection;
 import lk.ijse.Model.CatchDetailModel;
 import lk.ijse.Model.CatchModel;
@@ -35,6 +36,8 @@ import net.sf.jasperreports.engine.*;
 import net.sf.jasperreports.engine.design.JasperDesign;
 import net.sf.jasperreports.engine.xml.JRXmlLoader;
 import net.sf.jasperreports.view.JasperViewer;
+import tray.notification.NotificationType;
+import tray.notification.TrayNotification;
 
 import java.awt.image.BufferedImage;
 import java.io.File;
@@ -124,6 +127,15 @@ public class CatchRecordFormController implements Initializable {
     private JFXComboBox<String> cbCrewId;
 
     @FXML
+    private JFXButton btnScanQR;
+
+    @FXML
+    private ImageView imgValidQR;
+
+    @FXML
+    private ImageView imgInvalidQR;
+
+    @FXML
     private ImageView imageCam;
     private Webcam webcam = null;
     private boolean isThreadRunning = false;
@@ -171,6 +183,7 @@ public class CatchRecordFormController implements Initializable {
 
         btnPayment.setDisable(true);
         btnAdd.setDisable(true);
+        btnScanQR.setDisable(true);
 
         List<CatchDetail> catchDetails = CatchDetailModel.getCatchDetails(selectedCatch.getId());
         List<Fish> fishList = FishModel.getAllFish();
@@ -223,6 +236,10 @@ public class CatchRecordFormController implements Initializable {
         colCaughtWeight.setCellValueFactory(new PropertyValueFactory<>("caughtWeight"));
         colTotal.setCellValueFactory(new PropertyValueFactory<>("total"));
         colAction.setCellValueFactory(new PropertyValueFactory<>("action"));
+
+        txtCaughtWeight.setOnAction((e) -> {
+            btnAdd.fire();
+        });
     }
 
     private void loadFishTypeComboBox() throws SQLException {
@@ -274,6 +291,7 @@ public class CatchRecordFormController implements Initializable {
 
         calculateTotals(total, caughtWeight);
         clearFields();
+        lblCaughtWeight.setText(" ");
     }
 
     private void calculateTotals(Double total, Double caughtWeight) {
@@ -305,24 +323,37 @@ public class CatchRecordFormController implements Initializable {
             }
 
             if(isCatchSaved){
-                new Alert(Alert.AlertType.CONFIRMATION, "Catch Recorded Succesfully!").show();
-
                 if(cboxGetReport.isSelected()){
                     getReport();
                 }
+                String title = "CONFIRMATION";
+                String message = "Catch Recorded Succesfully!";
+                TrayNotification tray = new TrayNotification(title, message, NotificationType.SUCCESS);
+                tray.showAndDismiss(new Duration(3000));
+
+
                 clearFields();
                 catchDetais.clear();
                 tableCatchDetail.refresh();
                 cbCrewId.setValue(null);
                 lblTotalWeight.setText(null);
                 lblNetTotal.setText(null);
+
+                loadDetails();
+                MainWindowFormController.btnCatch.fire();
             }else {
-                new Alert(Alert.AlertType.WARNING, "Catch Not Recorded!!").show();
+                String title = "WARNING";
+                String message = "Catch Not Recorded!!";
+                TrayNotification tray = new TrayNotification(title, message, NotificationType.WARNING);
+                tray.showAndDismiss(new Duration(3000));
             }
         } catch (SQLException e) {
             e.printStackTrace();
 
-            new Alert(Alert.AlertType.ERROR, "Oops Something went wrong!").show();
+            String title = "ERROR";
+            String message = "Oops Something went wrong!";
+            TrayNotification tray = new TrayNotification(title, message, NotificationType.ERROR);
+            tray.showAndDismiss(new Duration(3000));
         }
     }
 
@@ -365,6 +396,9 @@ public class CatchRecordFormController implements Initializable {
     @FXML
     void btnScanQROnAction(ActionEvent event) {
         webcam.open();
+
+        imgValidQR.setVisible(false);
+        imgInvalidQR.setVisible(false);
 
         if(isThreadRunning){
             isThreadRunning = false;
@@ -422,13 +456,21 @@ public class CatchRecordFormController implements Initializable {
 
                     if(result != null){
                         String text = result.getText();
-                        System.out.println(text);
                         webcam.close();
                         isThreadRunning = false;
 
                         Platform.runLater(() -> {
                             try {
-                                setResult(text);
+
+                                boolean isQRValided = setResult(text);
+                                System.out.println(text + "--" +isQRValided);
+                                if(isQRValided){
+                                    imgValidQR.setVisible(true);
+                                    imgInvalidQR.setVisible(false);
+                                }else{
+                                    imgInvalidQR.setVisible(true);
+                                    imgValidQR.setVisible(false);
+                                }
                             } catch (SQLException e) {
                                 e.printStackTrace();
                             }
@@ -443,16 +485,23 @@ public class CatchRecordFormController implements Initializable {
         }.start();
     }
 
-    private void setResult(String text) throws SQLException {
+    private boolean setResult(String text) throws SQLException {
         lblCaughtWeight.setText(null);
 
         String[] data = text.split("%");
-        String[] catchData = data[0].split(",");
-        String[] catchDetails = data[1].split(",");
+
+        String catchId = data[0];
+        if(data.length != 3 || CatchModel.search(catchId)){
+            return false;
+        }
+        String[] catchData = data[1].split(",");
+        String[] catchDetails = data[2].split(",");
 
         lblCatchDate.setText(catchData[0]);
         cbCrewId.setValue(catchData[1]);
 
+        catchDetais.clear();
+        tableCatchDetail.refresh();
         for(String catchDetail : catchDetails){
             String[] split = catchDetail.split(":");
 
@@ -460,37 +509,39 @@ public class CatchRecordFormController implements Initializable {
             cbFishTypeOnAction(new ActionEvent());
 
             txtCaughtWeight.setText(split[1]);
+            lblCaughtWeight.setText(null);
             btnAdd.fire();
             System.out.println("fire");
         }
+        return true;
     }
 
     private void getReport() {
-        try {
-            Connection con = DBConnection.getInstance().getConnection();
+            try {
+                Connection con = DBConnection.getInstance().getConnection();
 
-            InputStream input = new FileInputStream(new File("F:/Github/go-fish/src/main/resources/reports/catch_report.jrxml"));
-            JasperDesign jasperDesign = JRXmlLoader.load(input);
-            JasperReport jasperReport = JasperCompileManager.compileReport(jasperDesign);
+                InputStream input = new FileInputStream(new File("F:/Github/go-fish/src/main/resources/reports/catch_report.jrxml"));
+                JasperDesign jasperDesign = JRXmlLoader.load(input);
+                JasperReport jasperReport = JasperCompileManager.compileReport(jasperDesign);
 
-            Catch c = CatchModel.getCatch(lblCatchId.getText());
-            Map<String, Object> data = new HashMap();
-            data.put("crewId",c.getCrewId());
-            data.put("catchId", c.getId());
-            data.put("catchDate", String.valueOf(c.getCatchDate()));
-            data.put("tripStartedTime", String.valueOf(c.getTripStartedTime()));
-            data.put("tripEndedTime", String.valueOf(c.getTripEndedTime()));
-            data.put("totalWeight", c.getTotalWeight() + "kg");
-            data.put("totalPayment", "Rs." + c.getPaymentAmount());
-            data.put("paymentTime", String.valueOf(c.getPaymentTime()));
+                Catch c = CatchModel.getCatch(lblCatchId.getText());
+                Map<String, Object> data = new HashMap();
+                data.put("crewId", c.getCrewId());
+                data.put("catchId", c.getId());
+                data.put("catchDate", String.valueOf(c.getCatchDate()));
+                data.put("tripStartedTime", String.valueOf(c.getTripStartedTime()));
+                data.put("tripEndedTime", String.valueOf(c.getTripEndedTime()));
+                data.put("totalWeight", c.getTotalWeight() + "kg");
+                data.put("totalPayment", "Rs." + c.getPaymentAmount());
+                data.put("paymentTime", String.valueOf(c.getPaymentTime()));
 
-            JasperPrint fillReport = JasperFillManager.fillReport(jasperReport, data, con);
-            JasperViewer.viewReport(fillReport, false);
+                JasperPrint fillReport = JasperFillManager.fillReport(jasperReport, data, con);
+                JasperViewer.viewReport(fillReport, false);
 
 
-        } catch (JRException | FileNotFoundException | SQLException e) {
-            e.printStackTrace();
-        }
+            } catch (JRException | FileNotFoundException | SQLException e) {
+                e.printStackTrace();
+            }
     }
 
     void clearFields(){

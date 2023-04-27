@@ -51,6 +51,10 @@ public class MainWindowFormController implements Initializable {
     @FXML
     private JFXButton btnCrewManage;
 
+    static JFXButton btnCatch = new JFXButton();
+    static JFXButton btnCrew = new JFXButton();
+    static JFXButton btnMail = new JFXButton();
+
     @FXML
     private Line lineDashboard;
 
@@ -151,6 +155,13 @@ public class MainWindowFormController implements Initializable {
     void btnCrewManageOnAction(ActionEvent event) throws IOException {
         showSelectedBtn(1);
         lblTitle.setText("Crew Manage");
+        btnCrew.setOnAction((e) -> {
+            try {
+                btnCrewManageOnAction(e);
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }
+        });
        Node node = FXMLLoader.load(getClass().getResource("/view/crew_manage_form.fxml"));
        root.getChildren().setAll(node);
     }
@@ -159,6 +170,13 @@ public class MainWindowFormController implements Initializable {
     void btnCatchManageOnAction(ActionEvent event) throws IOException {
         showSelectedBtn(2);
         lblTitle.setText("Catch Manage");
+        btnCatch.setOnAction((e) -> {
+            try {
+                btnCatchManageOnAction(e);
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }
+        });
         Node node = FXMLLoader.load(getClass().getResource("/view/catch_manage_form.fxml"));
         root.getChildren().setAll(node);
     }
@@ -179,30 +197,19 @@ public class MainWindowFormController implements Initializable {
         Node node = FXMLLoader.load(getClass().getResource("/view/view_analystic_form.fxml"));
         root.getChildren().setAll(node);
 
-//        Connection con = DBConnection.getInstance().getConnection();
-//        try {
-//
-//            InputStream input = new FileInputStream(new File("F:/Github/go-fish/src/main/resources/reports/test.jrxml"));
-//            JasperDesign jasperDesign = JRXmlLoader.load(input);
-//            JasperReport jasperReport = JasperCompileManager.compileReport(jasperDesign);
-//
-//            Map<String, Object> d = new HashMap();
-//            d.put("adminId", "A002");
-//            d.put("id", "test test test");
-//            JasperPrint fillReport = JasperFillManager.fillReport(jasperReport, d, con);
-//            JasperViewer.viewReport(fillReport, false);
-//
-//
-//        } catch (JRException | FileNotFoundException e) {
-//            e.printStackTrace();
-//        }
-
     }
 
     @FXML
     void btnSendMailOnAction(ActionEvent event) throws IOException {
         showSelectedBtn(5);
         lblTitle.setText("Send Mails");
+        btnMail.setOnAction((e) -> {
+            try {
+                btnSendMailOnAction(e);
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }
+        });
         Node node = FXMLLoader.load(getClass().getResource("/view/send_mails_form.fxml"));
         root.getChildren().setAll(node);
     }

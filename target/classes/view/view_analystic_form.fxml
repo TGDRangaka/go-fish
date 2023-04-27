@@ -7,11 +7,13 @@
 <?import javafx.scene.chart.NumberAxis?>
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.FlowPane?>
+<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
@@ -25,18 +27,18 @@
                      <children>
                         <BarChart fx:id="barchartCatchWeight" layoutY="40.0" prefHeight="327.0" prefWidth="1083.0" stylesheets="@../CSS/barchart-style.css">
                           <xAxis>
-                            <CategoryAxis label="Days" tickLabelFill="WHITE" fx:id="xAxisCatchWeight" />
+                            <CategoryAxis label="Days" style="-fx-tick-label-font-size: 14px;" tickLabelFill="WHITE" fx:id="xAxisCatchWeight" />
                           </xAxis>
                           <yAxis>
-                            <NumberAxis fx:id="yAxisCatchWeight" label="Weight(kg)" side="LEFT" tickLabelFill="WHITE" />
+                            <NumberAxis fx:id="yAxisCatchWeight" label="Weight(kg)" side="LEFT" style="-fx-tick-label-font-size: 14px;" tickLabelFill="WHITE" />
                           </yAxis>
                         </BarChart>
                         <BarChart fx:id="barchartCatchCount" layoutY="372.0" prefHeight="239.0" prefWidth="1083.0" stylesheets="@../CSS/barchart-style.css">
                            <xAxis>
-                              <CategoryAxis label="Days" side="BOTTOM" tickLabelFill="WHITE" fx:id="xAxisCatchCount" />
+                              <CategoryAxis label="Days" side="BOTTOM" style="-fx-tick-label-font-size: 14px;" tickLabelFill="WHITE" fx:id="xAxisCatchCount" />
                            </xAxis>
                            <yAxis>
-                              <NumberAxis fx:id="yAxisCatchCount" label="Count" side="LEFT" tickLabelFill="WHITE" />
+                              <NumberAxis fx:id="yAxisCatchCount" label="Count" side="LEFT" style="-fx-tick-label-font-size: 14px;" tickLabelFill="WHITE" />
                            </yAxis>
                         </BarChart>
                         <FlowPane alignment="CENTER" layoutY="1.0" prefHeight="43.0" prefWidth="1085.0">
@@ -85,13 +87,231 @@
           </Tab>
           <Tab text="Crew">
                <content>
-                  <ScrollPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: transparent; -fx-background: transparent;">
-                     <content>
-                        <VBox fx:id="vbox" prefHeight="0.0" prefWidth="1069.0" />
-                     </content>
-                  </ScrollPane>
+                  <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #4C84C0;">
+                     <children>
+                        <Label fx:id="lblCrewId" alignment="CENTER" layoutX="281.0" layoutY="103.0" prefHeight="439.0" prefWidth="804.0" text="C000" textFill="#ffffff26" AnchorPane.bottomAnchor="86.0" AnchorPane.topAnchor="86.0">
+                           <font>
+                              <Font size="300.0" />
+                           </font>
+                        </Label>
+                        <TableView fx:id="tableCrewCatch" layoutX="13.0" layoutY="16.0" onMouseClicked="#tableCrewCatchOnMouseClicked" prefHeight="581.0" prefWidth="267.0" stylesheets="@../CSS/table_style.css" AnchorPane.bottomAnchor="15.0" AnchorPane.leftAnchor="15.0" AnchorPane.topAnchor="15.0">
+                          <columns>
+                            <TableColumn fx:id="colCrewId" prefWidth="56.333335876464844" text="CrewID" />
+                            <TableColumn fx:id="colLeader" prefWidth="121.33332824707031" text="Leader" />
+                              <TableColumn fx:id="colCatchWeight" prefWidth="88.66667175292969" text="Catch Weight" />
+                          </columns>
+                        </TableView>
+                        <BarChart fx:id="barchartCount" layoutX="278.0" layoutY="335.0" prefHeight="276.0" prefWidth="522.0" stylesheets="@../CSS/barchart-style.css">
+                           <xAxis>
+                              <CategoryAxis side="BOTTOM" style="-fx-tick-label-font-size: 13;" tickLabelFill="WHITE" />
+                           </xAxis>
+                           <yAxis>
+                              <NumberAxis label="Count" side="LEFT" style="-fx-tick-label-font-size: 13;" tickLabelFill="WHITE" />
+                           </yAxis>
+                        </BarChart>
+                        <VBox alignment="CENTER" layoutX="969.0" layoutY="15.0" prefHeight="581.0" prefWidth="254.0" AnchorPane.bottomAnchor="15.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="15.0">
+                           <children>
+                              <Pane prefHeight="120.0" prefWidth="254.0" styleClass="dashboard-panes" stylesheets="@../CSS/styles2.css">
+                                 <children>
+                                    <Label layoutX="48.0" styleClass="dashboard-label" stylesheets="@../CSS/styles2.css" text="Total Catches" />
+                                    <Label fx:id="lblTotCatchesWeight" alignment="CENTER" layoutX="54.0" layoutY="74.0" prefHeight="32.0" prefWidth="147.0" styleClass="dashboard-values" stylesheets="@../CSS/styles2.css" text="N/A" />
+                                    <Label layoutX="83.0" layoutY="32.0" styleClass="dashboard-label" stylesheets="@../CSS/styles2.css" text="Weight" />
+                                 </children>
+                                 <VBox.margin>
+                                    <Insets bottom="15.0" top="25.0" />
+                                 </VBox.margin>
+                              </Pane>
+                              <Pane layoutX="10.0" layoutY="265.0" prefHeight="120.0" prefWidth="254.0" styleClass="dashboard-panes" stylesheets="@../CSS/styles2.css">
+                                 <children>
+                                    <Label layoutX="49.0" layoutY="8.0" styleClass="dashboard-label" stylesheets="@../CSS/styles2.css" text="Total Catches" />
+                                    <Label fx:id="lblTotCatchesCount" alignment="CENTER" layoutX="82.0" layoutY="70.0" prefHeight="32.0" prefWidth="92.0" styleClass="dashboard-values" stylesheets="@../CSS/styles2.css" text="N/A" />
+                                    <Label layoutX="93.0" layoutY="38.0" styleClass="dashboard-label" stylesheets="@../CSS/styles2.css" text="Count" />
+                                 </children>
+                                 <VBox.margin>
+                                    <Insets bottom="15.0" />
+                                 </VBox.margin>
+                              </Pane>
+                              <Pane layoutX="10.0" layoutY="373.0" prefHeight="120.0" prefWidth="254.0" styleClass="dashboard-panes" stylesheets="@../CSS/styles2.css">
+                                 <children>
+                                    <Label layoutX="38.0" layoutY="14.0" styleClass="dashboard-label" stylesheets="@../CSS/styles2.css" text="Total Payments" />
+                                    <Label fx:id="lblTotPayments" alignment="CENTER" layoutX="1.0" layoutY="60.0" prefHeight="32.0" prefWidth="252.0" styleClass="dashboard-values" stylesheets="@../CSS/styles2.css" text="N/A" />
+                                 </children>
+                                 <VBox.margin>
+                                    <Insets bottom="15.0" />
+                                 </VBox.margin>
+                              </Pane>
+                              <Pane layoutX="10.0" layoutY="481.0" prefHeight="120.0" prefWidth="254.0" styleClass="dashboard-panes" stylesheets="@../CSS/styles2.css">
+                                 <children>
+                                    <Label layoutX="25.0" layoutY="14.0" styleClass="dashboard-label" stylesheets="@../CSS/styles2.css" text="Most Caught Fish" />
+                                    <Label fx:id="lblTotWorkedDays" alignment="CENTER" layoutX="1.0" layoutY="65.0" prefHeight="32.0" prefWidth="252.0" styleClass="dashboard-values" stylesheets="@../CSS/styles2.css" text="N/A" />
+                                 </children>
+                                 <VBox.margin>
+                                    <Insets />
+                                 </VBox.margin>
+                              </Pane>
+                           </children>
+                        </VBox>
+                        <FlowPane alignment="CENTER" layoutX="337.0" layoutY="2.0" prefHeight="0.0" prefWidth="734.0">
+                           <children>
+                              <JFXComboBox fx:id="cbTimePeriod1" prefHeight="30.0" prefWidth="149.0">
+                                 <FlowPane.margin>
+                                    <Insets left="10.0" />
+                                 </FlowPane.margin>
+                              </JFXComboBox>
+                              <Label text="From:" textFill="#ebebeb">
+                                 <FlowPane.margin>
+                                    <Insets left="40.0" />
+                                 </FlowPane.margin>
+                                 <font>
+                                    <Font name="System Bold" size="15.0" />
+                                 </font>
+                              </Label>
+                              <DatePicker fx:id="datePickerFrom1" editable="false" prefHeight="35.0" stylesheets="@../CSS/datepicker-style.css">
+                                 <FlowPane.margin>
+                                    <Insets left="10.0" />
+                                 </FlowPane.margin>
+                              </DatePicker>
+                              <Label layoutX="445.0" layoutY="23.0" text="To:" textFill="#ebebeb">
+                                 <FlowPane.margin>
+                                    <Insets left="40.0" />
+                                 </FlowPane.margin>
+                                 <font>
+                                    <Font name="System Bold" size="15.0" />
+                                 </font>
+                              </Label>
+                              <DatePicker fx:id="datePickerTo1" editable="false" layoutX="586.0" layoutY="19.0" prefHeight="35.0" stylesheets="@../CSS/datepicker-style.css">
+                                 <FlowPane.margin>
+                                    <Insets left="10.0" />
+                                 </FlowPane.margin>
+                              </DatePicker>
+                           </children>
+                        </FlowPane>
+                        <BarChart fx:id="barchartWeight" layoutX="278.0" layoutY="30.0" prefHeight="306.0" prefWidth="521.0" stylesheets="@../CSS/barchart-style.css">
+                           <xAxis>
+                              <CategoryAxis side="BOTTOM" style="-fx-tick-label-font-size: 13;" tickLabelFill="WHITE" />
+                           </xAxis>
+                           <yAxis>
+                              <NumberAxis label="Weight(kg)" side="LEFT" style="-fx-tick-label-font-size: 13;" tickLabelFill="WHITE" />
+                           </yAxis>
+                        </BarChart>
+                     </children>
+                  </AnchorPane>
                </content>
           </Tab>
+            <Tab text="Fish">
+               <content>
+                  <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #4C84C0;">
+                     <children>
+                        <Label fx:id="lblFishId" alignment="CENTER" layoutX="281.0" layoutY="103.0" prefHeight="439.0" prefWidth="804.0" text="ALL" textFill="#ffffff26" AnchorPane.bottomAnchor="86.0" AnchorPane.topAnchor="86.0">
+                           <font>
+                              <Font size="300.0" />
+                           </font>
+                        </Label>
+                        <TableView fx:id="tableFishCatch" layoutX="13.0" layoutY="16.0" onMouseClicked="#tableFishCatchOnMouseClicked" prefHeight="581.0" prefWidth="267.0" stylesheets="@../CSS/table_style.css" AnchorPane.bottomAnchor="15.0" AnchorPane.leftAnchor="15.0" AnchorPane.topAnchor="15.0">
+                           <columns>
+                              <TableColumn fx:id="colFishId" prefWidth="47.666664123535156" text="FishID" />
+                              <TableColumn fx:id="colFishType" prefWidth="131.33333587646484" text="Fish Type" />
+                              <TableColumn fx:id="colCatchFishWeight" prefWidth="88.66667175292969" text="Catch Weight" />
+                           </columns>
+                        </TableView>
+                        <BarChart fx:id="barchartFishCount" layoutX="278.0" layoutY="400.0" prefHeight="211.0" prefWidth="522.0" stylesheets="@../CSS/barchart-style.css">
+                           <xAxis>
+                              <CategoryAxis side="BOTTOM" style="-fx-tick-label-font-size: 13;" tickLabelFill="WHITE" />
+                           </xAxis>
+                           <yAxis>
+                              <NumberAxis label="Count" side="LEFT" style="-fx-tick-label-font-size: 13;" tickLabelFill="WHITE" />
+                           </yAxis>
+                        </BarChart>
+                        <VBox fx:id="vboxFish" alignment="CENTER" layoutX="969.0" layoutY="15.0" prefHeight="581.0" prefWidth="254.0" AnchorPane.bottomAnchor="15.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="15.0">
+                           <children>
+                              <Pane prefHeight="120.0" prefWidth="254.0" styleClass="dashboard-panes" stylesheets="@../CSS/styles2.css">
+                                 <children>
+                                    <Label layoutX="48.0" styleClass="dashboard-label" stylesheets="@../CSS/styles2.css" text="Total Catches" underline="true" />
+                                    <Label fx:id="lblTotFishCatchesWeight" alignment="CENTER" layoutX="54.0" layoutY="74.0" prefHeight="32.0" prefWidth="147.0" styleClass="dashboard-values" stylesheets="@../CSS/styles2.css" text="N/A" />
+                                    <Label layoutX="83.0" layoutY="32.0" styleClass="dashboard-label" stylesheets="@../CSS/styles2.css" text="Weight" underline="true" />
+                                 </children>
+                                 <VBox.margin>
+                                    <Insets bottom="15.0" top="25.0" />
+                                 </VBox.margin>
+                              </Pane>
+                              <Pane layoutX="10.0" layoutY="265.0" prefHeight="120.0" prefWidth="254.0" styleClass="dashboard-panes" stylesheets="@../CSS/styles2.css">
+                                 <children>
+                                    <Label alignment="CENTER" layoutX="2.0" layoutY="8.0" prefHeight="32.0" prefWidth="251.0" styleClass="dashboard-label" stylesheets="@../CSS/styles2.css" text="Numbers Of Crews" underline="true" />
+                                    <Label fx:id="lblCrewCount" alignment="CENTER" layoutX="82.0" layoutY="70.0" prefHeight="32.0" prefWidth="92.0" styleClass="dashboard-values" stylesheets="@../CSS/styles2.css" text="N/A" />
+                                    <Label alignment="CENTER" layoutX="1.0" layoutY="38.0" prefHeight="32.0" prefWidth="252.0" styleClass="dashboard-label" stylesheets="@../CSS/styles2.css" text="That Caught" underline="true" />
+                                 </children>
+                                 <VBox.margin>
+                                    <Insets bottom="15.0" />
+                                 </VBox.margin>
+                              </Pane>
+                              <Pane layoutX="10.0" layoutY="373.0" prefHeight="120.0" prefWidth="254.0" styleClass="dashboard-panes" stylesheets="@../CSS/styles2.css">
+                                 <children>
+                                    <Label layoutX="38.0" layoutY="14.0" styleClass="dashboard-label" stylesheets="@../CSS/styles2.css" text="Total Payments" underline="true" />
+                                    <Label fx:id="lblTotFishPayments" alignment="CENTER" layoutX="1.0" layoutY="60.0" prefHeight="32.0" prefWidth="252.0" styleClass="dashboard-values" stylesheets="@../CSS/styles2.css" text="N/A" />
+                                 </children>
+                                 <VBox.margin>
+                                    <Insets bottom="15.0" />
+                                 </VBox.margin>
+                              </Pane>
+                              <Pane layoutX="10.0" layoutY="481.0" prefHeight="120.0" prefWidth="254.0" styleClass="dashboard-panes" stylesheets="@../CSS/styles2.css">
+                                 <children>
+                                    <Label alignment="CENTER" layoutX="-2.0" layoutY="5.0" prefHeight="32.0" prefWidth="257.0" styleClass="dashboard-label" stylesheets="@../CSS/styles2.css" text="Most Caught" underline="true" />
+                                    <Label fx:id="lblMostCaughtDay" alignment="CENTER" layoutX="-1.0" layoutY="73.0" prefHeight="32.0" prefWidth="256.0" styleClass="dashboard-values" stylesheets="@../CSS/styles2.css" text="N/A" />
+                                    <Label alignment="CENTER" layoutX="1.0" layoutY="33.0" prefHeight="32.0" prefWidth="252.0" styleClass="dashboard-label" stylesheets="@../CSS/styles2.css" text="Weekday" underline="true" />
+                                 </children>
+                                 <VBox.margin>
+                                    <Insets />
+                                 </VBox.margin>
+                              </Pane>
+                           </children>
+                        </VBox>
+                        <FlowPane alignment="CENTER" layoutX="337.0" layoutY="2.0" prefHeight="0.0" prefWidth="734.0">
+                           <children>
+                              <JFXComboBox fx:id="cbTimePeriod2" prefHeight="30.0" prefWidth="149.0">
+                                 <FlowPane.margin>
+                                    <Insets left="10.0" />
+                                 </FlowPane.margin>
+                              </JFXComboBox>
+                              <Label text="From:" textFill="#ebebeb">
+                                 <FlowPane.margin>
+                                    <Insets left="40.0" />
+                                 </FlowPane.margin>
+                                 <font>
+                                    <Font name="System Bold" size="15.0" />
+                                 </font>
+                              </Label>
+                              <DatePicker fx:id="datePickerFrom2" editable="false" prefHeight="35.0" stylesheets="@../CSS/datepicker-style.css">
+                                 <FlowPane.margin>
+                                    <Insets left="10.0" />
+                                 </FlowPane.margin>
+                              </DatePicker>
+                              <Label layoutX="445.0" layoutY="23.0" text="To:" textFill="#ebebeb">
+                                 <FlowPane.margin>
+                                    <Insets left="40.0" />
+                                 </FlowPane.margin>
+                                 <font>
+                                    <Font name="System Bold" size="15.0" />
+                                 </font>
+                              </Label>
+                              <DatePicker fx:id="datePickerTo2" editable="false" layoutX="586.0" layoutY="19.0" prefHeight="35.0" stylesheets="@../CSS/datepicker-style.css">
+                                 <FlowPane.margin>
+                                    <Insets left="10.0" />
+                                 </FlowPane.margin>
+                              </DatePicker>
+                           </children>
+                        </FlowPane>
+                        <BarChart fx:id="barchartFishWeight" layoutX="277.0" layoutY="28.0" prefHeight="374.0" prefWidth="521.0" stylesheets="@../CSS/barchart-style.css">
+                          <xAxis>
+                            <CategoryAxis side="BOTTOM" style="-fx-tick-label-font-size: 13;" tickLabelFill="WHITE" />
+                          </xAxis>
+                          <yAxis>
+                            <NumberAxis label="Weight(kg)" side="LEFT" style="-fx-tick-label-font-size: 13;" tickLabelFill="WHITE" />
+                          </yAxis>
+                        </BarChart>
+                     </children>
+                  </AnchorPane>
+               </content>
+            </Tab>
         </tabs>
       </TabPane>
    </children>

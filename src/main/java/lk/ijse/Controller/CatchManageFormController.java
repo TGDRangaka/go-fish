@@ -153,8 +153,16 @@ public class CatchManageFormController implements Initializable {
 
         for(CatchTM catchTM : catchList){
             String date = String.valueOf(catchTM.getCatchDate());
-            System.out.println(date + "---" + search);
-            if(catchTM.getId().equals(search) || catchTM.getCrewId().equals(search) || date.equals(search)){
+            if(catchTM.getId().matches(".*"+search+".*") ||
+                    catchTM.getCrewId().matches(".*"+search+".*") ||
+                    date.matches(search) ||
+                    (search.contains("-") && date.matches(".*"+search+".*")) ||
+                    String.valueOf(catchTM.getCatchWeight()).matches(search) ||
+                    String.valueOf(catchTM.getPaymentAmount()).matches(search) ||
+                    (search.contains(":") && (String.valueOf(catchTM.getPaymentTime()).matches(".*"+search+".*") ||
+                            String.valueOf(catchTM.getTripStartedTime()).matches(".*"+search+".*") ||
+                            String.valueOf(catchTM.getTripEndedTime()).matches(".*"+search+".*"))
+                    )){
                 temp.add(catchTM);
             }
         }

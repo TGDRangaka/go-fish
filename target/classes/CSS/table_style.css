@@ -52,12 +52,12 @@
 }
 
 .table-view .table-row-cell:hover .table-cell{
-    -fx-text-fill: #ffffff;
+    -fx-text-fill: #e3daff;
     -fx-font-size: 14px;
 }
 
 .table-view .table-row-cell:selected .table-cell{
-    -fx-text-fill: #002050;
+    -fx-text-fill: #ffffff;
 }
 
 .table-view .table-row-cell:odd{

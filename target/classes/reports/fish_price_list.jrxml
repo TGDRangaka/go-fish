@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.20.1.final using JasperReports Library version 6.20.1-7584acb244139816654f64e2fd57a00d3e31921e  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="fish_price_list" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="be32bc79-e740-4c67-b5b9-bf13f0f0d080">
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="go_fish"/>
+	<queryString language="SQL">
+		<![CDATA[SELECT * FROM fish]]>
+	</queryString>
+	<field name="fishId" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="fishId"/>
+		<property name="com.jaspersoft.studio.field.label" value="fishId"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="fish"/>
+	</field>
+	<field name="fishType" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="fishType"/>
+		<property name="com.jaspersoft.studio.field.label" value="fishType"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="fish"/>
+	</field>
+	<field name="unitWeight" class="java.math.BigDecimal">
+		<property name="com.jaspersoft.studio.field.name" value="unitWeight"/>
+		<property name="com.jaspersoft.studio.field.label" value="unitWeight"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="fish"/>
+	</field>
+	<field name="unitPrice" class="java.math.BigDecimal">
+		<property name="com.jaspersoft.studio.field.name" value="unitPrice"/>
+		<property name="com.jaspersoft.studio.field.label" value="unitPrice"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="fish"/>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="41" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="550" height="40" uuid="38b3482a-9154-475b-9482-6b17d975f634"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="30" isUnderline="true"/>
+				</textElement>
+				<text><![CDATA[Fishing House Fish Price List]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="88" splitType="Stretch">
+			<textField pattern="MMMMM dd, yyyy">
+				<reportElement x="440" y="60" width="90" height="20" uuid="71920447-da58-47fa-8721-4f81c6ee0406"/>
+				<textElement textAlignment="Right">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="340" y="60" width="100" height="20" uuid="85dba368-6393-4ef5-88f6-5ab036e343e7"/>
+				<textElement textAlignment="Right" verticalAlignment="Top">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Date:]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="24" splitType="Stretch">
+			<staticText>
+				<reportElement mode="Opaque" x="20" y="0" width="100" height="24" backcolor="#D6D6D6" uuid="d11b1ff4-22f0-4844-b3de-7406f7bfdc26">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="3721d9b5-faa6-4380-b0f3-8cff854288b4"/>
+				</reportElement>
+				<box leftPadding="0">
+					<pen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Fish ID]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="120" y="0" width="170" height="24" backcolor="#D6D6D6" uuid="fcd33834-d78e-4ad3-8a5f-8ad3d9e989bb">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="5353295a-0ed9-4cf7-b1d6-e55d4838bb34"/>
+				</reportElement>
+				<box leftPadding="0">
+					<pen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Fish Type]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="290" y="0" width="110" height="24" backcolor="#D6D6D6" uuid="2b15842d-aff3-4de9-bc93-6765ecc2d5f5">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="489c47a5-e7b4-4984-b8fe-7ba08259f789"/>
+				</reportElement>
+				<box leftPadding="0">
+					<pen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Unit Weight(kg)]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="400" y="0" width="130" height="24" backcolor="#D6D6D6" uuid="ef887ad8-0b90-47db-a708-64df69f7ab8d">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="2460fd70-ef9b-4836-bee0-019982d03417"/>
+				</reportElement>
+				<box leftPadding="0">
+					<pen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Unit Price(Rs)]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="20" splitType="Stretch">
+			<textField>
+				<reportElement x="20" y="0" width="100" height="20" uuid="c2f3425f-278e-44e3-967f-02cbba9badf4">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="3721d9b5-faa6-4380-b0f3-8cff854288b4"/>
+				</reportElement>
+				<box leftPadding="10">
+					<pen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{fishId}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="120" y="0" width="170" height="20" uuid="11444f9f-8c4c-4d21-a774-2bb4e29cf9d2">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="5353295a-0ed9-4cf7-b1d6-e55d4838bb34"/>
+				</reportElement>
+				<box leftPadding="10">
+					<pen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{fishType}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="290" y="0" width="110" height="20" uuid="cb5061b2-3931-4e33-9d24-1ab28b1fd994">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="489c47a5-e7b4-4984-b8fe-7ba08259f789"/>
+				</reportElement>
+				<box leftPadding="10">
+					<pen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{unitWeight}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="400" y="0" width="130" height="20" uuid="b0a61960-d293-47bf-bbc8-a1a9ee069bec">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="2460fd70-ef9b-4836-bee0-019982d03417"/>
+				</reportElement>
+				<box leftPadding="10">
+					<pen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{unitPrice}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>

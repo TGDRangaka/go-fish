@@ -53,12 +53,12 @@ public class BoatOwnerModel {
         String sql = "SELECT boatowner.ownerId FROM boatowner " +
                 "INNER JOIN boat " +
                 "ON boatowner.ownerId = boat.ownerId " +
-                "WHERE boat.crewId = ? " +
-                "GROUP BY boatowner.ownerId";
+                "INNER JOIN crew " +
+                "ON boat.crewId = crew.crewId " +
+                "WHERE crew.crewId = ?";
 
         ResultSet rs =  CrudUtil.execute(sql, crewId);
         List<String> boatOwnerIdList = new ArrayList<>();
-
         while (rs.next()){
             boatOwnerIdList.add(rs.getString(1));
         }
@@ -122,4 +122,13 @@ public class BoatOwnerModel {
         return boatOwners;
     }
 
+    public static boolean isHave(String ownerId) throws SQLException {
+        String sql = "SELECT * FROM boatowner WHERE ownerId = ?";
+
+        ResultSet rs = CrudUtil.execute(sql, ownerId);
+        if(rs.next()){
+            return true;
+        }
+        return false;
+    }
 }

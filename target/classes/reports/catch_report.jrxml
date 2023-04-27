@@ -20,7 +20,7 @@
 from catchdetail
 inner join fish
 on catchdetail.fishId = fish.fishId
-where catchdetail.catchId =   $P{catchId} ]]>
+where catchdetail.catchId =   $P{catchId}]]>
 	</queryString>
 	<field name="fishId" class="java.lang.String">
 		<property name="com.jaspersoft.studio.field.name" value="fishId"/>
@@ -252,7 +252,7 @@ where catchdetail.catchId =   $P{catchId} ]]>
 				<textElement textAlignment="Left" verticalAlignment="Middle">
 					<font size="14" isBold="true"/>
 				</textElement>
-				<text><![CDATA[Payment Due Date]]></text>
+				<text><![CDATA[Payment Due Time]]></text>
 			</staticText>
 			<textField>
 				<reportElement x="420" y="0" width="135" height="30" uuid="1cdecfc7-bc88-4e5f-869e-9279ad369d75"/>

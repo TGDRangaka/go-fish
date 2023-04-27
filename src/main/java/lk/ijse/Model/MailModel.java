@@ -105,4 +105,41 @@ public class MailModel {
 
         return CrudUtil.execute(sql, mailId);
     }
+
+    public static boolean isWeatherSendToday(LocalDate now) throws SQLException {
+        String sql = "SELECT * FROM mail WHERE DATE(sentDate) = ? && description LIKE 'Weather Forecast%'";
+
+        ResultSet rs = CrudUtil.execute(sql, now);
+        if(rs.next()){
+            return true;
+        }
+        return false;
+    }
+
+    public static boolean isSentToAll(String mailId) throws SQLException {
+        String sql = "SELECT COUNT(*) FROM maildetail WHERE mailId = ?";
+
+        ResultSet rs = CrudUtil.execute(sql, mailId);
+        int count = 0;
+        if(rs.next()){
+            count = rs.getInt(1);
+        }
+
+        return count == CrewModel.getCrewIds().size();
+    }
+
+    public static String getMailBody(String mailId) throws SQLException {
+        String sql = "SELECT * FROM mail WHERE mailId = ?";
+
+        ResultSet rs = CrudUtil.execute(sql, mailId);
+        if(rs.next()){
+            String[] split = rs.getString("description").split("\\$");
+            if(split.length == 1){
+                return rs.getString("description");
+            }else{
+                return split[1];
+            }
+        }
+        return null;
+    }
 }

@@ -192,7 +192,7 @@
       <JFXComboBox fx:id="cbCrewId" layoutX="153.0" layoutY="100.0" prefHeight="37.0" prefWidth="162.0" promptText="Select CrewId" />
       <Label fx:id="lblCaughtWeight" layoutX="812.0" layoutY="292.0" prefHeight="17.0" prefWidth="196.0" text=" " textFill="#ff1b1b" />
       <JFXCheckBox fx:id="cboxGetReport" layoutX="855.0" layoutY="608.0" selected="true" text="Get Report" />
-      <JFXButton alignment="CENTER" contentDisplay="BOTTOM" layoutX="759.0" layoutY="35.0" onAction="#btnScanQROnAction" prefHeight="79.0" prefWidth="107.0" styleClass="payment-button" stylesheets="@../CSS/styles2.css" text="Scan QR">
+      <JFXButton fx:id="btnScanQR" alignment="CENTER" contentDisplay="BOTTOM" layoutX="759.0" layoutY="35.0" onAction="#btnScanQROnAction" prefHeight="79.0" prefWidth="107.0" styleClass="payment-button" stylesheets="@../CSS/styles2.css" text="Scan QR">
          <graphic>
             <ImageView fitHeight="31.0" fitWidth="31.0">
                <image>
@@ -205,5 +205,15 @@
          </font>
       </JFXButton>
       <ImageView fx:id="imageCam" fitHeight="147.0" fitWidth="196.0" layoutX="882.0" layoutY="5.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="imgValidQR" layoutX="947.0" layoutY="47.0" visible="false">
+         <image>
+            <Image url="@../img/check.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="imgInvalidQR" layoutX="948.0" layoutY="47.0" visible="false">
+         <image>
+            <Image url="@../img/cross.png" />
+         </image>
+      </ImageView>
    </children>
 </AnchorPane>
