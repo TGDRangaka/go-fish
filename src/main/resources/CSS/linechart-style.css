@@ -1,62 +1,72 @@
-.chart-series-line {
-    -fx-stroke: linear-gradient(to right, #15d5c7, #38ef7d);
-    -fx-stroke-width: 2px;
-    -fx-stroke-dash-array: 10 5;
-}
-
-.chart-vertical-grid-lines {
-    -fx-stroke: rgba(221, 221, 221, 0.2);
+.chart-legend {
+    -fx-font-size: 14px;
 }
 
 .chart-horizontal-grid-lines {
-    -fx-stroke: rgba(221, 221, 221, 0.2);
+    -fx-stroke: rgba(242, 242, 242, 0.15);
 }
 
-.chart-alternative-column-fill-visible {
+.chart-vertical-grid-lines {
+    -fx-stroke: rgba(242, 242, 242, 0.15);
+}
+
+.chart-alternative-column-fill {
+    -fx-fill: rgba(242, 242, 242, 0);
+    -fx-opacity: 0.1;
+}
+
+.chart-alternative-row-fill {
+    -fx-fill: rgba(242, 242, 242, 0);
+    -fx-opacity: 0.1;
+}
+
+.chart-series-line {
+    -fx-stroke: #38ef7d;
+}
+
+.chart-legend-item-symbol {
+    -fx-background-radius: 50%;
+    -fx-padding: 4px;
+}
+
+.chart-legend-item-symbol .symbol {
     -fx-background-color: transparent;
 }
 
-.chart-alternative-row-fill-visible {
-    -fx-background-color: transparent;
-}
-
-.chart-horizontal-zero-line {
-    -fx-stroke: #aaa;
-}
-
-.chart-vertical-zero-line {
-    -fx-stroke: #aaa;
+.chart-legend-item .text {
+    -fx-font-size: 12px;
+    -fx-fill: #666;
 }
 
 .chart-plot-background {
     -fx-background-color: transparent;
 }
 
+.chart-horizontal-zero-line {
+    -fx-stroke: #f2f2f2;
+}
+
+.chart-vertical-zero-line {
+    -fx-stroke: #f2f2f2;
+}
+
+.chart-axis-label {
+    -fx-font-size: 12px;
+}
+
 .chart-title {
-    -fx-font-size: 20px;
-    -fx-font-weight: bold;
-    -fx-text-fill: #333;
+    -fx-font-size: 16px;
+    -fx-fill: #333;
 }
 
 .chart-legend {
-    -fx-font-size: 14px;
-    -fx-background-color: #f6f6f6;
-    -fx-border-color: #ccc;
-    -fx-padding: 10px;
+    -fx-font-size: 12px;
 }
 
-.chart-legend-item-symbol {
-    -fx-background-color: transparent;
+.chart-legend-item {
+    -fx-padding: 0 10 0 0;
 }
 
-.chart-axis {
-    -fx-tick-label-fill: #666;
-}
-
-.chart-horizontal-axis {
-    -fx-border-color: #ccc;
-}
-
-.chart-vertical-axis {
-    -fx-border-color: #ccc;
+.chart-legend-item-symbol .chart-series-line {
+    -fx-stroke: #38ef7d;
 }

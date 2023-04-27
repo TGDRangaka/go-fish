@@ -15,10 +15,13 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
+import javafx.util.Duration;
 import lk.ijse.Model.*;
 import lk.ijse.dto.*;
 import lk.ijse.dto.tm.*;
 import lombok.SneakyThrows;
+import tray.notification.NotificationType;
+import tray.notification.TrayNotification;
 
 import java.io.IOException;
 import java.net.URL;
@@ -703,13 +706,22 @@ public class CrewRegistrationFormController implements Initializable {
 
                 paneVisible(2);
             }else if(crewmenList.size() < 4){
-                new Alert(Alert.AlertType.WARNING, "The crewmen count is must be higher than 3 !").show();
+                String title = "WARNING";
+                String message = "The crewmen count is must be higher than 3 !";
+                TrayNotification tray = new TrayNotification(title, message, NotificationType.WARNING);
+                tray.showAndDismiss(new Duration(3000));
                 prase--;
             }else if(crewmenList.size() > 12){
-                new Alert(Alert.AlertType.WARNING, "The crewmen count is must be lower than 13 !").show();
+                String title = "WARNING";
+                String message = "The crewmen count is must be lower than 13 !";
+                TrayNotification tray = new TrayNotification(title, message, NotificationType.WARNING);
+                tray.showAndDismiss(new Duration(3000));
                 prase--;
             }else if(cbCrewLeader.getValue() == null){
-                new Alert(Alert.AlertType.WARNING, "Please select a leader for this crew !").show();
+                String title = "WARNING";
+                String message = "Please select a leader for this crew !";
+                TrayNotification tray = new TrayNotification(title, message, NotificationType.WARNING);
+                tray.showAndDismiss(new Duration(3000));
                 prase--;
             }
         }else if(prase == 3){
@@ -724,10 +736,16 @@ public class CrewRegistrationFormController implements Initializable {
                 }
                 paneVisible(3);
             }else if(!cbSelectBoat.getItems().isEmpty()){
-                new Alert(Alert.AlertType.WARNING, "All boats need to have a owner!").show();
+                String title = "WARNING";
+                String message = "All boats need to have a owner!";
+                TrayNotification tray = new TrayNotification(title, message, NotificationType.WARNING);
+                tray.showAndDismiss(new Duration(3000));
                 prase--;
             }else {
-                new Alert(Alert.AlertType.WARNING, "Boats and Owners count must at least need to be 1").show();
+                String title = "WARNING";
+                String message = "Boats and Owners count must at least need to be 1";
+                TrayNotification tray = new TrayNotification(title, message, NotificationType.WARNING);
+                tray.showAndDismiss(new Duration(3000));
                 prase--;
             }
 
@@ -772,7 +790,10 @@ public class CrewRegistrationFormController implements Initializable {
             lblAvailableTimesReg.setText(getAvailableTimes().replace("[", "").replace("]", ""));
             txtAvailableDaysReg.setText(getAvailableDays().replace("[", "").replace("]", ""));
         } catch (SQLException e){
-            new Alert(Alert.AlertType.ERROR, "Ooops...Something Wendt Wrong!!!");
+            String title = "ERROR";
+            String message = "Ooops...Something Wendt Wrong!!!";
+            TrayNotification tray = new TrayNotification(title, message, NotificationType.ERROR);
+            tray.showAndDismiss(new Duration(3000));
         }
     }
 
@@ -855,9 +876,15 @@ public class CrewRegistrationFormController implements Initializable {
                 boolean isCrewRegistered = CrewModel.registerCrew(crew, crewmenList, boatsList, boatOwnersList);
 
                 if (isCrewRegistered) {
-                    new Alert(Alert.AlertType.CONFIRMATION, "Crew Registered Succesfully!").show();
+                    String title = "CONFIRMATION";
+                    String message = "Crew Registered Succesfully!";
+                    TrayNotification tray = new TrayNotification(title, message, NotificationType.SUCCESS);
+                    tray.showAndDismiss(new Duration(3000));
                 } else {
-                    new Alert(Alert.AlertType.WARNING, "Crew Not Registered!!").show();
+                    String title = "WARNING";
+                    String message = "Crew Not Registered!!";
+                    TrayNotification tray = new TrayNotification(title, message, NotificationType.WARNING);
+                    tray.showAndDismiss(new Duration(3000));
                 }
 
                 System.out.println("registered");
@@ -866,9 +893,15 @@ public class CrewRegistrationFormController implements Initializable {
                 boolean isCrewUpdated = CrewModel.updateCrew(crew, crewmenList, boatsList, boatOwnersList, ownersIdList);
 
                 if (isCrewUpdated) {
-                    new Alert(Alert.AlertType.CONFIRMATION, "Crew Updated Succesfully!").show();
+                    String title = "CONFIRMATION";
+                    String message = "Crew Updated Succesfully!";
+                    TrayNotification tray = new TrayNotification(title, message, NotificationType.SUCCESS);
+                    tray.showAndDismiss(new Duration(3000));
                 } else {
-                    new Alert(Alert.AlertType.WARNING, "Crew Not Updated!!").show();
+                    String title = "WARNING";
+                    String message = "Crew Not Updated!!";
+                    TrayNotification tray = new TrayNotification(title, message, NotificationType.WARNING);
+                    tray.showAndDismiss(new Duration(3000));
                 }
 
                 System.out.println("Update");
@@ -877,7 +910,10 @@ public class CrewRegistrationFormController implements Initializable {
             MainWindowFormController.btnCrew.fire();
 
         } catch (SQLException e){
-            new Alert(Alert.AlertType.ERROR, "OOps something went wrong!!!").show();
+            String title = "ERROR";
+            String message = "Ooops...Something Wendt Wrong!!!";
+            TrayNotification tray = new TrayNotification(title, message, NotificationType.ERROR);
+            tray.showAndDismiss(new Duration(3000));
         }
     }
 
@@ -1139,7 +1175,11 @@ public class CrewRegistrationFormController implements Initializable {
     @FXML
     void btnAddOwnerOnAction(ActionEvent event) {
         if(cbSelectBoat.getValue() == null){
-            new Alert(Alert.AlertType.WARNING, "Choose the a boat!!!").show();
+            String title = "WARNING";
+            String message = "Choose the a boat!!!";
+            TrayNotification tray = new TrayNotification(title, message, NotificationType.WARNING);
+            tray.showAndDismiss(new Duration(3000));
+            return;
         }
         if(!(lblOwnerName.getText() == null &&
                 lblOwnerAddress.getText() == null &&

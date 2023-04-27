@@ -109,5 +109,26 @@
             <Font name="System Bold" size="20.0" />
          </font>
       </Label>
+      <JFXButton contentDisplay="GRAPHIC_ONLY" layoutX="688.0" layoutY="12.0" onAction="#btnFishPriceListOnAction" prefHeight="40.0" prefWidth="43.0">
+         <graphic>
+            <ImageView>
+               <image>
+                  <Image url="@../img/price-list.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </JFXButton>
+      <JFXButton contentDisplay="RIGHT" layoutX="511.0" layoutY="10.0" onAction="#btnSendPriceListOnAction" prefHeight="40.0" prefWidth="157.0" style="-fx-border-color: black; -fx-border-radius: 10px;" text="Send Price List">
+         <graphic>
+            <ImageView>
+               <image>
+                  <Image url="@../img/paper-plane.png" />
+               </image>
+            </ImageView>
+         </graphic>
+         <font>
+            <Font size="14.0" />
+         </font>
+      </JFXButton>
    </children>
 </AnchorPane>

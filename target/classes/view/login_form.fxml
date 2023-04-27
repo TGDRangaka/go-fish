@@ -22,7 +22,7 @@
             </ImageView>
             <Pane layoutX="435.0" layoutY="59.0" prefHeight="382.0" prefWidth="299.0" styleClass="login-pane" stylesheets="@../CSS/styles2.css">
                <children>
-                  <JFXTextField fx:id="txtUserName" focusColor="#405aa800" focusTraversable="false" layoutX="53.0" layoutY="213.0" prefHeight="35.0" prefWidth="220.0" style="-fx-background-color: white; -fx-background-radius: 5;" text="kamalperera" unFocusColor="#4d4d4d00">
+                  <JFXTextField fx:id="txtUserName" focusColor="#405aa800" layoutX="53.0" layoutY="213.0" prefHeight="35.0" prefWidth="220.0" style="-fx-background-color: white; -fx-background-radius: 5;" unFocusColor="#4d4d4d00">
                      <font>
                         <Font size="15.0" />
                      </font>
@@ -32,7 +32,7 @@
                         <Font size="15.0" />
                      </font>
                   </JFXTextField>
-                  <JFXPasswordField fx:id="txtPassword" focusColor="#405aa800" focusTraversable="false" layoutX="52.0" layoutY="262.0" prefHeight="35.0" prefWidth="220.0" style="-fx-background-color: white; -fx-background-radius: 5;" text="kamal1234" unFocusColor="#4d4d4d00">
+                  <JFXPasswordField fx:id="txtPassword" focusColor="#405aa800" focusTraversable="false" layoutX="52.0" layoutY="262.0" prefHeight="35.0" prefWidth="220.0" style="-fx-background-color: white; -fx-background-radius: 5;" unFocusColor="#4d4d4d00">
                      <font>
                         <Font size="15.0" />
                      </font>

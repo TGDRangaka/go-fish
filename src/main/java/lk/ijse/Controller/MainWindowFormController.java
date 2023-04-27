@@ -197,24 +197,6 @@ public class MainWindowFormController implements Initializable {
         Node node = FXMLLoader.load(getClass().getResource("/view/view_analystic_form.fxml"));
         root.getChildren().setAll(node);
 
-//        Connection con = DBConnection.getInstance().getConnection();
-//        try {
-//
-//            InputStream input = new FileInputStream(new File("F:/Github/go-fish/src/main/resources/reports/test.jrxml"));
-//            JasperDesign jasperDesign = JRXmlLoader.load(input);
-//            JasperReport jasperReport = JasperCompileManager.compileReport(jasperDesign);
-//
-//            Map<String, Object> d = new HashMap();
-//            d.put("adminId", "A002");
-//            d.put("id", "test test test");
-//            JasperPrint fillReport = JasperFillManager.fillReport(jasperReport, d, con);
-//            JasperViewer.viewReport(fillReport, false);
-//
-//
-//        } catch (JRException | FileNotFoundException e) {
-//            e.printStackTrace();
-//        }
-
     }
 
     @FXML

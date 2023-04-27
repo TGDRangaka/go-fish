@@ -13,6 +13,7 @@
 .chart-title {
     -fx-text-fill: #000000;
 }
+
 .chart-y-axis .axis-label,
 .chart-x-axis .axis-label {
     -fx-text-fill: #c8f3ff;

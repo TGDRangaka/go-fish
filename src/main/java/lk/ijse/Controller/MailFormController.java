@@ -11,6 +11,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
+import javafx.util.Duration;
 import lk.ijse.Model.CrewModel;
 import lk.ijse.Model.CrewmanModel;
 import lk.ijse.Model.MailModel;
@@ -20,6 +21,8 @@ import lk.ijse.dto.tm.SelectCrewTM;
 import lk.ijse.util.CrudUtil;
 import lk.ijse.util.SendMail;
 import lombok.SneakyThrows;
+import tray.notification.NotificationType;
+import tray.notification.TrayNotification;
 
 import java.net.URL;
 import java.sql.SQLException;
@@ -129,17 +132,24 @@ public class MailFormController implements Initializable {
                 loadIdLabel();
                 clearFields();
                 MainWindowFormController.btnMail.fire();
-                new Alert(Alert.AlertType.CONFIRMATION, "Mails Send Succesfully!").show();
+                String title = "CONFIRMATION";
+                String message = "Mail Deleted Succesfully!";
+                TrayNotification tray = new TrayNotification(title, message, NotificationType.SUCCESS);
+                tray.showAndDismiss(new Duration(3000));
             }else {
-                new Alert(Alert.AlertType.WARNING, "Mails Not Send!").show();
+                String title = "WARNING";
+                String message = "Mail Not Deleted";
+                TrayNotification tray = new TrayNotification(title, message, NotificationType.WARNING);
+                tray.showAndDismiss(new Duration(3000));
             }
 
         } catch (SQLException e) {
             e.printStackTrace();
-            new Alert(Alert.AlertType.ERROR, "Oops...Something went wrong!!!").show();
+            String title = "ERROR";
+            String message = "Oops...Something went wrong!!!";
+            TrayNotification tray = new TrayNotification(title, message, NotificationType.ERROR);
+            tray.showAndDismiss(new Duration(3000));
         }
-
-
     }
 
     @FXML

@@ -11,11 +11,14 @@ import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
+import javafx.util.Duration;
 import lk.ijse.Model.MailDetailModel;
 import lk.ijse.Model.MailModel;
 import lk.ijse.dto.Mail;
 import lk.ijse.dto.tm.MailRecordsTM;
 import lombok.SneakyThrows;
+import tray.notification.NotificationType;
+import tray.notification.TrayNotification;
 
 import java.io.IOException;
 import java.net.URL;
@@ -92,13 +95,22 @@ public class SendMailsFormController implements Initializable {
                     if(isMailDeleted){
                         mailRecords.removeAll(mailRecord);
                         tableMailRecords.refresh();
-                        new Alert(Alert.AlertType.CONFIRMATION, "Mail Deleted Succesfully!").show();
+                        String title = "CONFIRMATION";
+                        String message = "Mail Deleted Succesfully!";
+                        TrayNotification tray = new TrayNotification(title, message, NotificationType.SUCCESS);
+                        tray.showAndDismiss(new Duration(3000));
                     }else {
-                        new Alert(Alert.AlertType.WARNING, "Mail Not Deleted").show();
+                        String title = "WARNING";
+                        String message = "Mail Not Deleted";
+                        TrayNotification tray = new TrayNotification(title, message, NotificationType.WARNING);
+                        tray.showAndDismiss(new Duration(3000));
                     }
                 } catch (SQLException ex) {
                     ex.printStackTrace();
-                    new Alert(Alert.AlertType.ERROR, "Oops... Something went wrong!!!").show();
+                    String title = "ERROR";
+                    String message = "Oops...Something went wrong!!!";
+                    TrayNotification tray = new TrayNotification(title, message, NotificationType.ERROR);
+                    tray.showAndDismiss(new Duration(3000));
                 }
             }
         });

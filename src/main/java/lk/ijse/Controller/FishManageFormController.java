@@ -10,17 +10,32 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
-import lk.ijse.Model.FishModel;
+import javafx.util.Duration;
+import lk.ijse.DB.DBConnection;
+import lk.ijse.Model.*;
+import lk.ijse.dto.Catch;
 import lk.ijse.dto.Fish;
+import lk.ijse.dto.Mail;
 import lk.ijse.dto.tm.FishTM;
 import lk.ijse.util.CrudUtil;
+import lk.ijse.util.SendMail;
 import lombok.SneakyThrows;
+import net.sf.jasperreports.engine.*;
+import net.sf.jasperreports.engine.design.JasperDesign;
+import net.sf.jasperreports.engine.xml.JRXmlLoader;
+import net.sf.jasperreports.view.JasperViewer;
+import tray.notification.NotificationType;
+import tray.notification.TrayNotification;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.InputStream;
 import java.net.URL;
+import java.sql.Connection;
 import java.sql.SQLException;
-import java.util.List;
-import java.util.Optional;
-import java.util.ResourceBundle;
+import java.time.LocalDateTime;
+import java.util.*;
 
 public class FishManageFormController implements Initializable {
 
@@ -68,6 +83,7 @@ public class FishManageFormController implements Initializable {
     private ObservableList<FishTM> fishList = FXCollections.observableArrayList();
 
     private FishTM selectedFish = null;
+    private boolean isPriceAlreadySended = false;
 
     @SneakyThrows
     @Override
@@ -152,14 +168,23 @@ public class FishManageFormController implements Initializable {
                         fishList.removeAll(fishTM);
                         tableFish.refresh();
 
-                        new Alert(Alert.AlertType.CONFIRMATION, "Fish Deleted Succesfully!").show();
+                        String title = "CONFIRMATION";
+                        String message = "Fish Deleted Succesfully!";
+                        TrayNotification tray = new TrayNotification(title, message, NotificationType.SUCCESS);
+                        tray.showAndDismiss(new Duration(3000));
                         loadNewFishId();
                     } else {
-                        new Alert(Alert.AlertType.WARNING, "Fish Not Deleted!!").show();
+                        String title = "WARNING";
+                        String message = "Fish Not Deleted!!";
+                        TrayNotification tray = new TrayNotification(title, message, NotificationType.WARNING);
+                        tray.showAndDismiss(new Duration(3000));
                     }
                 } catch (SQLException ex) {
                     ex.printStackTrace();
-                    new Alert(Alert.AlertType.ERROR, "Oops Something Went Wrong!").show();
+                    String title = "ERROR";
+                    String message = "Oops Something Went Wrong!";
+                    TrayNotification tray = new TrayNotification(title, message, NotificationType.ERROR);
+                    tray.showAndDismiss(new Duration(3000));
                 }
             }
         });
@@ -198,13 +223,22 @@ public class FishManageFormController implements Initializable {
                     fishList.add(fishTM);
                     tableFish.setItems(fishList);
 
-                    new Alert(Alert.AlertType.CONFIRMATION, "Fish Added Succesfully!").show();
+                    String title = "CONFIRMATION";
+                    String message = "Fish Added Succesfully!";
+                    TrayNotification tray = new TrayNotification(title, message, NotificationType.SUCCESS);
+                    tray.showAndDismiss(new Duration(3000));
                 } else {
-                    new Alert(Alert.AlertType.WARNING, "Fish Not Added!!").show();
+                    String title = "WARNING";
+                    String message = "Fish Not Added!!";
+                    TrayNotification tray = new TrayNotification(title, message, NotificationType.WARNING);
+                    tray.showAndDismiss(new Duration(3000));
                 }
             } catch (SQLException e) {
                 e.printStackTrace();
-                new Alert(Alert.AlertType.ERROR, "Oops Something Went Wrong!").show();
+                String title = "ERROR";
+                String message = "Oops Something Went Wrong!";
+                TrayNotification tray = new TrayNotification(title, message, NotificationType.ERROR);
+                tray.showAndDismiss(new Duration(3000));
             }
         }else{
             try {
@@ -218,13 +252,22 @@ public class FishManageFormController implements Initializable {
 
                     tableFish.refresh();
 
-                    new Alert(Alert.AlertType.CONFIRMATION, "Fish Updated Succesfully!").show();
+                    String title = "CONFIRMATION";
+                    String message = "Fish Updated Succesfully!";
+                    TrayNotification tray = new TrayNotification(title, message, NotificationType.SUCCESS);
+                    tray.showAndDismiss(new Duration(3000));
                 }else {
-                    new Alert(Alert.AlertType.WARNING, "Fish Not Updated!!").show();
+                    String title = "WARNING";
+                    String message = "Fish Not Updated!!";
+                    TrayNotification tray = new TrayNotification(title, message, NotificationType.WARNING);
+                    tray.showAndDismiss(new Duration(3000));
                 }
             } catch (SQLException e) {
                 e.printStackTrace();
-                new Alert(Alert.AlertType.ERROR, "Oops Something Went Wrong!").show();
+                String title = "ERROR";
+                String message = "Oops Something Went Wrong!";
+                TrayNotification tray = new TrayNotification(title, message, NotificationType.ERROR);
+                tray.showAndDismiss(new Duration(3000));
             }
         }
         btnAdd.setText("Add");
@@ -255,4 +298,82 @@ public class FishManageFormController implements Initializable {
         btnAdd.setText("Update");
     }
 
+    @FXML
+    void btnFishPriceListOnAction(ActionEvent event) {
+        new Thread(() -> {
+            try {
+                Connection con = DBConnection.getInstance().getConnection();
+
+                InputStream input = new FileInputStream(new File("F:/Github/go-fish/src/main/resources/reports/fish_price_list.jrxml"));
+                JasperDesign jasperDesign = JRXmlLoader.load(input);
+                JasperReport jasperReport = JasperCompileManager.compileReport(jasperDesign);
+
+                Map<String, Object> data = new HashMap();
+
+                JasperPrint fillReport = JasperFillManager.fillReport(jasperReport, data, con);
+                JasperViewer.viewReport(fillReport, false);
+
+
+            } catch (JRException | FileNotFoundException | SQLException e) {
+                e.printStackTrace();
+            }
+        }).start();
+
+    }
+
+    @FXML
+    void btnSendPriceListOnAction(ActionEvent event) throws SQLException {
+        if(isPriceAlreadySended){
+            return;
+        }
+        isPriceAlreadySended = true;
+//        String text = "+--------+--------------------+---------------+---------------+\n" +
+//                String.format("|%-8s|%-20s|%-15s|%-15s|\n", "FishId", "FishType", "Unit Weight(kg)", "Unit Price(Rs)") +
+//                "+--------+--------------------+---------------+---------------+\n";
+        String text = "";
+        List<Fish> fishList = FishModel.getAllFish();
+        for(Fish fish : fishList){
+//            String row = String.format("|%-8s|%-20s|%-15.2f|%-15.2f|\n",
+//                    fish.getFishId(), fish.getFishType(), fish.getUnitWeight(), fish.getUnitPrice());
+//            text += row + "\n";
+
+            text += fish.getFishId() +" - "+ fish.getFishType() +" - "+ fish.getUnitWeight() +"kg - Rs: "+ fish.getUnitPrice() + "\n";
+        }
+//        text += "+--------+--------------------+---------------+---------------+";
+
+
+        try {
+            String subject = "Fishing House Fish Price List";
+
+            SendMail sendMail = new SendMail(); //creating an instance of SendMail class
+            sendMail.setTo("exampledilshan@gmail.com"); //receiver's sendMail
+            sendMail.setSubject(subject); //email subject
+            sendMail.setMsg(text);//email message
+
+            Thread thread = new Thread(sendMail);
+            thread.start();
+
+            Mail mail = new Mail(CrudUtil.getNewId(MailModel.getLastId()), subject, LocalDateTime.now());
+            boolean isMailRecorded = MailModel.save(mail, CrewModel.getCrewIds());
+
+            if(isMailRecorded){
+                String title = "CONFIRMATION";
+                String message = "Mails Send Succesfully!";
+                TrayNotification tray = new TrayNotification(title, message, NotificationType.SUCCESS);
+                tray.showAndDismiss(new Duration(3000));
+            }else {
+                String title = "WARNING";
+                String message = "Mails Not Send!";
+                TrayNotification tray = new TrayNotification(title, message, NotificationType.WARNING);
+                tray.showAndDismiss(new Duration(3000));
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            String title = "ERROR";
+            String message = "Oops...Something went wrong!!!";
+            TrayNotification tray = new TrayNotification(title, message, NotificationType.ERROR);
+            tray.showAndDismiss(new Duration(3000));
+        }
+    }
 }

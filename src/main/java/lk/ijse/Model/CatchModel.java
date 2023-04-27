@@ -1,9 +1,9 @@
 package lk.ijse.Model;
 
-import javafx.scene.chart.XYChart;
 import lk.ijse.DB.DBConnection;
 import lk.ijse.dto.Catch;
 import lk.ijse.dto.CatchDetail;
+import lk.ijse.dto.tm.AnalysisTM;
 import lk.ijse.util.CrudUtil;
 
 import java.sql.Connection;
@@ -206,7 +206,7 @@ public class CatchModel {
     public static Double getCatchWeight(LocalDate fromDate, LocalDate toDate) throws SQLException {
         String sql = "SELECT (SUM(weightOfCatch))AS sum " +
                 "FROM catch " +
-                "WHERE (catchDate > ?) & (catchDate <= ?)";
+                "WHERE (catchDate > ?) && (catchDate <= ?)";
 
         ResultSet rs = CrudUtil.execute(sql, fromDate, toDate);
         if(rs.next()){
@@ -218,7 +218,7 @@ public class CatchModel {
     public static Integer getCatchCount(LocalDate fromDate, LocalDate toDate) throws SQLException {
         String sql = "SELECT (COUNT(*))AS sum " +
                 "FROM catch " +
-                "WHERE (catchDate > ?) & (catchDate <= ?)";
+                "WHERE (catchDate > ?) && (catchDate <= ?)";
 
         ResultSet rs = CrudUtil.execute(sql, fromDate, toDate);
         if(rs.next()){
@@ -247,40 +247,40 @@ public class CatchModel {
         return null;
     }
 
-    public static String getCatchCount(String crewId) throws SQLException {
-        String sql = "SELECT COUNT(*) FROM catch WHERE crewId = ?";
+    public static Integer getCatchCount(String crewId) throws SQLException {
+        String sql = "SELECT (COUNT(*))AS sum " +
+                "FROM catch " +
+                "WHERE crewId = ?";
 
         ResultSet rs = CrudUtil.execute(sql, crewId);
-        String count = "";
         if(rs.next()){
-            count = rs.getString(1);
+            return rs.getInt(1);
         }
-
-        return count != null ? count : "0";
+        return 0;
     }
 
-    public static String getCatchWeight(String crewId) throws SQLException {
-        String sql = "SELECT SUM(weightOfCatch) FROM catch WHERE crewId = ?";
+    public static Double getCatchWeight(String crewId) throws SQLException {
+        String sql = "SELECT (SUM(weightOfCatch))AS sum " +
+                "FROM catch " +
+                "WHERE crewId = ?";
 
         ResultSet rs = CrudUtil.execute(sql, crewId);
-        String count = "";
         if(rs.next()){
-            count = rs.getString(1);
+            return rs.getDouble(1);
         }
-
-        return count != null ? count : "0";
+        return 0.0;
     }
 
-    public static String getCatchPayments(String crewId) throws SQLException {
-        String sql = "SELECT SUM(paymentAmount) FROM catch WHERE crewId = ?";
+    public static Double getCatchPayments(String crewId) throws SQLException {
+        String sql = "SELECT (SUM(paymentAmount))AS sum " +
+                "FROM catch " +
+                "WHERE crewId = ?";
 
         ResultSet rs = CrudUtil.execute(sql, crewId);
-        String count = "";
         if(rs.next()){
-            count = rs.getString(1);
+            return rs.getDouble(1);
         }
-
-        return count != null ? count : "0";
+        return 0.0;
     }
 
     public static List<String> getCatchweight(String crewId, LocalDate date) throws SQLException {
@@ -297,5 +297,71 @@ public class CatchModel {
         }
 
         return data;
+    }
+
+    public static List<AnalysisTM> getCrewCatch() throws SQLException {
+        String sql = "SELECT crew.crewId, crew.leader, SUM(catch.weightOfCatch)AS totWeight " +
+                "FROM catch " +
+                "INNER JOIN crew " +
+                "ON catch.crewId = crew.crewId " +
+                "GROUP BY crew.crewId";
+
+        ResultSet rs = CrudUtil.execute(sql);
+        List<AnalysisTM> list = new ArrayList<>();
+        while(rs.next()){
+            list.add(new AnalysisTM(
+                    rs.getString(1),
+                    rs.getString(2),
+                    rs.getDouble(3)
+            ));
+        }
+
+        return list;
+    }
+
+    public static Double getCatchWeight(String crewId, LocalDate fromDate, LocalDate toDate) throws SQLException {
+        String sql = "SELECT (SUM(weightOfCatch))AS sum " +
+                "FROM catch " +
+                "WHERE (catchDate > ?) && (catchDate <= ?) && (crewId = ?)";
+
+        ResultSet rs = CrudUtil.execute(sql, fromDate, toDate, crewId);
+        if(rs.next()){
+            return rs.getDouble(1);
+        }
+        return 0.0;
+    }
+
+    public static Integer getCatchCount(String crewId, LocalDate fromDate, LocalDate toDate) throws SQLException {
+        String sql = "SELECT (COUNT(*))AS sum " +
+                "FROM catch " +
+                "WHERE (catchDate > ?) && (catchDate <= ?) && (crewId = ?)";
+
+        ResultSet rs = CrudUtil.execute(sql, fromDate, toDate, crewId);
+        if(rs.next()){
+            return rs.getInt(1);
+        }
+        return 0;
+    }
+
+    public static Double getCatchPayments(String crewId, LocalDate fromDate, LocalDate toDate) throws SQLException {
+        String sql = "SELECT (SUM(paymentAmount))AS sum " +
+                "FROM catch " +
+                "WHERE (catchDate > ?) && (catchDate <= ?) && (crewId = ?)";
+
+        ResultSet rs = CrudUtil.execute(sql, fromDate, toDate, crewId);
+        if(rs.next()){
+            return rs.getDouble(1);
+        }
+        return 0.0;
+    }
+
+    public static boolean search(String catchId) throws SQLException {
+        String sql = "SELECT * FROM catch WHERE catchId = ?";
+
+        ResultSet rs = CrudUtil.execute(sql, catchId);
+        if(rs.next()){
+            return true;
+        }
+        return false;
     }
 }

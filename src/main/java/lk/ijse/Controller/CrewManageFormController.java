@@ -13,11 +13,14 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
+import javafx.util.Duration;
 import lk.ijse.Model.*;
 import lk.ijse.dto.BoatOwner;
 import lk.ijse.dto.Crew;
 import lk.ijse.dto.tm.CrewTM;
 import lombok.SneakyThrows;
+import tray.notification.NotificationType;
+import tray.notification.TrayNotification;
 
 import java.io.IOException;
 import java.net.URL;
@@ -186,9 +189,6 @@ public class CrewManageFormController implements Initializable {
                 if(result.orElse(no) == (yes)) {
                     try {
                         List<String> boatOwnersIdList = BoatOwnerModel.getBoatOwnersId(crewId);
-                        for(String s : boatOwnersIdList){
-                            System.out.println(s + "-----------------");
-                        }
                         List<String> catchIdList = CatchModel.getAllCatchIds(crewId);
                         boolean isCrewDeleted = CrewModel.deleteCrew(crewId, boatOwnersIdList, catchIdList);
 
@@ -196,13 +196,25 @@ public class CrewManageFormController implements Initializable {
                             crews.removeAll(crewTM);
                             tableCrew.refresh();
                             loadLabels();
-                            new Alert(Alert.AlertType.CONFIRMATION, "Crew Deleted Succesfully!").show();
+
+                            String title = "Deleted";
+                            String message = "Crew Deleted Succesfully!";
+                            TrayNotification tray = new TrayNotification(title, message, NotificationType.SUCCESS);
+                            tray.showAndDismiss(new Duration(3000));
                         } else {
                             new Alert(Alert.AlertType.WARNING, "Crew Not Deleted!!").show();
+                            String title = "Warning";
+                            String message = "Crew Not Deleted!!";
+                            TrayNotification tray = new TrayNotification(title, message, NotificationType.WARNING);
+                            tray.showAndDismiss(new Duration(3000));
                         }
                     } catch (SQLException ex) {
                         System.out.println(ex);
-                        new Alert(Alert.AlertType.ERROR, "Oops...Something went wrong!!!").show();
+
+                        String title = "Error";
+                        String message = "Oops...Something went wrong!!!";
+                        TrayNotification tray = new TrayNotification(title, message, NotificationType.ERROR);
+                        tray.showAndDismiss(new Duration(3000));
                     }
                 }
             });
@@ -236,10 +248,19 @@ public class CrewManageFormController implements Initializable {
             tableCrew.setItems(crews);
             return;
         }
+
         ObservableList<CrewTM> temp = FXCollections.observableArrayList();
 
         for(CrewTM crew : crews){
-            if(crew.getCrewId().equals(search)){
+            String boatCount = String.valueOf(crew.getBoatsCount());
+            String crewmenCount = String.valueOf(crew.getCrewmenCount());
+            if(crew.getCrewId().matches(".*" + search + ".*") ||
+                    crew.getLeader().matches(".*" + search + ".*") ||
+                    crew.getAvailableDays().matches(".*" + search + ".*") ||
+                    crew.getAvailableTimes().matches(".*" + search + ".*") ||
+                    boatCount.matches(search) ||
+                    crewmenCount.matches(search)) {
+
                 temp.add(crew);
             }
         }
