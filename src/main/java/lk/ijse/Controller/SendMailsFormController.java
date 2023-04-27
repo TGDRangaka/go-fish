@@ -10,6 +10,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.util.Duration;
 import lk.ijse.Model.MailDetailModel;
@@ -68,12 +69,13 @@ public class SendMailsFormController implements Initializable {
         for(Mail mail : mailList){
             String mailId = mail.getId();
             String description = mail.getDescription();
+            String[] split = description.split("\\$");
             LocalDateTime dateTime = mail.getDateTime();
             String to = MailDetailModel.getRecords(mailId);
             Button action = new Button("Delete");
             action.getStyleClass().add("table-delete-btn");
 
-            MailRecordsTM mailRecord = new MailRecordsTM(mailId, description,to, dateTime, action);
+            MailRecordsTM mailRecord = new MailRecordsTM(mailId, split[0], to, dateTime, action);
             setDeleteButtonOnAction(action, mailRecord);
 
             mailRecords.add(mailRecord);
@@ -124,7 +126,11 @@ public class SendMailsFormController implements Initializable {
         colAction.setCellValueFactory(new PropertyValueFactory<>("action"));
 
         txtSearch.setOnAction((e) -> {
-            btnSearchOnAction(new ActionEvent());
+            try {
+                btnSearchOnAction(new ActionEvent());
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+            }
         });
     }
 
@@ -135,7 +141,7 @@ public class SendMailsFormController implements Initializable {
     }
 
     @FXML
-    void btnSearchOnAction(ActionEvent event) {
+    void btnSearchOnAction(ActionEvent event) throws SQLException {
         String search = txtSearch.getText();
         if(search.length() == 0){
             tableMailRecords.setItems(mailRecords);
@@ -144,11 +150,29 @@ public class SendMailsFormController implements Initializable {
         ObservableList<MailRecordsTM> temp = FXCollections.observableArrayList();
 
         for(MailRecordsTM mailRec : mailRecords){
-            if(mailRec.getMailId().equals(search) || mailRec.getTo().contains(search)){
+            if(mailRec.getMailId().equals(search) || mailRec.getTo().contains(search) ||
+                    ((search.matches("All") || search.matches("all")) && MailModel.isSentToAll(mailRec.getMailId())) ||
+                    mailRec.getDescription().matches(".*" + search + ".*") ||
+                    String.valueOf(mailRec.getDateTime()).matches(search) ||
+                    (search.contains("-") && String.valueOf(mailRec.getDateTime()).matches(".*"+search+".*")) ||
+                    (search.contains(":") && String.valueOf(mailRec.getDateTime()).matches(".*"+search+".*"))
+            ){
                 temp.add(mailRec);
             }
         }
 
         tableMailRecords.setItems(temp);
+    }
+
+    @FXML
+    void tableMailRecordsOnMouseClicked(MouseEvent event) throws SQLException {
+        MailRecordsTM selectedItem = tableMailRecords.getSelectionModel().getSelectedItem();
+        if(selectedItem == null){
+            return;
+        }
+
+        String body = MailModel.getMailBody(selectedItem.getMailId());
+
+        new Alert(Alert.AlertType.INFORMATION, body).show();
     }
 }

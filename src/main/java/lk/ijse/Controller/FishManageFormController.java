@@ -327,20 +327,11 @@ public class FishManageFormController implements Initializable {
             return;
         }
         isPriceAlreadySended = true;
-//        String text = "+--------+--------------------+---------------+---------------+\n" +
-//                String.format("|%-8s|%-20s|%-15s|%-15s|\n", "FishId", "FishType", "Unit Weight(kg)", "Unit Price(Rs)") +
-//                "+--------+--------------------+---------------+---------------+\n";
         String text = "";
         List<Fish> fishList = FishModel.getAllFish();
         for(Fish fish : fishList){
-//            String row = String.format("|%-8s|%-20s|%-15.2f|%-15.2f|\n",
-//                    fish.getFishId(), fish.getFishType(), fish.getUnitWeight(), fish.getUnitPrice());
-//            text += row + "\n";
-
             text += fish.getFishId() +" - "+ fish.getFishType() +" - "+ fish.getUnitWeight() +"kg - Rs: "+ fish.getUnitPrice() + "\n";
         }
-//        text += "+--------+--------------------+---------------+---------------+";
-
 
         try {
             String subject = "Fishing House Fish Price List";
@@ -353,7 +344,7 @@ public class FishManageFormController implements Initializable {
             Thread thread = new Thread(sendMail);
             thread.start();
 
-            Mail mail = new Mail(CrudUtil.getNewId(MailModel.getLastId()), subject, LocalDateTime.now());
+            Mail mail = new Mail(CrudUtil.getNewId(MailModel.getLastId()), subject + "$" +  text, LocalDateTime.now());
             boolean isMailRecorded = MailModel.save(mail, CrewModel.getCrewIds());
 
             if(isMailRecorded){

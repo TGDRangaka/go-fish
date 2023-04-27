@@ -6,6 +6,7 @@ import eu.hansolo.tilesfx.chart.ChartData;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.chart.*;
@@ -17,13 +18,21 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
+import javafx.util.Duration;
 import lk.ijse.Model.CatchModel;
 import lk.ijse.Model.CrewModel;
 import lk.ijse.Model.FishModel;
+import lk.ijse.Model.MailModel;
 import lk.ijse.dto.Fish;
+import lk.ijse.dto.Mail;
 import lk.ijse.dto.Weather;
 import lk.ijse.dto.tm.FishPricesTM;
+import lk.ijse.util.CrudUtil;
+import lk.ijse.util.SendMail;
 import lombok.SneakyThrows;
+import tray.animations.AnimationType;
+import tray.notification.NotificationType;
+import tray.notification.TrayNotification;
 
 import java.io.IOException;
 import java.net.URI;
@@ -33,6 +42,7 @@ import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 import java.sql.SQLException;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
 
@@ -328,80 +338,61 @@ public class DashboardFormController implements Initializable {
             return "Clear";
         }
     }
-//
-//    public void loadWeather() {
-//        Image rainy = new Image("F:/Github/go-fish/src/main/resources/img/rain.gif");
-//        Image storm = new Image("F:/Github/go-fish/src/main/resources/img/storm.gif");
-//        Image sunny = new Image("F:/Github/go-fish/src/main/resources/img/sun.gif");
-//        Image wind = new Image("F:/Github/go-fish/src/main/resources/img/wind.gif");
-//        Image cloudy = new Image("F:/Github/go-fish/src/main/resources/img/cloudy.gif");
-//        List<Image> images = new ArrayList<>();
-//        images.add(sunny); images.add(cloudy); images.add(rainy); images.add(storm); images.add(wind);
-//        String[] weatherConditions = {"sunny", "cloudy", "rainy", "stormy", "windy"};
-//        int minTemp = 15;
-//        int maxTemp = 40;
-//        int minWindSpeed = 0;
-//        int maxWindSpeed = 50;
-//
-//        ImageView[] imageViews = {imgWeather1, imgWeather2, imgWeather3, imgWeather4, imgWeather5, imgWeather6, imgWeather7};
-//        for (int i = 0; i < 7; i++) {
-//            Object[] randomWeatherReport = generateRandomWeatherReport(weatherConditions, images, minTemp, maxTemp, minWindSpeed, maxWindSpeed);
-//            String weather = String.valueOf(randomWeatherReport[0]);
-//            int temp = (int) randomWeatherReport[1];
-//            int windSpeed = (int) randomWeatherReport[2];
-//            imageViews[i].setImage((Image) randomWeatherReport[3]);
-//
-//            System.out.println(i +"- Today's weather report:");
-//            System.out.println("Weather: " + weather);
-//            System.out.println("Temperature: " + temp + " degrees Celsius");
-//            System.out.println("Wind speed: " + windSpeed + " km/h");
-//            System.out.println("//////////////////////////////");
-//        }
-//    }
-//
-//    public static Object[] generateRandomWeatherReport(String[] weatherConditions, List<Image> images, int minTemp, int maxTemp, int minWindSpeed, int maxWindSpeed) {
-//        Random random = new Random();
-//        String weather = weatherConditions[random.nextInt(weatherConditions.length)];
-//        int temp = 0;
-//        int windSpeed = 0;
-//        Image image = null;
-//
-//        // Set realistic temperature and wind speed based on weather condition
-//        switch (weather) {
-//            case "sunny":
-//                temp = random.nextInt((maxTemp - 20) + 1) + 20; // high temperature
-//                windSpeed = random.nextInt((maxWindSpeed - 5) + 1) + 5; // low wind speed
-//                image = images.get(0);
-//                break;
-//            case "cloudy":
-//                temp = random.nextInt((maxTemp - minTemp) + 1) + minTemp; // moderate temperature
-//                windSpeed = random.nextInt((maxWindSpeed - minWindSpeed) + 1) + minWindSpeed; // moderate wind speed
-//                image = images.get(1);
-//                break;
-//            case "rainy":
-//                temp = random.nextInt((maxTemp - minTemp) + 1) + minTemp; // moderate temperature
-//                windSpeed = random.nextInt((maxWindSpeed - 10) + 1) + 10; // high wind speed
-//                image = images.get(2);
-//                break;
-//            case "stormy":
-//                temp = random.nextInt((maxTemp - minTemp) + 1) + minTemp; // moderate temperature
-//                windSpeed = random.nextInt((maxWindSpeed - 20) + 1) + 20; // very high wind speed
-//                image = images.get(3);
-//                break;
-//            case "windy":
-//                temp = random.nextInt((maxTemp - minTemp) + 1) + minTemp; // moderate temperature
-//                windSpeed = random.nextInt((maxWindSpeed - 15) + 1) + 15; // high wind speed
-//                image = images.get(4);
-//                break;
-//        }
-//
-//        Object[] weatherReport = new Object[4];
-//        weatherReport[0] = weather;
-//        weatherReport[1] = temp;
-//        weatherReport[2] = windSpeed;
-//        weatherReport[3] = image;
-//
-//        return weatherReport;
-//    }
 
+    @FXML
+    void btnWeatherSendOnAction(ActionEvent event) throws SQLException {
+        LocalDate date = LocalDate.now();
+        if(MailModel.isWeatherSendToday(date)){
+            String title = "WARNING";
+            String message = "Today weather forecast already send!";
+            TrayNotification tray = new TrayNotification(title, message, NotificationType.WARNING);
+            tray.showAndDismiss(new Duration(3000));
+            tray.setAnimationType(AnimationType.FADE);
+            return;
+        }
+
+        StringBuilder text = new StringBuilder();
+
+        for(Weather weather : weathers){
+            text.append("\nDate - " + date.format(DateTimeFormatter.ofPattern("YYYY/MMM/dd")) + "\n" +
+                    "\tTemp - " + weather.getTemp() + "'C\n" +
+                    "\tCondition - " + weather.getCondition() + "\n" +
+                    "\tWind Speed - " + weather.getWindSpeed() + "kmph\n");
+            date = date.plusDays(1);
+        }
+
+        try {
+            String subject = "Weather Forecast";
+
+            SendMail sendMail = new SendMail(); //creating an instance of SendMail class
+            sendMail.setTo("exampledilshan@gmail.com"); //receiver's sendMail
+            sendMail.setSubject(subject); //email subject
+            sendMail.setMsg(String.valueOf(text));//email message
+
+            Thread thread = new Thread(sendMail);
+            thread.start();
+
+            Mail mail = new Mail(CrudUtil.getNewId(MailModel.getLastId()), subject + "$" + text, LocalDateTime.now());
+            boolean isMailRecorded = MailModel.save(mail, CrewModel.getCrewIds());
+
+            if(isMailRecorded){
+                String title = "CONFIRMATION";
+                String message = "Mails Send Succesfully!";
+                TrayNotification tray = new TrayNotification(title, message, NotificationType.SUCCESS);
+                tray.showAndDismiss(new Duration(3000));
+            }else {
+                String title = "WARNING";
+                String message = "Mails Not Send!";
+                TrayNotification tray = new TrayNotification(title, message, NotificationType.WARNING);
+                tray.showAndDismiss(new Duration(3000));
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            String title = "ERROR";
+            String message = "Oops...Something went wrong!!!";
+            TrayNotification tray = new TrayNotification(title, message, NotificationType.ERROR);
+            tray.showAndDismiss(new Duration(3000));
+        }
+    }
 }

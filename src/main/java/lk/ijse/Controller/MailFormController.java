@@ -124,7 +124,7 @@ public class MailFormController implements Initializable {
             Thread thread = new Thread(sendMail);
             thread.start();
 
-            String description = subject + "\t" + body;
+            String description = subject + "$" + body;
             Mail mail = new Mail(lblCrewId.getText(), description, LocalDateTime.now());
             boolean isMailRecorded = MailModel.save(mail, idList);
 
